@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:horizontalSpacing="@dimen/search_result_grid_horizontalSpacing"
+    android:listSelector="@drawable/video_item_image_frame_selector"
+    android:numColumns="4"
+    android:paddingBottom="@dimen/search_result_grid_paddingBottom"
+    android:paddingLeft="@dimen/search_result_grid_paddingLeftRight"
+    android:paddingRight="@dimen/search_result_grid_paddingLeftRight"
+    android:scrollbarStyle="outsideOverlay"
+    android:scrollbarThumbVertical="@drawable/scrollbar"
+    android:verticalSpacing="@dimen/search_result_grid_verticalSpacing" >
+
+</GridView>

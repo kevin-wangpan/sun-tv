@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MetroContainer">
+        <attr name="layoutOrientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="rowCount" format="integer" />
+        <attr name="rowSpace" format="dimension" />
+        <attr name="columnSpace" format="dimension" />
+        <attr name="rowHeight" format="dimension" />
+        <attr name="extraScrollSpace" format="dimension" />
+        <attr name="surroundingMarginLeft" format="dimension" />
+        <attr name="surroundingMarginRight" format="dimension" />
+        <attr name="surroundingMarginTop" format="dimension" />
+        <attr name="surroundingMarginBottom" format="dimension" />
+        <attr name="surroundingMargin" format="dimension" />
+    </declare-styleable>
+    
+    <declare-styleable name="SettingItemView">
+        <attr name="itemContent" format="string" />
+        <attr name="refer" format="enum">
+            <enum name="profile" value="0" />
+            <enum name="skip" value="1" />
+            <enum name="proportion" value="2" />
+            <enum name="decoder" value="3" />
+        </attr>
+    </declare-styleable>
+
+</resources>

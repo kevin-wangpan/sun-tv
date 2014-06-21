@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/search_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/descreption"
+        android:paddingLeft="@dimen/back_arrow_padding"
+        android:paddingTop="@dimen/back_arrow_padding"
+        android:src="@drawable/back" />
+
+    <TextView
+        android:id="@+id/search_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/search_back"
+        android:paddingLeft="@dimen/search_keyboard_title_paddingLeft"
+        android:paddingTop="@dimen/search_keyboard_title_paddingTop"
+        android:text="@string/search"
+        android:textColor="#fff"
+        android:textSize="@dimen/search_keyboard_title_textSize" />
+
+    <TextView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_back"
+        android:layout_marginLeft="@dimen/search_input_marginLeftRight"
+        android:layout_marginRight="@dimen/search_input_marginLeftRight"
+        android:layout_marginTop="@dimen/search_input_marginTop"
+        android:background="@drawable/search_editor"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:padding="@dimen/search_input_padding"
+        android:textColor="#fff" >
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search"
+        android:layout_marginLeft="@dimen/search_keyboard_margin"
+        android:layout_marginRight="@dimen/search_keyboard_margin"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/search_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/search_tip_margin"
+        android:layout_marginLeft="@dimen/search_tip_margin"
+        android:layout_marginRight="@dimen/search_tip_margin"
+        android:textSize="@dimen/search_tip_textSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/search_tip"
+        android:layout_gravity="left"
+        android:layout_marginLeft="@dimen/search_tip_margin"
+        android:layout_marginRight="@dimen/search_tip_margin"
+        android:text="@string/little_tip"
+        android:textColor="#fff"
+        android:textSize="@dimen/search_tip_textSize" />
+
+</RelativeLayout>

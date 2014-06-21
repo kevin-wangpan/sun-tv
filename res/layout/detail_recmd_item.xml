@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center" >
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_recommend_item_padding_vertical"/>
+
+    <FrameLayout
+        android:id="@+id/detail_recmd_item_content"
+        android:layout_width="@dimen/detail_recommend_image_width"
+        android:layout_height="@dimen/detail_recommend_image_height" >
+
+        <ImageView
+            android:id="@+id/detail_recmd_item_iv_poster"
+            android:layout_width="@dimen/detail_recommend_image_width"
+            android:layout_height="@dimen/detail_recommend_image_height"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@drawable/poster_default" />
+
+        <TextView
+            android:id="@+id/detail_recmd_item_tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#aa000000"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/detail_font_recmd_moviename" />
+
+        <ImageView
+            android:id="@+id/detail_recmd_item_iv_bg"
+            android:layout_width="@dimen/detail_recommend_image_width"
+            android:layout_height="@dimen/detail_recommend_image_height"
+            android:background="@drawable/video_item_image_frame_selector"
+            android:contentDescription="@string/app_name" />
+
+        <ImageView
+            android:id="@+id/detail_recmd_item_iv_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:background="@drawable/detail_profile_1080p"
+            android:contentDescription="@string/app_name" />
+    </FrameLayout>
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_recommend_item_padding_vertical"/>
+
+</LinearLayout>

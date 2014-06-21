@@ -1,0 +1,266 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="FullScreenAppTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen">
+    </style>
+
+    <style name="StartUpActivityTheme" parent="FullScreenAppTheme"></style>
+
+    <style name="MainActivityTheme" parent="FullScreenAppTheme">
+    </style>
+
+    <style name="NavigationalControl">
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/jy_navi_textview_color</item>
+    </style>
+
+    <style name="HomePageVideoTitle">
+        <item name="android:padding">@dimen/HomePageVideoTitle_padding</item>
+        <item name="android:textSize">@dimen/HomePageVideoTitle_textSize</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:focusable">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <item name="android:background">#c0000000</item>
+    </style>
+
+    <style name="MediaControllerVideoTime">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/MediaControllerVideoTime_textSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/MediaControllerVideoTime_layout_marginLeft</item>
+        <item name="android:layout_marginRight">@dimen/MediaControllerVideoTime_layout_marginRight</item>
+    </style>
+
+    <style name="VideoImageItemTitle">
+        <item name="android:textSize">@dimen/VideoImageItemTitle_textSize</item> <!-- 28号字: 28pt -->
+        <item name="android:layout_marginLeft">@dimen/VideoImageItemTitle_layout_marginLeft</item>
+        <item name="android:layout_marginRight">@dimen/VideoImageItemTitle_layout_marginRight</item>
+        <item name="android:layout_marginTop">@dimen/VideoImageItemTitle_layout_marginTop</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="VideoImageItemTips">
+        <item name="android:background">#6C000000</item>
+        <item name="android:textSize">@dimen/VideoImageItemTips_textSize</item> <!-- 22号字:  22pt, 太小了，增加3sp -->
+        <item name="android:textColor">@color/video_item_update_info</item>
+        <item name="android:paddingLeft">@dimen/VideoImageItemTips_paddingLeft</item>
+        <item name="android:paddingRight">@dimen/VideoImageItemTips_paddingRight</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/VideoImageItemTips_layout_marginLeft</item>
+        <item name="android:layout_marginRight">@dimen/VideoImageItemTips_layout_marginRight</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+    
+    <style name="DetailEpisodesPopupAnimation" parent="@android:style/Animation.Translucent">
+        <item name="android:windowEnterAnimation">@anim/slide_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom_out</item>
+    </style>
+    
+    <style name="EpisodeNumItemTextView">
+        <item name="android:background">@drawable/episode_select_pager_indicator</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">0</item>
+    </style>
+    
+    <style name="detail_director_text" >
+        <item name="android:textSize">@dimen/detail_font_body</item>
+        <item name="android:textColor">@color/detail_body</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    
+    <style name="profile_select_item">
+        <item name="android:background">@drawable/profile_select_item_selector</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/episodes_tab_color_selector</item>
+        <item name="android:textSize">@dimen/profile_select_font_item</item>
+    </style>
+    
+    <style name="download_profile_select_item">
+        <item name="android:background">@drawable/download_profile_bt_bkg</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/download_profile_select_item_textSize</item>
+        <item name="android:layout_marginRight">@dimen/download_profile_select_item_layout_marginRight</item>
+        <item name="android:layout_width">@dimen/download_selection_profile_width</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="FilterDialogTheme" parent="@android:style/Theme.Holo.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">false</item> 
+        <item name="android:windowAnimationStyle">@style/DetailEpisodesPopupAnimation</item> 
+        <item name="android:windowNoTitle">true</item> 
+	    <item name="android:windowIsTranslucent">true</item> 
+    </style>
+    
+    <style name="filter_title_text">
+        <item name="android:paddingBottom">@dimen/filter_title_line_spacing</item>
+        <item name="android:textSize">@dimen/filter_font_title</item>
+        <item name="android:textColor">@color/filter_title</item>
+        <item name="android:gravity">center</item>
+    </style>
+    
+    <style name="filter_item_text">
+        <item name="android:textSize">@dimen/filter_font_item</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/filter_item_text_paddingLeft</item>
+        <item name="android:paddingRight">@dimen/filter_item_text_paddingRight</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+    </style>
+    
+    <style name="filter_listview">
+        <item name="android:focusable">true</item>
+        <item name="android:choiceMode">singleChoice</item>
+        <item name="android:listSelector">@drawable/list_filter_item_selector</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+    </style>
+
+    <style name="PlayerActivityTheme" parent="FullScreenAppTheme">
+        <item name="android:windowAnimationStyle">@style/NullAnimation</item>
+		<item name="android:windowNoTitle">true</item>
+    </style>
+    
+    <style name="NullAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@null</item>  
+        <item name="android:activityOpenExitAnimation">@null</item>  
+        <item name="android:activityCloseEnterAnimation">@null</item>  
+        <item name="android:activityCloseExitAnimation">@null</item>  
+        <item name="android:taskOpenEnterAnimation">@null</item>  
+        <item name="android:taskOpenExitAnimation">@null</item>  
+        <item name="android:taskCloseEnterAnimation">@null</item>  
+        <item name="android:taskCloseExitAnimation">@null</item> 
+        <item name="android:taskToFrontEnterAnimation">@null</item>  
+        <item name="android:taskToFrontExitAnimation">@null</item> 
+        <item name="android:taskToBackEnterAnimation">@null</item>  
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+    
+<style name="download_radio_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/download_radio_button_bkg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:textColor">@color/check_btn_text_color</item>
+        <item name="android:textSize">@dimen/download_radio_button_textSize</item>
+    </style>
+    
+    <style name="download_episode_select_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/download_radio_button_bkg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/download_episode_select_button_textSize</item>
+        <item name="android:contentDescription">@string/app_name</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:singleLine">true</item>        
+    </style>
+    
+    <style name="download_episode_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    
+    <style name="download_episode_variety_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="download_selection_button">
+        <item name="android:layout_width">@dimen/download_selection_button_layout_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/download_profile_bt_bkg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/download_selection_button_text_color</item>
+        <item name="android:textSize">@dimen/download_selection_button_textSize</item>
+    </style>
+
+    <style name="popup_menu_anim">
+        <item name="android:windowEnterAnimation">@anim/popup_menu_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_menu_out</item>
+    </style>
+    
+    <style name="KkSimpleDialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item> 
+        <item name="android:windowBackground">@color/white_alfa_88</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    
+    <style name="LocateCenterDialog" parent="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@color/white_alfa_66</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">false</item> 
+        <item name="android:windowIsTranslucent">true</item> 
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    
+    <style name="LiXianPrivacyDigit">
+        <item name="android:layout_width">@dimen/lixian_t9_digit_w</item>
+        <item name="android:layout_height">@dimen/lixian_t9_digit_h</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:focusable">false</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textColor">#ff00a9ff</item>
+        <item name="android:textSize">@dimen/lixian_t9_digit_size</item>
+        <item name="android:layout_margin">@dimen/lixian_t9_digit_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">numberPassword</item>
+    </style>
+    
+    <style name="LiXianT9Button">
+        <item name="android:layout_width">@dimen/lixian_t9_bt_w</item>
+        <item name="android:layout_height">@dimen/lixian_t9_bt_h</item>
+        <item name="android:background">@drawable/lixian_t9_key_bkg</item>
+        <item name="android:textSize">@dimen/lixian_t9_digit_size</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_margin">@dimen/lixian_t9_bt_margin</item>
+    </style>
+    
+    <style name="lixian_init_bt_container">
+        <item name="android:layout_width">@dimen/lixian_init_bt_w</item>
+        <item name="android:layout_height">@dimen/lixian_init_bt_h</item>
+        <item name="android:paddingTop">@dimen/lixian_init_bt_padding_t</item>
+        <item name="android:layout_margin">@dimen/lixian_init_bt_margin</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/str_style</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:visibility">gone</item>
+    </style>
+    
+    <style name="lixian_init_bt_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/lixian_init_bt_size</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/fragment_search_padding_left"
+    android:paddingRight="@dimen/fragment_search_padding_right"
+    android:paddingTop="@dimen/fragment_search_padding_top" >
+
+    <include
+        android:id="@+id/search_keyboard"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        layout="@layout/search_keyboard" />
+
+    <ViewFlipper
+        android:id="@+id/search_flipper"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2" >
+
+        <include
+            android:id="@+id/search_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/search_recommend" />
+
+        <include
+            android:id="@+id/search_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/search_result" />
+
+        <include
+            android:id="@+id/empty_view"
+            layout="@layout/empty_search"
+            android:visibility="gone" />
+    </ViewFlipper>
+
+</LinearLayout>

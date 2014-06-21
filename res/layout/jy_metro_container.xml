@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jiaoyang.tv.content.MetroContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tvMetro="http://schemas.android.com/apk/res/com.jiaoyang.video.tv"
+    android:id="@+id/metro_widget"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tvMetro:columnSpace="@dimen/home_page_metro_container_columnspace"
+    tvMetro:extraScrollSpace="@dimen/metro_normal_width"
+    tvMetro:layoutOrientation="horizontal"
+    tvMetro:rowCount="2"
+    tvMetro:rowHeight="@dimen/metro_noral_height"
+    tvMetro:rowSpace="@dimen/home_page_metro_container_rowspace"
+    tvMetro:surroundingMargin="@dimen/home_page_metro_container_surroundingmargin" >
+
+</com.jiaoyang.tv.content.MetroContainer>

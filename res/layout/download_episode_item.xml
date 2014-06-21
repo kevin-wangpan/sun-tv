@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/interpage_detail_episode_item_height"
+        android:background="@drawable/episode_item_selector"
+        android:contentDescription="@string/app_name"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingLeft="@dimen/download_episode_item_padding_left"
+        android:paddingRight="@dimen/download_episode_item_padding_right"
+        android:singleLine="true"
+        android:textColor="@color/text_large_normal"
+        android:textSize="@dimen/episode_item_text_size" />
+
+</RelativeLayout>

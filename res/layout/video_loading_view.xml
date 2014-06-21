@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/media_controller_video_loading_size"
+    android:layout_height="@dimen/media_controller_video_loading_size" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/video_loading1" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/player_loading_progress_anim"
+        android:indeterminateOnly="true" />
+
+</FrameLayout>

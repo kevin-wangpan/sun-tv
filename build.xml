@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Jiaoyang" default="deploy">
+	<property file="build.properties" />
+	<property file="project.properties" />
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${ant_contrib.dir}"/>
+		</classpath>
+	</taskdef>
+
+	<import file="${sdk.dir}/tools/ant/build.xml"/>
+
+	<fail message="Not found in the build.properties sdk.dir variable." unless="sdk.dir"/>
+	<fail message="Not found in the build.properties ant_contrib.dir variable." unless="ant_contrib.dir"/>
+
+	<tstamp prefix="my">
+		<format property="day" pattern="MMdd"/>
+		<format property="time" pattern="HHmm"/>
+	</tstamp>
+	
+	<mkdir dir="${final_apk.dir}"/>
+	<delete dir="${out.absolute.dir}"/>
+	
+	<target name="deploy">
+		<property name="file_name" value="Jiaoyang_${ant.project.name}${app_version}_${my.day}_${my.time}.apk"/>
+		<property name="out.final.file" location="${out.absolute.dir}/${file_name}" />
+		<antcall target="release" />
+		<move file="${out.final.file}" tofile="${final_apk.dir}/${file_name}"/>
+		
+		<delete dir="${out.absolute.dir}"/>
+	</target>
+</project>

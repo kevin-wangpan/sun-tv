@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark" >
+
+    <VideoView
+        android:id="@+id/mp4player_videoview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:keepScreenOn="true" />
+
+    <RelativeLayout
+        android:id="@+id/player_video_rl_first_bufferring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+
+        <ImageView
+            android:id="@+id/player_video_iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/player_video_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/player_video_iv_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/mp4palyer_title_margin_top"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="#eeeeee"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/mp4palyer_title_textsize" />
+
+        <RelativeLayout
+            android:id="@+id/player_video_fl_first_buffering"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/player_video_tv_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/mp4palyer_buffering_margin_top"
+            android:gravity="center"
+            android:visibility="visible" >
+
+            <ProgressBar
+                android:id="@+id/player_pb_progress"
+                android:layout_width="@dimen/mp4palyer_progress_w"
+                android:layout_height="@dimen/mp4palyer_progress_h"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/player_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/mp4palyer_tips_margin_left"
+                android:layout_toRightOf="@id/player_pb_progress"
+                android:text="@string/player_onloading"
+                android:textColor="#a0a0a0"
+                android:textSize="@dimen/mp4palyer_tips_textsize" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

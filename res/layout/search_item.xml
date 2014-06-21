@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/movie_poster"
+        android:layout_width="@dimen/video_gridview_item_image_width4"
+        android:layout_height="@dimen/video_gridview_item_image_height"
+        android:contentDescription="@string/descreption"
+        android:scaleType="fitXY"
+        android:src="@drawable/poster_default" />
+
+    <LinearLayout
+        android:layout_width="@dimen/video_gridview_item_image_width4"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/movie_poster"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/movie_poster"
+        android:background="#80000000"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/movie_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:paddingLeft="@dimen/search_item_update_padding_left"
+            android:paddingTop="@dimen/search_item_update_padding_top"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/search_item_update_textsize" />
+
+        <TextView
+            android:id="@+id/movie_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:paddingBottom="@dimen/search_item_title_padding_bottom"
+            android:paddingLeft="@dimen/search_item_title_padding_left"
+            android:paddingTop="@dimen/search_item_title_padding_top"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/search_item_title_textsize" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/movie_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/movie_poster"
+        android:contentDescription="@string/descreption"
+        android:src="@drawable/detail_profile_1080p" />
+
+</RelativeLayout>

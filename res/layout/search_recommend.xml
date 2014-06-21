@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/hot_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/hot_search_text_marginleft"
+        android:layout_marginTop="@dimen/hot_search_text_margintop"
+        android:text="@string/everyone_search"
+        android:textColor="#fff"
+        android:textSize="@dimen/hot_search_text_textsize" />
+
+    <com.jiaoyang.tv.widget.PredicateLayout
+        android:id="@+id/predicatelayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hot_search"
+        android:layout_marginLeft="@dimen/hot_search_marginleft"
+        android:layout_marginTop="@dimen/hot_search_margintop"
+        android:orientation="horizontal" />
+
+    <GridView
+        android:id="@+id/recommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:horizontalSpacing="@dimen/recommend_grid_horizontalSpacing"
+        android:listSelector="@drawable/video_item_image_frame_selector"
+        android:numColumns="4"
+        android:paddingBottom="@dimen/recommend_grid_paddingBottom"
+        android:paddingLeft="@dimen/srecommend_grid_paddingLeftRight"
+        android:paddingRight="@dimen/srecommend_grid_paddingLeftRight"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbarThumbVertical="@drawable/scrollbar"
+        android:verticalSpacing="@dimen/recommend_grid_verticalSpacing"
+        android:nextFocusUp="@id/predicatelayout" >
+    </GridView>
+
+    <TextView
+        android:id="@+id/editor_recommend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/recommend"
+        android:layout_marginLeft="@dimen/recommend_grid_text_marginLeft"
+        android:layout_marginTop="@dimen/recommend_grid_text_marginTop"
+        android:text="@string/editor_recommend"
+        android:textColor="#fff"
+        android:textSize="@dimen/recommend_grid_text_size" />
+
+</RelativeLayout>

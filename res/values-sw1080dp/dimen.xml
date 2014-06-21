@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 框架 -->
+    <dimen name="actionbar_fragment_paddingright">45dp</dimen>
+    <dimen name="actionbar_fragment_time_text_size">30sp</dimen>
+    <dimen name="actionbar_fragment_wifi_padding_right">22.50dp</dimen>
+    <dimen name="actionbar_fragment_search_padding_right">75dp</dimen>
+
+    <!-- 剧集列表项的纵向间隔 -->
+    <dimen name="episode_item_vertical_space">12dp</dimen>
+
+    <!-- 详情页海报的宽高 -->
+    <dimen name="interpage_detail_image_poster_width">405dp</dimen>
+    <dimen name="interpage_detail_image_poster_height">555dp</dimen>
+
+    <!-- 详情页推荐海报尺寸 -->
+    <dimen name="detail_recommend_image_width">180dp</dimen>
+    <dimen name="detail_recommend_image_height">240dp</dimen>
+    <dimen name="detail_recommend_item_padding_vertical">30dp</dimen>
+
+    <!-- 详情页按钮 -->
+    <dimen name="detail_btn_width">256dp</dimen>
+    <dimen name="detail_btn_height">114dp</dimen>
+
+    <!-- 剧集列表中电视剧的单个item的长宽 -->
+    <dimen name="interpage_detail_episode_item_height">51dp</dimen>
+    <dimen name="download_episode_item_padding_left">7.50dp</dimen>
+    <dimen name="download_episode_item_padding_right">7.50dp</dimen>
+    <dimen name="episode_item_text_size">22.50sp</dimen>
+    <dimen name="setting_btn_width">750dp</dimen>
+
+    <!-- 视频列表每一项的尺寸 -->
+    <dimen name="video_gridview_item_image_width">252dp</dimen>
+    <dimen name="video_gridview_item_image_width4">282dp</dimen>
+    <dimen name="video_gridview_item_image_height">360dp</dimen>
+    <dimen name="video_gridview_item_title_text_size">27sp</dimen>
+    <dimen name="video_gridview_item_info_text_size">18sp</dimen>
+    <dimen name="video_gridview_item_score_text_size">27sp</dimen>
+    <dimen name="video_gridview_item_score_padding_left">3dp</dimen>
+    <dimen name="video_gridview_item_score_padding_right">3dp</dimen>
+    <dimen name="video_gridview_item_padding_vertical">18dp</dimen>
+    <dimen name="video_gridview_item_image_width_short">327dip</dimen>
+    <dimen name="video_gridview_item_image_height_short">240dip</dimen>
+
+    <!-- 详情页页边距：左右边距 -->
+    <dimen name="detail_lr_margin">99dp</dimen>
+    <!-- 详情页页边距：上边距 -->
+    <dimen name="detail_top_margin">93dp</dimen>
+    <dimen name="detail_home_top_margin">36dp</dimen>
+    <!-- 详情页推荐模块与基本信息模块间距 -->
+    <dimen name="detail_basic_recommend_margin">60dp</dimen>
+    <!-- 详情页基本信息右边距 -->
+    <dimen name="detail_basic_r_margin">30dp</dimen>
+    <dimen name="detail_poster_basic_margin">24dp</dimen>
+    <dimen name="detail_title_director_margin">45dp</dimen>
+    <dimen name="detail_director_body_margin">45dp</dimen>
+    <dimen name="detail_btn_column_margin">48dp</dimen>
+    <dimen name="detail_body_line_space">18dp</dimen>
+    <dimen name="detail_recmd_poster_column_margin">39dp</dimen>
+    <dimen name="detail_recmd_title_poster_margin">21dp</dimen>
+    <dimen name="detail_score_r_margin">24dp</dimen>
+    <!-- 详情页剧集选择tab宽度 -->
+    <dimen name="detail_select_tab_width">240dp</dimen>
+    <dimen name="detail_drawable_padding">18dp</dimen>
+
+    <!-- 详情页字体大小 -->
+    <dimen name="detail_font_title">48sp</dimen>
+    <dimen name="detail_font_body">30sp</dimen>
+    <dimen name="detail_font_score_pre">36sp</dimen>
+    <dimen name="detail_font_btn_text">30sp</dimen>
+    <dimen name="detail_font_recmd_moviename">22.50sp</dimen>
+    <dimen name="detail_tv_name_padding_top">3dp</dimen>
+    <dimen name="detail_tv_name_padding_bottom">3dp</dimen>
+    <dimen name="detail_tv_bts_drawable_padding">18dp</dimen>
+    <dimen name="detail_tv_bts_padding_left">30dp</dimen>
+
+    <!-- 详情页剧集选择弹出框尺寸 -->
+    <dimen name="episodes_title_top_margin">48dp</dimen>
+    <dimen name="episodes_title_left_margin">7.50dp</dimen>
+    <dimen name="episodes_title_body_margin">24dp</dimen>
+    <dimen name="episodes_body_tab_margin">7.50dp</dimen>
+    <dimen name="episodes_tab_bottom_margin">54dp</dimen>
+    <dimen name="episodes_body_column_width">171dp</dimen>
+    <dimen name="episodes_body_column_height">105dp</dimen>
+    <dimen name="episodes_viewpager_height">108dp</dimen>
+    <dimen name="episodes_profile_select_tv_title_margin_left">7.50dp</dimen>
+
+    <!-- 清晰度选择 -->
+    <dimen name="profile_select_top_margin">60dp</dimen>
+    <dimen name="profile_select_column_spacing">48dp</dimen>
+    <dimen name="profile_select_title_body_margin">36dp</dimen>
+    <dimen name="profile_select_font_item">39sp</dimen>
+
+    <!-- 详情页剧集选择弹出框字体 -->
+    <dimen name="episodes_font_title">48sp</dimen>
+    <dimen name="episodes_font_tab">33sp</dimen>
+
+    <!-- ActionBar和导航栏 -->
+    <dimen name="action_bar_height">94.50dp</dimen>
+    <dimen name="navi_control_height">105dp</dimen>
+    <dimen name="navi_control_width">277.50dp</dimen>
+
+    <!-- 下载项属性 -->
+    <dimen name="download_view_width">570dp</dimen>
+    <dimen name="download_view_height">369dp</dimen>
+    <dimen name="download_view_poster_width">264dp</dimen>
+    <dimen name="download_view_poster_height">369dp</dimen>
+    <dimen name="download_item_view_waiting_status_icon_padding">7.50dp</dimen>
+    <dimen name="download_item_view_waiting_state_margin_top">7.50dp</dimen>
+    <dimen name="download_item_view_infos_padding">20dp</dimen>
+    <dimen name="download_item_view_title_text_size">28.99sp</dimen>
+    <dimen name="download_item_view_size_margin_top">20dp</dimen>
+    <dimen name="download_item_view_size_text_size">23sp</dimen>
+    <dimen name="download_item_view_progressbar_height">10dp</dimen>
+    <dimen name="download_item_view_progressbar_margin_bottom">52.99dp</dimen>
+    <dimen name="download_item_view_progress_margin_bottom">21dp</dimen>
+    <dimen name="download_item_view_progress_text_size">22sp</dimen>
+    <dimen name="download_item_view_speed_text_size">22sp</dimen>
+    <dimen name="download_item_view_play_container_margin_bottom">30dp</dimen>
+    <dimen name="download_item_view_play_img_margin_right">22.50dp</dimen>
+    <dimen name="download_item_view_play_txt_text_size">22sp</dimen>
+    <dimen name="download_video_view_speed_margin_top">7.50dp</dimen>
+    <dimen name="download_video_view_speed_text_size">22sp</dimen>
+    <dimen name="download_video_view_waiting_status_icon_padding">7.50dp</dimen>
+    <dimen name="download_video_view_waiting_state_margin_top">7.50dp</dimen>
+    <dimen name="download_video_view_infos_padding">20dp</dimen>
+    <dimen name="download_video_view_title_size">28.99sp</dimen>
+    <dimen name="download_video_view_size_size">23sp</dimen>
+    <dimen name="download_video_view_size_margin_top">20dp</dimen>
+    <dimen name="download_video_view_progressbar_h">10dp</dimen>
+    <dimen name="download_video_view_progressbar_margin_bottom">52.99dp</dimen>
+    <dimen name="download_video_view_progress_margin_bottom">21dp</dimen>
+    <dimen name="download_video_view_progress_text_size">22sp</dimen>
+    <dimen name="download_video_view_play_margin_bottom">22dp</dimen>
+    <dimen name="download_video_view_play_img_margin_right">22.50dp</dimen>
+    <dimen name="download_video_view_play_txt_text_size">22sp</dimen>
+
+    <!-- 下载选择界面尺寸 -->
+    <dimen name="download_selection_window_width">1650dp</dimen>
+    <dimen name="download_selection_window_height">1050dp</dimen>
+    <dimen name="download_selection_window_padding_left">75dp</dimen>
+    <dimen name="download_selection_episode_item_text_size">46.99sp</dimen>
+    <dimen name="download_selection_profile_title_margin_top">30dp</dimen>
+    <dimen name="download_selection_profile_title_textsize">37.99sp</dimen>
+    <dimen name="download_selection_profile_container_margin_top">16.50dp</dimen>
+    <dimen name="download_selection_episodes_margin_top">67.50dp</dimen>
+    <dimen name="download_selection_episodes_title_textsize">37.99sp</dimen>
+    <dimen name="download_selection_episodes_pager_h">108dp</dimen>
+    <dimen name="download_selection_episodes_pager_margin_top">30dp</dimen>
+    <dimen name="download_selection_episodes_indicator_h">90dp</dimen>
+    <dimen name="download_selection_storage_margin_top">60dp</dimen>
+    <dimen name="download_selection_storages_title_textsize">37.99sp</dimen>
+    <dimen name="download_selection_storages_scroll_margin_top">16.50dp</dimen>
+    <dimen name="download_selection_divider_margin_top">45dp</dimen>
+    <dimen name="download_selection_bts_margin_top">30dp</dimen>
+    <dimen name="download_selection_bt_margin_right">60dp</dimen>
+    <dimen name="download_selection_bt_margin_left">60dp</dimen>
+    <dimen name="download_selection_profile_width">160dp</dimen>
+    <dimen name="download_selection_storage_width">400dp</dimen>
+
+    <!-- 下载文件夹界面 -->
+    <dimen name="downloaded_video_fragment_margin_left">58.01dp</dimen>
+    <dimen name="downloaded_video_fragment_margin_right">52.01dp</dimen>
+    <dimen name="downloaded_video_fragment_margin_top">145dp</dimen>
+    <dimen name="downloaded_video_fragment_divider_h">15dp</dimen>
+    <dimen name="downloaded_video_fragment_hspacing">7.50dp</dimen>
+    <dimen name="downloaded_video_fragment_vspacing">30dp</dimen>
+    <dimen name="downloaded_video_fragment_padding_left">30dp</dimen>
+    <dimen name="downloaded_video_fragment_padding_right">92dp</dimen>
+    <dimen name="downloaded_video_fragment_empty_title_textsize">55.99sp</dimen>
+    <dimen name="downloaded_video_fragment_empty_content_textsize">37.99sp</dimen>
+    <dimen name="downloaded_video_fragment_empty_content_margin_top">48dp</dimen>
+
+    <!-- 下载视频界面 -->
+    <dimen name="download_video_fragment_margin_left">58.01dp</dimen>
+    <dimen name="download_video_fragment_margin_right">52.01dp</dimen>
+    <dimen name="download_video_fragment_margin_top">145dp</dimen>
+    <dimen name="download_video_fragment_divider_h">15dp</dimen>
+    <dimen name="download_video_fragment_hspacing">7.50dp</dimen>
+    <dimen name="download_video_fragment_vspacing">30dp</dimen>
+    <dimen name="download_video_fragment_padding_left">30dp</dimen>
+    <dimen name="download_video_fragment_padding_right">92dp</dimen>
+    <dimen name="player_buffering_icon_width">150dp</dimen>
+    <dimen name="player_buffering_icon_height">150dp</dimen>
+
+    <!-- 列表页条件过滤弹出框尺寸 -->
+    <dimen name="filter_dialog_height">480dp</dimen>
+    <dimen name="filter_item_width">219dp</dimen>
+    <dimen name="filter_item_height">108dp</dimen>
+    <dimen name="filter_top_margin">30dp</dimen>
+    <dimen name="filter_title_line_spacing">21dp</dimen>
+    <dimen name="filter_bottom_margin">45dp</dimen>
+    <dimen name="filter_dialog_list_sort_height">315dp</dimen>
+    <dimen name="activity_userchannel_add_margin_left">54dp</dimen>
+    <dimen name="activity_userchannel_add_margin_right">54dp</dimen>
+    <dimen name="activity_userchannel_add_padding_bottom">96dp</dimen>
+    <dimen name="activity_userchannel_add_padding_left">96dp</dimen>
+    <dimen name="activity_userchannel_add_padding_right">96dp</dimen>
+    <dimen name="activity_userchannel_add_padding_top">96dp</dimen>
+    <dimen name="activity_userchannel_add_item_padding_left">24dp</dimen>
+    <dimen name="activity_userchannel_add_item_padding_right">24dp</dimen>
+    <dimen name="activity_userchannel_add_filter_list_height">540dp</dimen>
+    <dimen name="activity_userchannel_add_categorybar_height">108dp</dimen>
+    <dimen name="activity_userchannel_add_categorybar_margin_left">24dp</dimen>
+    <dimen name="activity_userchannel_add_categorybar_padding">12dp</dimen>
+    <dimen name="activity_userchannel_add_categorybar_margin_top">12dp</dimen>
+    <dimen name="activity_userchannel_add_btn_width">810dp</dimen>
+    <dimen name="activity_userchannel_add_btn_padding_lr">48dp</dimen>
+    <dimen name="activity_userchannel_manager_padding">72dp</dimen>
+    <dimen name="activity_userchannel_manager_grid_w">1170dp</dimen>
+    <dimen name="activity_userchannel_manager_grid_h">900dp</dimen>
+    <dimen name="activity_userchannel_manager_grid_hspacing">54dp</dimen>
+    <dimen name="activity_userchannel_manager_grid_vspacing">54dp</dimen>
+    <dimen name="activity_userchannel_manager_empty_text_size">39sp</dimen>
+
+    <!-- 列表页条件过滤弹出框字体 -->
+    <dimen name="filter_font_title">36sp</dimen>
+    <dimen name="filter_font_item">30sp</dimen>
+    <dimen name="user_center_title">51sp</dimen>
+    <dimen name="ugc_add_font">39sp</dimen>
+
+    <!-- 首页Metro网格数据 -->
+    <dimen name="metro_padding">15dp</dimen>
+    <dimen name="metro_noral_height">354dp</dimen>
+    <dimen name="metro_normal_width">249dp</dimen>
+    <dimen name="metro_portrait_width">522dp</dimen>
+    <dimen name="metro_portrait_height">723dp</dimen>
+    <dimen name="metro_landscape_width">513dp</dimen>
+    <dimen name="metro_landscape_height">354dp</dimen>
+    <dimen name="metro_topic_landscape_width">250dp</dimen>
+    <dimen name="metro_topic_landscape_height">140.625dp</dimen>
+
+    <!-- 简单自定义dialog尺寸 -->
+    <dimen name="dialog_quit_width">960dp</dimen>
+    <dimen name="dialog_quit_height">540dp</dimen>
+    <dimen name="dialog_storage_warning_width">1020dp</dimen>
+    <dimen name="dialog_storage_warning_height">642dp</dimen>
+    <dimen name="dialog_padding_horizontal">180dp</dimen>
+    <dimen name="dialog_padding_vertical">99dp</dimen>
+    <dimen name="dialog_btn_width">219dp</dimen>
+    <dimen name="dialog_btn_height">108dp</dimen>
+    <dimen name="dialog_btn_col_margin">180dp</dimen>
+    <dimen name="dialog_title_msg_margin_top">48dp</dimen>
+    <dimen name="dialog_btn_margin_top">72dp</dimen>
+
+    <!-- 简单自定义dialog尺寸 -->
+    <dimen name="dialog_font_title">48sp</dimen>
+    <dimen name="dialog_font_msg">33sp</dimen>
+    <dimen name="dialog_font_btn">36sp</dimen>
+
+    <!-- 首页频道 -->
+    <dimen name="home_channel_item_height">354dp</dimen>
+    <dimen name="home_channel_item_height1">60dp</dimen>
+    <dimen name="home_channel_group_height">282dp</dimen>
+    <dimen name="home_channel_group_padding_left">12dp</dimen>
+    <dimen name="home_channel_group_padding_right">12dp</dimen>
+    <dimen name="home_channel_item_landscape">723dp</dimen>
+    <dimen name="home_channel_metro_container_rowspace">15dp</dimen>
+    <dimen name="home_channel_metro_container_columnspace">15dp</dimen>
+    <dimen name="home_channel_metro_container_surroundingmargin">22.50dp</dimen>
+    <dimen name="home_channel_tips_textsize">27sp</dimen>
+    <dimen name="home_channel_loading_w">60dp</dimen>
+    <dimen name="home_channel_loading_h">60dp</dimen>
+    <dimen name="home_channel_item_shadow_width">279dp</dimen>
+    <dimen name="home_channel_item_bk_margin_left">24dp</dimen>
+
+    <!-- 首页 -->
+    <dimen name="home_page_metro_container_rowspace">15dp</dimen>
+    <dimen name="home_page_metro_container_columnspace">15dp</dimen>
+    <dimen name="home_page_metro_container_surroundingmargin">22.50dp</dimen>
+    <dimen name="home_page_tips_textsize">27sp</dimen>
+    <dimen name="home_page_loading_w">60dp</dimen>
+    <dimen name="home_page_loading_h">60dp</dimen>
+
+    <!-- 首页频道字体 -->
+    <dimen name="home_channel_font">39sp</dimen>
+
+    <!-- 添加自定义频道 -->
+
+    <dimen name="topic_item_padding">13.50dp</dimen>
+    <dimen name="topic_item_top">22.50dp</dimen>
+    <dimen name="topic_item_bottom">22.50dp</dimen>
+    <!-- 专题页 -->
+    <dimen name="topic_leftMargin">300dp</dimen>
+    <dimen name="topic_bottomMargin">10dp</dimen>
+    <dimen name="topic_topMargin">10dp</dimen>
+    <!-- 防止过扫描的padding -->
+    <dimen name="padding_left">60dp</dimen>
+    <dimen name="padding_right">60dp</dimen>
+    <dimen name="padding_top">30dp</dimen>
+
+    <!-- 下载界面标题栏 -->
+    <dimen name="download_fragment_title_margin_left">58.01dp</dimen>
+    <dimen name="download_fragment_title_margin_right">52.01dp</dimen>
+    <dimen name="download_fragment_title_margin_top">34.99dp</dimen>
+    <dimen name="download_fragment_title_back_margin_left">7.50dp</dimen>
+    <dimen name="download_fragment_title_back_margin_right">225dp</dimen>
+    <dimen name="download_fragment_title_more_function_width">225dp</dimen>
+    <dimen name="download_fragment_title_more_function_margin_left">7.50dp</dimen>
+
+    <!-- empty view -->
+    <dimen name="empty_view_img_margin_top">180dp</dimen>
+    <dimen name="empty_view_bt_margin_top">22.50dp</dimen>
+
+    <!-- 视频项属性 -->
+    <dimen name="episode_item_img_margin_right">1.50dp</dimen>
+    <dimen name="episode_item_img_margin_top">1.50dp</dimen>
+
+    <!-- 视频播放控制 -->
+    <dimen name="media_controller_padding">0dp</dimen>
+    <dimen name="media_controller_top_pannel_height">150dp</dimen>
+    <dimen name="media_controller_bt_goback_margin_left">45dp</dimen>
+    <dimen name="media_controller_download_margin_left">15dp</dimen>
+    <dimen name="media_controller_download_margin_right">15dp</dimen>
+    <dimen name="media_controller_download_padding_left">30dp</dimen>
+    <dimen name="media_controller_download_padding_right">30dp</dimen>
+    <dimen name="media_controller_time_widget_margin_right">45dp</dimen>
+    <dimen name="media_controller_title_margin_left">90dp</dimen>
+    <dimen name="media_controller_title_margin_right">90dp</dimen>
+    <dimen name="media_controller_title_text_size">30sp</dimen>
+    <dimen name="media_controller_progress_text_size">24sp</dimen>
+    <dimen name="media_controller_control_bar_height">150dp</dimen>
+    <dimen name="media_controller_control_bar_margin_bottom">0dp</dimen>
+    <dimen name="media_controller_progress_margin_left">27dp</dimen>
+    <dimen name="media_controller_progress_margin_right">27dp</dimen>
+    <dimen name="media_controller_progress_max_h">7.50dp</dimen>
+    <dimen name="media_controller_progress_min_h">7.50dp</dimen>
+    <dimen name="media_controller_currenttime_margin_left">30dp</dimen>
+    <dimen name="media_controller_currenttime_margin_top">12dp</dimen>
+    <dimen name="media_controller_totaltime_margin_left">30dp</dimen>
+    <dimen name="media_controller_totaltime_margin_top">12dp</dimen>
+    <dimen name="media_controller_margin_bottom">22.50dp</dimen>
+    <dimen name="media_controller_ibtn_quality_padding_left">22.50dp</dimen>
+    <dimen name="media_controller_ibtn_quality_padding_right">45dp</dimen>
+    <dimen name="media_controller_ibtn_prev_margin_right">52.50dp</dimen>
+    <dimen name="media_controller_ibtn_next_margin_left">52.50dp</dimen>
+    <dimen name="media_controller_ibtn_dlna_margin_right">22.50dp</dimen>
+    <dimen name="media_controller_ibtn_mute_margin_right">22.50dp</dimen>
+    <dimen name="media_controller_seekwidget_margin_top">75dp</dimen>
+    <dimen name="media_controller_volume_margin_right">120dp</dimen>
+    <dimen name="media_controller_fastforward_margin_bottom">300dp</dimen>
+    <dimen name="media_controller_fastforward_text_size">39sp</dimen>
+    <dimen name="media_controller_video_loading_size">246dp</dimen>
+
+    <!-- 频道界面 -->
+    <dimen name="fragment_channel_back_icon_drawable_padding">7.50dp</dimen>
+    <dimen name="fragment_channel_back_icon_margin_bottom">15dp</dimen>
+    <dimen name="fragment_channel_back_icon_margin_left">7.50dp</dimen>
+    <dimen name="fragment_channel_back_icon_text_size">33sp</dimen>
+    <dimen name="fragment_channel_menutips_margin_bottom">15dp</dimen>
+    <dimen name="fragment_channel_menutips_margin_left">7.50dp</dimen>
+    <dimen name="fragment_channel_menutips_text_size">27sp</dimen>
+    <dimen name="fragment_channel_list_vspacing">37.50dp</dimen>
+    <dimen name="fragment_channel_list_hspacing">37.50dp</dimen>
+    <dimen name="fragment_channel_list_padding_left">37.50dp</dimen>
+    <dimen name="fragment_channel_loading_padding_bottom">7.50dp</dimen>
+    <dimen name="fragment_channel_loading_padding_top">37.50dp</dimen>
+    <dimen name="fragment_channel_loading_pb_w">30dp</dimen>
+    <dimen name="fragment_channel_loading_pb_h">30dp</dimen>
+    <dimen name="fragment_channel_loading_txt_margin_left">7.50dp</dimen>
+    <dimen name="fragment_channel_empty_text">27sp</dimen>
+
+    <!-- 声明页 -->
+    <dimen name="fragment_declare_padding_left">90dp</dimen>
+    <dimen name="fragment_declare_padding_right">90dp</dimen>
+    <dimen name="fragment_declare_padding_top">45dp</dimen>
+    <dimen name="fragment_declare_title_margin_top">60dp</dimen>
+    <dimen name="fragment_declare_title_text_size">36sp</dimen>
+    <dimen name="fragment_declare_content1_margin_top">60dp</dimen>
+    <dimen name="fragment_declare_content1_text_size">36sp</dimen>
+    <dimen name="fragment_declare_content2_margin_top">60dp</dimen>
+    <dimen name="fragment_declare_content2_text_size">36sp</dimen>
+    <dimen name="fragment_declare_bt_margin_top">75dp</dimen>
+
+    <!-- 收藏 -->
+    <dimen name="fragment_favorite_back_margin_left">30dp</dimen>
+    <dimen name="fragment_favorite_back_margin_top">30dp</dimen>
+    <dimen name="fragment_favorite_grid_hspacing">37.50dp</dimen>
+    <dimen name="fragment_favorite_grid_vspacing">37.50dp</dimen>
+    <dimen name="fragment_favorite_grid_padding">37.50dp</dimen>
+    <dimen name="fragment_favorite_textview1_margin_left">7.50dp</dimen>
+    <dimen name="fragment_favorite_textview1_textsize">24sp</dimen>
+    <dimen name="fragment_favorite_count_margin_right">30dp</dimen>
+    <dimen name="fragment_favorite_count_margin_top">30dp</dimen>
+    <dimen name="fragment_favorite_count_textsize">24sp</dimen>
+
+    <!-- 播放历史 -->
+    <dimen name="fragment_history_back_margin_left">30dp</dimen>
+    <dimen name="fragment_history_back_margin_top">30dp</dimen>
+    <dimen name="fragment_history_textview1_margin_left">7.50dp</dimen>
+    <dimen name="fragment_history_textview1_textsize">24sp</dimen>
+    <dimen name="fragment_history_textview2_margin_right">7.50dp</dimen>
+    <dimen name="fragment_history_textview2_textsize">24sp</dimen>
+    <dimen name="fragment_history_grid_hspacing">37.50dp</dimen>
+    <dimen name="fragment_history_grid_vspacing">37.50dp</dimen>
+    <dimen name="fragment_history_grid_padding">37.50dp</dimen>
+
+    <!-- 播放记录 -->
+    <dimen name="fragment_palyrecord_list_margin_top">15dp</dimen>
+    <dimen name="fragment_palyrecord_list_devider_h">15dp</dimen>
+    <dimen name="fragment_palyrecord_list_padding_left">13.50dp</dimen>
+    <dimen name="fragment_palyrecord_list_padding_right">13.50dp</dimen>
+    <dimen name="playrecord_item_margin_bottom">18dp</dimen>
+    <dimen name="playrecord_item_padding_left">15dp</dimen>
+    <dimen name="playrecord_item_padding_right">15dp</dimen>
+    <dimen name="playrecord_item_title_drawable_padding">7.50dp</dimen>
+    <dimen name="playrecord_item_title_padding_top">15dp</dimen>
+    <dimen name="playrecord_item_title_textsize">25.50sp</dimen>
+    <dimen name="playrecord_item_time_margin_top">15dp</dimen>
+    <dimen name="playrecord_item_time_padding_bottom">15dp</dimen>
+    <dimen name="playrecord_item_time_textsize">21sp</dimen>
+
+    <!-- 搜索 -->
+    <dimen name="fragment_search_padding_left">37.50dp</dimen>
+    <dimen name="fragment_search_padding_right">60dp</dimen>
+    <dimen name="fragment_search_padding_top">15dp</dimen>
+
+    <!-- 设置 -->
+    <dimen name="fragment_setting_title_margin">30dp</dimen>
+    <dimen name="fragment_setting_title_padding">15dp</dimen>
+    <dimen name="fragment_setting_title_textsize">36sp</dimen>
+    <dimen name="fragment_setting_bt_margin_bottom">30dp</dimen>
+    <dimen name="fragment_setting_bt_textsize">36sp</dimen>
+    <dimen name="fragment_setting_back_margin_left">75dp</dimen>
+    <dimen name="fragment_setting_back_margin_top">45dp</dimen>
+    <dimen name="fragment_setting_maintitle_margin_left">15dp</dimen>
+    <dimen name="fragment_setting_maintitle_textsize">24sp</dimen>
+    <dimen name="fragment_setting_version_margin_right">75dp</dimen>
+    <dimen name="fragment_setting_version_textsize">24sp</dimen>
+    <dimen name="metro_setting_width">380dp</dimen>
+    <dimen name="metro_setting_contact_width">415dp</dimen>
+    <dimen name="metro_setting_declare_width">200dp</dimen>
+    <dimen name="user_center_textSize_big">50sp</dimen>
+    <dimen name="user_center_textSize_small">40sp</dimen>
+    <dimen name="metro_setting_download_width">480dp</dimen>
+    <dimen name="metro_setting_qcode">400dp</dimen>
+    <!-- 热门 -->
+    <dimen name="fragment_topic_metorcontainer_rowspace">15dp</dimen>
+    <dimen name="fragment_topic_metorcontainer_columnspace">15dp</dimen>
+    <dimen name="fragment_topic_metorcontainer_surroundingmargin">22.50dp</dimen>
+    <dimen name="fragment_topic_tips_textsize">27sp</dimen>
+    <dimen name="fragment_topic_progress_w">60dp</dimen>
+    <dimen name="fragment_topic_progress_h">60dp</dimen>
+
+    <!-- gesture seek widget -->
+    <dimen name="gesture_seek_margin_left">15dp</dimen>
+    <dimen name="gesture_seek_margin_right">15dp</dimen>
+    <dimen name="gesture_seek_margin_textsize">30sp</dimen>
+
+    <!-- 菜单项 -->
+    <dimen name="menu_item_padding">30dp</dimen>
+    <dimen name="menu_item_icon_w">106.50dp</dimen>
+    <dimen name="menu_item_icon_h">106.50dp</dimen>
+    <dimen name="menu_item_title_margin_top">15dp</dimen>
+    <dimen name="menu_item_title_textsize">27sp</dimen>
+
+    <!-- metro extra -->
+    <dimen name="metro_extra_item_w">231dp</dimen>
+    <dimen name="metro_extra_item_h">231dp</dimen>
+    <dimen name="metro_extra_item_margin_bottom">15dp</dimen>
+
+    <!-- mp4播放 -->
+    <dimen name="mp4palyer_title_margin_top">37.50dp</dimen>
+    <dimen name="mp4palyer_title_textsize">24sp</dimen>
+    <dimen name="mp4palyer_buffering_margin_top">30dp</dimen>
+    <dimen name="mp4palyer_progress_w">27dp</dimen>
+    <dimen name="mp4palyer_progress_h">27dp</dimen>
+    <dimen name="mp4palyer_tips_margin_left">7.50dp</dimen>
+    <dimen name="mp4palyer_tips_textsize">18sp</dimen>
+
+    <!-- 播放器 -->
+    <dimen name="player_padding">0dp</dimen>
+    <dimen name="player_dlna_device_margin_top">12dp</dimen>
+    <dimen name="player_dlna_device_textsize">27sp</dimen>
+    <dimen name="player_dlna_status_margin_top">12sp</dimen>
+    <dimen name="player_dlna_status_textsize">24sp</dimen>
+    <dimen name="player_dlna_container_margin_left">70.50dp</dimen>
+    <dimen name="player_dlna_container_margin_right">70.50dp</dimen>
+    <dimen name="player_dlna_connect_dot_margin_left">18dp</dimen>
+    <dimen name="player_dlna_connect_dot_margin_right">18dp</dimen>
+    <dimen name="player_watermark_padding_left">15dp</dimen>
+    <dimen name="player_watermark_padding_right">15dp</dimen>
+    <dimen name="player_video_title_margin_top">37.50dp</dimen>
+    <dimen name="player_video_title_textsize">24sp</dimen>
+    <dimen name="player_progress_textsize">24sp</dimen>
+    <dimen name="player_tips_margin_top">15dp</dimen>
+    <dimen name="player_tips_textsize">27sp</dimen>
+    <dimen name="player_error_tips_margin_left">30dp</dimen>
+    <dimen name="player_error_tips_margin_top">30dp</dimen>
+    <dimen name="player_backtxt_margin_left">6dp</dimen>
+    <dimen name="player_backtxt_text_size">24sp</dimen>
+    <dimen name="player_error_tips_text_size">27sp</dimen>
+    <dimen name="player_reload_margin_top">30dp</dimen>
+    <dimen name="player_reload_padding_left">30dp</dimen>
+    <dimen name="player_reload_padding_right">30dp</dimen>
+    <dimen name="player_reload_textsize">30sp</dimen>
+
+    <!-- 搜索项 -->
+    <dimen name="search_item_update_padding_left">7.50dp</dimen>
+    <dimen name="search_item_update_padding_top">7.50dp</dimen>
+    <dimen name="search_item_update_textsize">18sp</dimen>
+    <dimen name="search_item_title_padding_bottom">7.50dp</dimen>
+    <dimen name="search_item_title_padding_left">7.50dp</dimen>
+    <dimen name="search_item_title_padding_top">7.50dp</dimen>
+    <dimen name="search_item_title_textsize">24sp</dimen>
+    <!-- 播放器 -->
+    <dimen name="voice_light_widget_width">165dp</dimen>
+    <dimen name="voice_light_widget_height">69dp</dimen>
+    <dimen name="voice_light_widget_status_marginleft">15dp</dimen>
+    <dimen name="voice_light_widget_percentage_marginleft">7.50dp</dimen>
+    <dimen name="voice_light_widget_percentage_textsize">30sp</dimen>
+    <dimen name="time_power_battery_charging_margin">1.50dp</dimen>
+    <dimen name="time_power_charging_thunder_margin">15dp</dimen>
+    <dimen name="time_power_time_marginleft">7.50dp</dimen>
+    <dimen name="time_power_time_textsize">30sp</dimen>
+
+    <!-- 个人中心 -->
+    <dimen name="fragment_usercenter_topMargin">37.5dp</dimen>
+    <dimen name="fragment_usercenter_item_height">375dp</dimen>
+    <dimen name="fragment_usercenter_item_margin">135dp</dimen>
+    <dimen name="fragment_usercenter_item_divider">75dp</dimen>
+    <dimen name="fragment_usercenter_item_title_margintop">45dp</dimen>
+    <dimen name="fragment_usercenter_item_num_textsize">33sp</dimen>
+    <dimen name="user_center_title_size">27sp</dimen>
+    <dimen name="user_center_item_bg_height">120dp</dimen>
+    <dimen name="user_center_item_height">570dp</dimen>
+    <dimen name="user_center_item_width">420dp</dimen>
+    <dimen name="user_center_item_bg_padding">12dp</dimen>
+    <dimen name="user_center_title_textSize">40.5sp</dimen>
+    <dimen name="user_center_count_textSize">36sp</dimen>
+    <dimen name="user_center_checkbox_size">120dp</dimen>
+    <dimen name="user_center_speed_textSize">45sp</dimen>
+    <dimen name="user_center_speed_padding">15dp</dimen>
+
+    <!-- 自定义频道 -->
+    <dimen name="ugc_channel_manage_item_bg_margin">24dp</dimen>
+    <dimen name="home_channel_item_tv_title_height">72dp</dimen>
+    <dimen name="home_channel_item_tv_filtergroup_height">228dp</dimen>
+    <dimen name="home_channel_item_tv_filtergroup_padding">12dp</dimen>
+
+    <!-- 专题 -->
+    <dimen name="topic_gallary_width">300dp</dimen>
+    <dimen name="topic_loading_progressbar_height">60dp</dimen>
+    <dimen name="topic_loading_progressbar_width">60dp</dimen>
+
+    <!-- 启动页 -->
+    <dimen name="startup_copyright_marginbottom">30dp</dimen>
+
+    <!-- 搜索结果 -->
+    <dimen name="search_result_grid_horizontalSpacing">37.50dp</dimen>
+    <dimen name="search_result_grid_verticalSpacing">37.50dp</dimen>
+    <dimen name="search_result_grid_paddingBottom">45dp</dimen>
+    <dimen name="search_result_grid_paddingLeftRight">30dp</dimen>
+    <!-- 搜索热推 -->
+    <dimen name="hot_search_text_marginleft">60dp</dimen>
+    <dimen name="hot_search_text_margintop">30dp</dimen>
+    <dimen name="hot_search_text_textsize">30sp</dimen>
+    <dimen name="hot_search_marginleft">60dp</dimen>
+    <dimen name="hot_search_margintop">30dp</dimen>
+    <dimen name="recommend_grid_horizontalSpacing">37.50dp</dimen>
+    <dimen name="recommend_grid_verticalSpacing">37.50dp</dimen>
+    <dimen name="recommend_grid_paddingBottom">45dp</dimen>
+    <dimen name="srecommend_grid_paddingLeftRight">30dp</dimen>
+    <dimen name="recommend_grid_text_marginLeft">60dp</dimen>
+    <dimen name="recommend_grid_text_marginTop">30dp</dimen>
+    <dimen name="recommend_grid_text_size">30sp</dimen>
+    <!-- 搜索键盘 -->
+    <dimen name="back_arrow_padding">15dp</dimen>
+    <dimen name="search_keyboard_title_paddingLeft">7.50dp</dimen>
+    <dimen name="search_keyboard_title_paddingTop">15dp</dimen>
+    <dimen name="search_keyboard_title_textSize">24sp</dimen>
+    <dimen name="search_input_marginLeftRight">45dp</dimen>
+    <dimen name="search_input_marginTop">30dp</dimen>
+    <dimen name="search_input_padding">7.50dp</dimen>
+    <dimen name="search_keyboard_margin">15dp</dimen>
+    <dimen name="search_tip_margin">45dp</dimen>
+    <dimen name="search_tip_textSize">30sp</dimen>
+
+    <!-- styles.xml中的dimens -->
+    <dimen name="HomePageVideoTitle_padding">3dp</dimen>
+    <dimen name="HomePageVideoTitle_textSize">30sp</dimen>
+    <dimen name="MediaControllerVideoTime_textSize">24sp</dimen>
+    <dimen name="MediaControllerVideoTime_layout_marginLeft">6dip</dimen>
+    <dimen name="MediaControllerVideoTime_layout_marginRight">6dip</dimen>
+    <dimen name="VideoImageItemTitle_textSize">21sp</dimen>
+    <dimen name="VideoImageItemTitle_layout_marginLeft">4.50dp</dimen>
+    <dimen name="VideoImageItemTitle_layout_marginRight">4.50dp</dimen>
+    <dimen name="VideoImageItemTitle_layout_marginTop">-4.50dp</dimen>
+    <dimen name="VideoImageItemTips_textSize">15sp</dimen>
+    <dimen name="VideoImageItemTips_paddingLeft">3dp</dimen>
+    <dimen name="VideoImageItemTips_paddingRight">3dp</dimen>
+    <dimen name="VideoImageItemTips_layout_marginLeft">1.50dp</dimen>
+    <dimen name="VideoImageItemTips_layout_marginRight">1.50dp</dimen>
+    <dimen name="EpisodeSelectPageIndicator_fadingEdgeLength">12dp</dimen>
+    <dimen name="DownloadEpisodeSelectPageIndicator_fadingEdgeLength">12dp</dimen>
+    <dimen name="DownloadEpisodeSelectPageIndicator_textSize">37.99sp</dimen>
+    <dimen name="download_profile_select_item_textSize">37.99sp</dimen>
+    <dimen name="download_profile_select_item_layout_marginRight">20dp</dimen>
+    <dimen name="filter_item_text_paddingLeft">15dp</dimen>
+    <dimen name="filter_item_text_paddingRight">15dp</dimen>
+    <dimen name="download_radio_button_textSize">45sp</dimen>
+    <dimen name="download_episode_select_button_textSize">45sp</dimen>
+    <dimen name="download_selection_button_layout_width">450dp</dimen>
+    <dimen name="download_selection_button_textSize">46.99sp</dimen>
+
+    <!-- 登录 -->
+    <dimen name="login_qr_margin_bottom">24dp</dimen>
+    <dimen name="login_desc_second_margin_top">12dp</dimen>
+    <dimen name="login_usericon_margin_right">12dp</dimen>
+    <dimen name="login_usericon_width">36dp</dimen>
+    <dimen name="login_usericon_margin_left">102dp</dimen>
+    <dimen name="login_usericon_margin_top">30dp</dimen>
+    <dimen name="login_qr_width">399dp</dimen>
+    <dimen name="login_qr_margin_right">165dp</dimen>
+    <dimen name="login_psw_margin_top">54dp</dimen>
+    <dimen name="login_psw_margin_bottom">81dp</dimen>
+    <dimen name="login_input_box_width">547.5dp</dimen>
+    <dimen name="login_input_box_height">75dp</dimen>
+    <dimen name="login_input_box_padding_horizontal">33dp</dimen>
+    <dimen name="login_line_width">2.67dp</dimen>
+    <dimen name="login_line_height">600dp</dimen>
+    <dimen name="login_font_input">42sp</dimen>
+    <dimen name="login_font_desc_big">33sp</dimen>
+    <dimen name="login_font_desc_small">28sp</dimen>
+    <dimen name="login_font_link">24sp</dimen>
+    <dimen name="login_font_titlename">33sp</dimen>
+    <dimen name="login_titlename_maxwidth">150dp</dimen>
+
+    <!-- KeyBoard Button -->
+    <dimen name="keyboard_padding_5">7.5dp</dimen>
+    <dimen name="keyboard_padding_10">15dp</dimen>
+    <dimen name="keyboard_padding_20">30dp</dimen>
+    <dimen name="keyboard_padding_30">45dp</dimen>
+    <dimen name="keyboard_padding_35">52.5dp</dimen>
+    <dimen name="keyboard_height">90dp</dimen>
+
+    <!-- 离线 -->
+    <dimen name="lixian_tasklist_tips_size">24sp</dimen>
+    <dimen name="lixian_list_hspace">10dp</dimen>
+    <dimen name="lixian_list_vspace">15dp</dimen>
+    <dimen name="lixian_list_item_w">300dp</dimen>
+    <dimen name="lixian_list_item_h">200dp</dimen>
+    <dimen name="lixian_list_item_margin">15dp</dimen>
+    <dimen name="lixian_list_item_title_padding">15dp</dimen>
+    <dimen name="lixian_init_tips_size">30sp</dimen>
+    <dimen name="lixian_init_tips_margin_lr">300dp</dimen>
+    <dimen name="lixian_init_tips_margin_t">105dp</dimen>
+    <dimen name="lixian_init_bt_w">312dp</dimen>
+    <dimen name="lixian_init_bt_h">396dp</dimen>
+    <dimen name="lixian_init_bt_padding_t">63dp</dimen>
+    <dimen name="lixian_init_bt_margin">105dp</dimen>
+    <dimen name="lixian_init_bt_size">42sp</dimen>
+    <dimen name="lixian_login_padding_h">63dp</dimen>
+    <dimen name="lixian_login_padding_v">51dp</dimen>
+    <dimen name="lixian_t9_bt_w">162dp</dimen>
+    <dimen name="lixian_t9_bt_h">111dp</dimen>
+    <dimen name="lixian_t9_bt_margin">2dp</dimen>
+    <dimen name="lixian_t9_digit_w">114dp</dimen>
+    <dimen name="lixian_t9_digit_h">81dp</dimen>
+    <dimen name="lixian_t9_digit_size">45sp</dimen>
+    <dimen name="lixian_t9_digit_bt_divider">51sp</dimen>
+    <dimen name="lixian_t9_digit_margin">6dp</dimen>
+    <dimen name="lixian_t9_title_size">36sp</dimen>
+    <dimen name="lixian_t9_subtitle_size">27sp</dimen>
+    <dimen name="lixian_t9_text_bt_padding">3dp</dimen>
+
+    <!-- 列表页左侧导航栏 -->
+    <dimen name="movielist_nav_item_width">237dp</dimen>
+    <dimen name="movielist_nav_item_height">96dp</dimen>
+    <dimen name="movielist_nav_filter_icon_width">36dp</dimen>
+
+    <!-- 菜单拖拽 -->
+    <dimen name="menu_drag_bottom">15dp</dimen>
+    <dimen name="menu_drag_top">150dp</dimen>
+
+    <!-- 字幕 -->
+    <dimen name="caption_textSize">72sp</dimen>
+
+</resources>

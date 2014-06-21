@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginLeft="@dimen/download_fragment_title_margin_left"
+    android:layout_marginRight="@dimen/download_fragment_title_margin_right"
+    android:layout_marginTop="@dimen/download_fragment_title_margin_top" >
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/descreption"
+        android:src="@drawable/back" />
+
+    <TextView
+        android:id="@+id/tv_title_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:layout_marginLeft="@dimen/download_fragment_title_back_margin_left"
+        android:layout_marginRight="@dimen/download_fragment_title_back_margin_right"
+        android:layout_toRightOf="@id/iv_back"
+        android:text="@string/back"
+        android:textColor="#fff" />
+
+    <ImageView
+        android:id="@+id/tv_more_function"
+        android:src="@drawable/menu_more_function"
+        android:layout_width="@dimen/download_fragment_title_more_function_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/download_fragment_title_more_function_margin_left" />
+
+</RelativeLayout>

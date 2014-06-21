@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/extra_search"
+        android:contentDescription="@string/descreption"
+        android:focusable="true"
+        android:layout_width="@dimen/metro_extra_item_w"
+        android:layout_height="@dimen/metro_extra_item_h"
+        android:layout_marginBottom="@dimen/metro_extra_item_margin_bottom"
+        android:scaleType="fitXY"
+        android:src="@drawable/extra_search" />
+
+    <ImageView
+        android:id="@+id/extra_history"
+        android:contentDescription="@string/descreption"
+        android:focusable="true"
+        android:layout_width="@dimen/metro_extra_item_w"
+        android:layout_height="@dimen/metro_extra_item_h"
+        android:layout_marginBottom="@dimen/metro_extra_item_margin_bottom"
+        android:scaleType="fitXY"
+        android:layout_below="@id/extra_search"
+        android:src="@drawable/extra_history" />
+
+    <ImageView
+        android:id="@+id/extra_favorite"
+        android:contentDescription="@string/descreption"
+        android:focusable="true"
+        android:layout_width="@dimen/metro_extra_item_w"
+        android:layout_height="@dimen/metro_extra_item_h"
+        android:scaleType="fitXY"
+        android:layout_below="@id/extra_history"
+        android:src="@drawable/extra_favorite" />
+</RelativeLayout>

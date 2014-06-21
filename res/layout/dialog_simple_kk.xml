@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/dialog_content_view"
+        android:layout_width="@dimen/dialog_storage_warning_width"
+        android:layout_height="@dimen/dialog_storage_warning_height"
+        android:layout_centerInParent="true"
+        android:background="@drawable/dialog_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dialog_padding_vertical"
+        android:paddingLeft="@dimen/dialog_padding_horizontal"
+        android:paddingRight="@dimen/dialog_padding_horizontal"
+        android:paddingTop="@dimen/dialog_padding_vertical" >
+
+        <TextView
+            android:id="@+id/dialog_tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dialog_font_title" />
+
+        <ScrollView
+            android:id="@+id/dialog_msgwrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dialog_title_msg_margin_top"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/dialog_tv_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dialog_font_msg" />
+        </ScrollView>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ProgressBar
+                android:id="@+id/dialog_progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dialog_title_msg_margin_top"
+                android:max="100" />
+
+            <TextView
+                android:id="@+id/dialog_progress_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/dialog_progressBar"
+                android:layout_below="@id/dialog_progressBar"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dialog_font_msg" />
+
+            <TextView
+                android:id="@+id/dialog_progress_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/dialog_progressBar"
+                android:layout_below="@id/dialog_progressBar"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dialog_font_msg" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dialog_btn_margin_top"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/dialog_btn_positive"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="@dimen/dialog_btn_width"
+                android:layout_height="@dimen/dialog_btn_height"
+                android:background="@drawable/dialog_simple_btn_selector"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dialog_font_btn" />
+
+            <Button
+                android:id="@+id/dialog_btn_negative"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="@dimen/dialog_btn_width"
+                android:layout_height="@dimen/dialog_btn_height"
+                android:background="@drawable/dialog_simple_btn_selector"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dialog_font_btn" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

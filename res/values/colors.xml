@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_large_normal">#666666</color>
+    <color name="text_small">#999999</color>
+    <color name="video_item_update_info">#e7e7e7</color>
+    <color name="search_key_color">#eee</color>
+    <color name="detail_body">#ffffff</color>
+    <color name="detail_score">#00b4ff</color>
+    <color name="episodes_tab_focuse_color">#00a8ff</color>
+    <color name="filter_title">#00a8ff</color>
+    <color name="popup_menu_bg">#e0000000</color>
+    <color name="white_alfa_88">#88ffffff</color>
+    <color name="white_alfa_66">#66ffffff</color>
+    
+    <color name="home_channel_item_bg_blue">#78bcf1</color>
+    <color name="home_channel_item_bg_green">#92ca70</color>
+    
+    <color name="activity_userchannel_type_title">#B2B2B2</color>
+    
+    <color name="title_username">#00a8ff</color>
+</resources>

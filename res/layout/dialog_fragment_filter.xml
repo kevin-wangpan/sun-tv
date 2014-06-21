@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/filter_dialog_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_bg_black" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:descendantFocusability="afterDescendants"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/filter_bottom_margin"
+        android:paddingTop="@dimen/filter_top_margin" >
+
+        <LinearLayout
+            android:id="@+id/filter_panel0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:descendantFocusability="afterDescendants"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/filter_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/filter_sort" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/descreption"
+                android:src="@drawable/list_filter_line" />
+
+            <ListView
+                android:id="@+id/filter_list_sort"
+                style="@style/filter_listview"
+                android:layout_width="@dimen/filter_item_width"
+                android:layout_height="@dimen/filter_dialog_list_sort_height"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/filter_panel1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:descendantFocusability="afterDescendants"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@id/filter_list_title0"
+                style="@style/filter_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/descreption"
+                android:src="@drawable/list_filter_line" />
+
+            <ListView
+                android:id="@id/filter_list0"
+                style="@style/filter_listview"
+                android:layout_width="@dimen/filter_item_width"
+                android:layout_height="@dimen/filter_dialog_list_sort_height"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/filter_panel2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:descendantFocusability="afterDescendants"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@id/filter_list_title1"
+                style="@style/filter_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/descreption"
+                android:src="@drawable/list_filter_line" />
+
+            <ListView
+                android:id="@id/filter_list1"
+                style="@style/filter_listview"
+                android:layout_width="@dimen/filter_item_width"
+                android:layout_height="@dimen/filter_dialog_list_sort_height"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/filter_panel3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:descendantFocusability="afterDescendants"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@id/filter_list_title2"
+                style="@style/filter_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/descreption"
+                android:src="@drawable/list_filter_line" />
+
+            <ListView
+                android:id="@id/filter_list2"
+                style="@style/filter_listview"
+                android:layout_width="@dimen/filter_item_width"
+                android:layout_height="@dimen/filter_dialog_list_sort_height"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

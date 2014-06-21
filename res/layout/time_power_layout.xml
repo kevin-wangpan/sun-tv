@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/mediacontroller_rl_battery_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/mediacontroller_iv_battery_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/media_player_battery_shape"
+            android:contentDescription="@string/app_name"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/mediacontroller_iv_battery_charging"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignBottom="@id/mediacontroller_iv_battery_charge"
+            android:layout_alignLeft="@id/mediacontroller_iv_battery_charge"
+            android:layout_alignRight="@id/mediacontroller_iv_battery_charge"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="@dimen/time_power_battery_charging_margin"
+            android:layout_marginRight="@dimen/time_power_battery_charging_margin"
+            android:background="@drawable/media_player_battery_bkg_green"
+            android:contentDescription="@string/app_name"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/mediacontroller_charging_thunder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/time_power_charging_thunder_margin"
+            android:layout_marginTop="@dimen/time_power_charging_thunder_margin"
+            android:contentDescription="@string/app_name"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/mediacontroller_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/time_power_time_marginleft"
+        android:layout_toRightOf="@id/mediacontroller_rl_battery_info"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/time_power_time_textsize" />
+
+</RelativeLayout>

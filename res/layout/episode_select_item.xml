@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/episodes_body_column_width"
+    android:layout_height="@dimen/episodes_body_column_height" >
+
+    <Button
+        android:id="@+id/episode_item_btn"
+        android:layout_width="@dimen/episodes_body_column_width"
+        android:layout_height="@dimen/episodes_body_column_height"
+        android:background="@drawable/popup_item_selector"
+        android:focusable="true"
+        android:gravity="center"
+        android:textColor="@color/episodes_tab_color_selector"
+        android:textSize="@dimen/episodes_font_title" />
+
+</RelativeLayout>

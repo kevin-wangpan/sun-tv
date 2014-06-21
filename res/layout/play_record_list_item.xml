@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_centerVertical="true"
+    android:layout_marginBottom="@dimen/playrecord_item_margin_bottom"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/playrecord_item_padding_left"
+    android:paddingRight="@dimen/playrecord_item_padding_right" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/playrecord_item_title_drawable_padding"
+        android:paddingTop="@dimen/playrecord_item_title_padding_top"
+        android:singleLine="true"
+        android:textColor="@color/text_large_normal"
+        android:textIsSelectable="false"
+        android:textSize="@dimen/playrecord_item_title_textsize" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/playrecord_item_time_margin_top"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/playrecord_item_time_padding_bottom"
+        android:singleLine="true"
+        android:textColor="@color/text_small"
+        android:textIsSelectable="false"
+        android:textSize="@dimen/playrecord_item_time_textsize" />
+
+</LinearLayout>

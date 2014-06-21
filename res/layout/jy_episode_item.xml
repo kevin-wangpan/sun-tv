@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="56px"
+    android:layout_height="56px"
+    android:background="@drawable/episode_selector"
+    android:singleLine="true"
+    android:gravity="center"
+    android:ellipsize="end"
+    android:textSize="12sp"
+    android:textColor="@color/jy_episode_item_text_color" >
+</TextView>

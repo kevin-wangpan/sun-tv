@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="tv_episode_num0" />
+    <item type="id" name="tv_episode_num1" />
+    <item type="id" name="tv_episode_num2" />
+    <item type="id" name="tv_episode_num3" />
+    <item type="id" name="tv_episode_num4" />
+    <item type="id" name="tv_episode_num5" />
+    <item type="id" name="tv_episode_num6" />
+    <item type="id" name="tv_episode_num7" />
+    <item type="id" name="tv_episode_num8" />
+    <item type="id" name="tv_episode_num9" />
+    
+    <item type="id" name="filter_list0"/>
+    <item type="id" name="filter_list1"/>
+    <item type="id" name="filter_list2"/>
+    <item type="id" name="filter_list3"/>
+    <item type="id" name="filter_list4"/>
+    
+    <item type="id" name="filter_list_title0"/>
+    <item type="id" name="filter_list_title1"/>
+    <item type="id" name="filter_list_title2"/>
+    <item type="id" name="filter_list_title3"/>
+    <item type="id" name="filter_list_title4"/>
+
+    <item type="id" name="tag_favorite"/>
+    <item type="id" name="tag_download"/>
+    <item type="id" name="tag_setting"/>
+    <item type="id" name="tag_playrecord"/>
+    
+</resources>
