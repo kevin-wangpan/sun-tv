@@ -1,6 +1,6 @@
 package com.jiaoyang.tv.data;
 
-public class UpdateInfo {
+public class ApkUpdateInfo {
 
     public int type;
     public String latestVersion;

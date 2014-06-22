@@ -41,11 +41,11 @@ import android.widget.Toast;
 import com.jiaoyang.base.caching.ImageFetcher;
 import com.jiaoyang.base.caching.OnLoadImageListener;
 import com.jiaoyang.base.media.IMediaPlayer;
-import com.jiaoyang.base.media.JiaoyangMediaPlayerWrapper;
-import com.jiaoyang.base.media.SystemMediaPlayerWrapper;
 import com.jiaoyang.base.media.IMediaPlayer.OnErrorListener;
 import com.jiaoyang.base.media.IMediaPlayer.OnPlaybackBufferingUpdateListener;
 import com.jiaoyang.base.media.IMediaPlayer.OnPreparedListener;
+import com.jiaoyang.base.media.JiaoyangMediaPlayerWrapper;
+import com.jiaoyang.base.media.SystemMediaPlayerWrapper;
 import com.jiaoyang.base.misc.JiaoyangConstants.IntentDataKey;
 import com.jiaoyang.base.misc.JiaoyangConstants.PlayMode;
 import com.jiaoyang.base.util.StringEx;
@@ -57,8 +57,8 @@ import com.jiaoyang.tv.util.Logger;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.ScreenUtil;
 import com.jiaoyang.tv.util.Util;
-import com.kankan.mediaserver.MediaServerProxy;
 import com.jiaoyang.video.tv.R;
+import com.kankan.mediaserver.MediaServerProxy;
 
 public class PlayerActivity extends Activity {
     private static final Logger LOG = Logger.getLogger(PlayerActivity.class);
@@ -71,7 +71,6 @@ public class PlayerActivity extends Activity {
     private TextView mTvFirstBufferingProgress;
     private VideoView mVideoView;
     private AdvancedMediaController mediaController;
-    private ImageView mLogo;
     private ImageView mWaterMark;
 
     private RelativeLayout mPlayerErrorTipsLayout;
@@ -231,10 +230,6 @@ public class PlayerActivity extends Activity {
      * 初始化Views成员变量
      */
     private void initViews() {
-        mLogo = (ImageView) findViewById(R.id.player_video_iv_logo);
-        if (mLogo != null && mVideoPlayList != null && (mVideoPlayList.isAuthorityMovie() || mVideoPlayList.isTry())) {
-            mLogo.setImageResource(R.drawable.player_video_iv_logo_vip);
-        }
 
         mPlayerErrorTipsLayout = (RelativeLayout) findViewById(R.id.player_error_tips_layout);
         mPlayerErrorTipsGobackLayout = (LinearLayout) findViewById(R.id.player_error_tips_goback_layout);

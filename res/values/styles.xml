@@ -86,17 +86,6 @@
         <item name="android:textSize">@dimen/profile_select_font_item</item>
     </style>
     
-    <style name="download_profile_select_item">
-        <item name="android:background">@drawable/download_profile_bt_bkg</item>
-        <item name="android:focusable">true</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/download_profile_select_item_textSize</item>
-        <item name="android:layout_marginRight">@dimen/download_profile_select_item_layout_marginRight</item>
-        <item name="android:layout_width">@dimen/download_selection_profile_width</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-    
     <style name="FilterDialogTheme" parent="@android:style/Theme.Holo.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -152,50 +141,6 @@
         <item name="android:taskToFrontExitAnimation">@null</item> 
         <item name="android:taskToBackEnterAnimation">@null</item>  
         <item name="android:taskToBackExitAnimation">@null</item>
-    </style>
-    
-<style name="download_radio_button">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:button">@null</item>
-        <item name="android:background">@drawable/download_radio_button_bkg</item>
-        <item name="android:gravity">center</item>
-        <item name="android:visibility">gone</item>
-        <item name="android:textColor">@color/check_btn_text_color</item>
-        <item name="android:textSize">@dimen/download_radio_button_textSize</item>
-    </style>
-    
-    <style name="download_episode_select_button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:button">@null</item>
-        <item name="android:background">@drawable/download_radio_button_bkg</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/download_episode_select_button_textSize</item>
-        <item name="android:contentDescription">@string/app_name</item>
-		<item name="android:ellipsize">end</item>
-		<item name="android:singleLine">true</item>        
-    </style>
-    
-    <style name="download_episode_item">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-    </style>
-    
-    <style name="download_episode_variety_item">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-    
-    <style name="download_selection_button">
-        <item name="android:layout_width">@dimen/download_selection_button_layout_width</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/download_profile_bt_bkg</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/download_selection_button_text_color</item>
-        <item name="android:textSize">@dimen/download_selection_button_textSize</item>
     </style>
 
     <style name="popup_menu_anim">

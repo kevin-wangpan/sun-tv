@@ -25,7 +25,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.jiaoyang.tv.data.UpdateInfo;
+import com.jiaoyang.tv.data.ApkUpdateInfo;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.Util;
 import com.jiaoyang.tv.widget.JySimpleDialog;
@@ -41,7 +41,7 @@ public class ApkUpdater {
     private Context mContext;
     private boolean mCheckUpdateAutomaticly;
     private Handler mHandler;
-    private UpdateInfo mUpdateInfo;
+    private ApkUpdateInfo mUpdateInfo;
     private ProgressDialog mProgressDialog;
     private AsyncLoadApk mLoadApk;
     private AsyncLoadUpdateInfo mLoadUpdateInfo;
@@ -101,7 +101,7 @@ public class ApkUpdater {
 
     private void disposeUpdate(Object info) {
         if (info != null) {
-            mUpdateInfo = (UpdateInfo) info;
+            mUpdateInfo = (ApkUpdateInfo) info;
             LOG.debug("update value: " + mUpdateInfo.type);
 
             boolean needTips = false;

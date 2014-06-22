@@ -16,7 +16,7 @@ import com.jiaoyang.base.caching.ImageCache;
 import com.jiaoyang.base.caching.ImageFetcher;
 import com.jiaoyang.tv.JyBaseFragment;
 import com.jiaoyang.tv.app.JiaoyangTvApplication;
-import com.jiaoyang.tv.data.DataProxy;
+import com.jiaoyang.tv.data.HttpDataFetcher;
 import com.jiaoyang.tv.data.EpisodeList;
 import com.jiaoyang.tv.data.Movie;
 import com.jiaoyang.tv.util.Util;
@@ -223,14 +223,14 @@ public class DetailFragment extends JyBaseFragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            mMovieDetailInfo = DataProxy.getInstance().getMovieDetail(mMovieType, mMovieId, false);
+            mMovieDetailInfo = HttpDataFetcher.getInstance().getMovieDetail(mMovieType, mMovieId);
 
                 if (!isCancelled()) {
                     publishProgress();
 
                     if (mMovieDetailInfo != null) {
-                        mEpisodes = DataProxy.getInstance().getMovieEpisodes(mMovieType,
-                                mMovieId, false);
+                        mEpisodes = HttpDataFetcher.getInstance().getMovieEpisodes(mMovieType,
+                                mMovieId);
                     }
                 }
 

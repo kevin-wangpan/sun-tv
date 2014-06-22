@@ -24,7 +24,7 @@ import com.jiaoyang.base.data.MovieType;
 import com.jiaoyang.tv.DetailActivity;
 import com.jiaoyang.tv.MainActivity;
 import com.jiaoyang.tv.content.JyMetroAdapter.ViewHolder;
-import com.jiaoyang.tv.data.DataProxy;
+import com.jiaoyang.tv.data.HttpDataFetcher;
 import com.jiaoyang.tv.data.HomePage;
 import com.jiaoyang.tv.data.Movie;
 import com.jiaoyang.tv.util.Logger;
@@ -45,11 +45,6 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
 
     private LoadDataTask mLoadDataTask;
 
-    static final int VIEW_ID_MORE = 1000;
-    static final int VIEW_ID_FAVORITE = R.id.extra_favorite;
-    static final int VIEW_ID_HISTORY = R.id.extra_history;
-    static final int VIEW_ID_SEARCH = R.id.extra_search;
-
     public static final float FOCUS_SCALE_FACTOR = 1.05f;
 
     @Override
@@ -63,7 +58,7 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (DataProxy.getInstance().getHomePage() == null) {
+        if (HttpDataFetcher.getInstance().getHomePage() == null) {
             startLoadData();
         } else {
             fillData();
@@ -160,10 +155,10 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
 
     private boolean loadHomePage() {
         try {
-            HomePage homePage = DataProxy.getInstance().getHomePage();
+            HomePage homePage = HttpDataFetcher.getInstance().getHomePage();
             if (homePage == null) {
-                DataProxy.getInstance().loadHomePage();
-                homePage = DataProxy.getInstance().getHomePage();
+                HttpDataFetcher.getInstance().loadHomePage();
+                homePage = HttpDataFetcher.getInstance().getHomePage();
             }
             return homePage != null;
         } catch (Exception e) {
@@ -176,7 +171,7 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
 
     private void fillData() {
         JyPagerAdapter adapter = new JyPagerAdapter((MainActivity) getActivity(), this, this, getImageFetcher());
-        adapter.setData(JyUtils.transferToArrayList(DataProxy.getInstance().getHomePage()));
+        adapter.setData(JyUtils.transferToArrayList(HttpDataFetcher.getInstance().getHomePage()));
         mPager.setAdapter(adapter);
         ((MainActivity)getActivity()).getSliderBarFragment().setTotalPages(adapter.getCount());
         focusView();

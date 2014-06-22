@@ -3,33 +3,22 @@ package com.jiaoyang.tv.data;
 import java.io.Serializable;
 import java.util.Locale;
 
-import android.content.Context;
 import android.os.Build;
 
 import com.jiaoyang.base.data.MovieType;
 import com.jiaoyang.tv.app.JiaoyangTvApplication;
-import com.jiaoyang.tv.util.Util;
 
 public class Movie implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final String DETAIL_TEMPLATE_URL = "http://api.pad.kankan.com/api.php?movieid=%d&type=movie&mod=detail&os=kktv&osver=%s&productver=%s";
-    private static final String VIP_DETAIL_TEMPLATE_URL = "http://api.pad.kankan.com/api.php?movieid=%d&type=movie&mod=vip_detail&os=kktv&osver=%s&productver=%s";
     private static final String EPISODES_TEMPLATE_URL = "http://api.pad.kankan.com/api.php?movieid=%d&type=movie&mod=subdetail&os=kktv&osver=%s&productver=%s";
-    private static final String VIP_EPISODES_TEMPLATE_URL = "http://api.pad.kankan.com/api.php?movieid=%d&type=movie&mod=vip_subdetail&os=kktv&osver=%s&productver=%s";
-    private static final String NEWS_EPISODES_TEMPLATE_URL = "http://api.pad.kankan.com/api.php?movieid=%d&type=video&mod=subdetail&os=kktv&osver=%s&productver=%s";
-    private static final String MTV_EPISODES_TEMPLATE_URL = "http://api.pad.kankan.com/api.php?movieid=%d&type=music&mod=subdetail&os=kktv&osver=%s&productver=%s";
     private static final String POSTER_TEMPLATE_URL = "http://images.movie.xunlei.com/gallery%s";
-    private static final String NEWS_POSTER_TEMPLATE_URL = "http://ipad.img.kankan.com/video/250x188%s";
-    private static final String MTV_POSTER_TEMPLATE_URL = "http://ipad.img.kankan.com/music/250x188%s";
-    
-    private static final String SHORT_VIDEO_TEMPLATE_URL = "http://api.pad.kankan.com/api.php?movieid=%s&type=%s&mod=%s&os=%s&osver=%s&productver=%s"; 
 
     //在Metro中显示的样式，0表示普通的MetroItem，1表示竖的，2表示横的
     public static final int LAYOUT_TYPE_NORMAL = 0;
     public static final int LAYOUT_TYPE_PORTRAIT = 1;
     public static final int LAYOUT_TYPE_LANDSCAPE = 2;
-    public static final int LAYOUT_TYPE_EXTAR = 3;
 
     public int id;
     public int type;
@@ -65,44 +54,20 @@ public class Movie implements Serializable {
 
     public String bitrate;
 
-    public static String getDetailUrlFromId(int type, int id, boolean isVip) {
+    public static String getDetailUrlFromId(int type, int id) {
         String url = null;
 
         if (!(MovieType.isShortVideo(type))) {
-            String templateUrl = null;
+            String templateUrl = DETAIL_TEMPLATE_URL;
 
-            if (isVip) {
-                templateUrl = VIP_DETAIL_TEMPLATE_URL;
-            } else {
-                templateUrl = DETAIL_TEMPLATE_URL;
-            }
             url = String.format(Locale.US, templateUrl, id, Build.VERSION.RELEASE, JiaoyangTvApplication.versionCode);
         }
 
         return url;
     }
 
-    public static String getEpisodesUrlFromId(int type, int id, boolean isVip) {
-        String templateUrl = null;
-
-        switch (type) {
-        case MovieType.NEWS:
-            templateUrl = NEWS_EPISODES_TEMPLATE_URL;
-            break;
-
-        case MovieType.MTV:
-            templateUrl = MTV_EPISODES_TEMPLATE_URL;
-            break;
-
-        default:
-            if (isVip) {
-                templateUrl = VIP_EPISODES_TEMPLATE_URL;
-            } else {
-                templateUrl = EPISODES_TEMPLATE_URL;
-            }
-            break;
-        }
-
+    public static String getEpisodesUrlFromId(int type, int id) {
+        String templateUrl = EPISODES_TEMPLATE_URL;
         return String.format(Locale.US, templateUrl, id, Build.VERSION.RELEASE, JiaoyangTvApplication.versionCode);
     }
 
@@ -120,20 +85,7 @@ public class Movie implements Serializable {
             if (!poster.startsWith("/")) {
                 poster = "/" + poster;
             }
-            String templateUrl = null;
-            switch (type) {
-            case MovieType.NEWS:
-                templateUrl = NEWS_POSTER_TEMPLATE_URL;
-                break;
-
-            case MovieType.MTV:
-                templateUrl = MTV_POSTER_TEMPLATE_URL;
-                break;
-
-            default:
-                templateUrl = POSTER_TEMPLATE_URL;
-                break;
-            }
+            String templateUrl = POSTER_TEMPLATE_URL;
             url = String.format(Locale.US, templateUrl, poster);
         }
 
@@ -141,36 +93,17 @@ public class Movie implements Serializable {
     }
 
     public String getDetailUrl() {
-        return getDetailUrlFromId(type, id, price > 0.0);
+        return getDetailUrlFromId(type, id);
     }
 
     public String getEpisodesUrl() {
-        return getEpisodesUrlFromId(type, id, price > 0.0);
+        return getEpisodesUrlFromId(type, id);
     }
 
     public String getTvPosterUrl() {
         return getPosterUrl("/" + v_poster, type);
     }
     
-	public static String getMovieRecommendUrl(Context context, int movieId, int type) {
-        String url = null;
-        String osver = android.os.Build.VERSION.RELEASE;
-        String productver = Util.getSelfAppVersion(context);
-
-        if (MovieType.MTV == type) {
-            url = String.format(Locale.US, SHORT_VIDEO_TEMPLATE_URL, movieId, "music",
-                    "relate", "kktv",
-                    osver,
-                    productver);
-        } else
-            url = String.format(Locale.US, SHORT_VIDEO_TEMPLATE_URL, movieId, MovieType.isShortVideo(type) ? "video"
-                    : "movie",
-                    "relate", "kktv",
-                    osver,
-                    productver);
-
-        return url;
-    }
 
     /**
      * 该视频在首页上占几个格子
@@ -182,8 +115,6 @@ public class Movie implements Serializable {
         case LAYOUT_TYPE_PORTRAIT:
             return 4;
         case LAYOUT_TYPE_LANDSCAPE:
-            return 2;
-        case LAYOUT_TYPE_EXTAR:
             return 2;
         default:
             return 1;

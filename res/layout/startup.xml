@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="@dimen/startup_copyright_marginbottom"
-        android:contentDescription="@string/descreption"
-        android:src="@drawable/copyright" />
+        android:contentDescription="@string/descreption" />
 
 </FrameLayout>

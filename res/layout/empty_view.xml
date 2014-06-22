@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/empty_view_img_margin_top"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/net_error" />
+        android:contentDescription="@string/app_name" />
 
     <ImageButton
         android:id="@+id/empty_reload"

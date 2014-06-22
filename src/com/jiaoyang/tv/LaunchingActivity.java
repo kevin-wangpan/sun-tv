@@ -26,7 +26,7 @@ import com.jiaoyang.base.caching.ImageCache;
 import com.jiaoyang.base.caching.ImageFetcher;
 import com.jiaoyang.base.sys.DeviceHelper;
 import com.jiaoyang.tv.app.JiaoyangTvApplication;
-import com.jiaoyang.tv.data.DataProxy;
+import com.jiaoyang.tv.data.HttpDataFetcher;
 import com.jiaoyang.tv.data.StartUpPoster;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.Util;
@@ -125,7 +125,7 @@ public class LaunchingActivity extends Activity {
             Util.getPeerid(LaunchingActivity.this);
             Util.getSelfAppVersion(LaunchingActivity.this);
             Util.getIMEI(LaunchingActivity.this);
-            DataProxy.getInstance().loadHomePage();
+            HttpDataFetcher.getInstance().loadHomePage();
             return null;
         }
 

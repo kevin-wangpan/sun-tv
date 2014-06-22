@@ -20,8 +20,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/media_controller_bt_goback_margin_left"
             android:background="@drawable/media_player_goback_selector"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/actionbar_logo" />
+            android:contentDescription="@string/app_name" />
 
         <ImageButton
             android:id="@+id/mediacontroller_ib_download"

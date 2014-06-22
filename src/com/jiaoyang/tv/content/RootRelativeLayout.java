@@ -46,7 +46,7 @@ public class RootRelativeLayout extends RelativeLayout {
     }
 
     private void init() {
-        mNPD = (NinePatchDrawable) getResources().getDrawable(R.drawable.focused_bg_blur);
+        mNPD = (NinePatchDrawable) getResources().getDrawable(R.drawable.focused_shadow);
         if(mNPD == null) {
             return;
         }
