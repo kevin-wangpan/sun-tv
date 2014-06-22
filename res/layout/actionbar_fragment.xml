@@ -11,7 +11,7 @@
         android:contentDescription="@string/descreption"
         android:focusable="false"
         android:scaleType="fitCenter"
-        android:src="@drawable/actionbar_logo" />
+        android:src="@drawable/jy_actionbar_logo" />
 
     <TextView
         android:id="@+id/time"
