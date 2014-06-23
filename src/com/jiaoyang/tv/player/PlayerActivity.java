@@ -186,7 +186,6 @@ public class PlayerActivity extends Activity {
 
         if (playItem != null) {
             int profile = PreferenceManager.instance(getApplicationContext()).retrivePlayProfilePreference();
-            LOG.i(Logger.TAG_LUKE, "PreferenceManager profile = " + profile);
             if (profile > 0) {
                 // 屏蔽超清
                 // if(profile == PlayProfile.SUPER_PROFILE) profile--;
