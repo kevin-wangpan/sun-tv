@@ -9,7 +9,6 @@ import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -21,14 +20,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jiaoyang.base.data.MovieType;
 import com.jiaoyang.base.util.StringEx;
 import com.jiaoyang.tv.BaseImageAdapter;
 import com.jiaoyang.tv.JyBaseFragment;
-import com.jiaoyang.tv.data.Episode;
-import com.jiaoyang.tv.data.EpisodeList;
 import com.jiaoyang.tv.data.Movie;
-import com.jiaoyang.tv.player.EpisodeAdapterUtil;
 import com.jiaoyang.tv.player.PlayerAdapter;
 import com.jiaoyang.tv.player.VideoInfoManager;
 import com.jiaoyang.video.tv.R;
@@ -52,8 +47,6 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
     private GridView mEpisodeSelector;
 
     private Movie mMovie;
-    private EpisodeList mEpisodeList;
-    private int mMovieType;
     private boolean mViewCreated;
 
 
@@ -79,24 +72,10 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
         mViewCreated = false;
     }
 
-    public void updateMovieDetailInfo(Movie info) {
-        mMovie = info;
-        mMovieType = info.type;
-
+    public void updateMovieDetailInfo(Movie movie) {
+        mMovie = movie;
         updateBasicInfo();
-    }
-
-    public void updateEpisodesInfo(EpisodeList info) {
-        mEpisodeList = info;
         updateEpisodeInfo();
-        mMovieCover.setFocusable(true);
-        mMovieCover.postDelayed(new Runnable() {
-            
-            @Override
-            public void run() {
-                Log.e("wangpan", "focus:" + mMovieCover.requestFocus());
-            }
-        }, 100);
     }
 
     private void initializeView(View root) {
@@ -145,25 +124,23 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
         if (mViewCreated && mMovie != null) {
             mTitle.setText(StringEx.fromHtml(mMovie.title));
             updatePosterView();
-            updateMovieProfile();
             updateDirectorView();
-            updateActors();
-            mLanguage.setText("语言：" + escapeText(mMovie.label));
-            mArea.setText("地区：" + escapeText(mMovie.label));
-            mTime.setText("年代：" + escapeText(mMovie.year));
-            mPoints.setText("看点：" + escapeText(mMovie.label));
+            mLanguage.setText("语言：" + escapeText(mMovie.language));
+            mArea.setText("地区：" + escapeText(mMovie.area));
+            mTime.setText("年代：" + escapeText(mMovie.time));
+            mPoints.setText("看点：" + escapeText(mMovie.points));
             updateVideoIntroduce();
         }
     }
 
     private void updateEpisodeInfo() {
-        if (mViewCreated && mEpisodeList != null) {
+        if (mViewCreated && mMovie != null) {
             EpisodeSelectorAdapter adapter = new EpisodeSelectorAdapter();
-            adapter.setData(mEpisodeList.episodes);
+            adapter.setData(mMovie.videos.length);
             mEpisodeSelector.setOnItemClickListener(new OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    playMovie();
+                    playMovie(position);
                 }
             });
             mEpisodeSelector.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -181,20 +158,8 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
                 public void onNothingSelected(AdapterView<?> arg0) {}
             });
             mEpisodeSelector.setAdapter(adapter);
-        }
-    }
-
-    private void updateMovieProfile() {
-        if (mMovie.bitrate == null || mMovie.bitrate.equals("")) {
-            mMovieProfile.setVisibility(View.GONE);
-        } else {
-            if (mMovie.bitrate.equalsIgnoreCase("720P")) {
-                mMovieProfile.setVisibility(View.VISIBLE);
-                mMovieProfile.setImageResource(R.drawable.detail_profile_720p);
-            } else if (mMovie.bitrate.equalsIgnoreCase("1080P")) {
-                mMovieProfile.setVisibility(View.VISIBLE);
-                mMovieProfile.setImageResource(R.drawable.detail_profile_1080p);
-            }
+            mArrowUp.setVisibility(View.VISIBLE);
+            mArrowDown.setVisibility(View.VISIBLE);
         }
     }
 
@@ -213,36 +178,7 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
     }
 
     private void updateDirectorView() {
-        if (mMovieType == MovieType.DOCUMENTARY) {
-            mDirector.setVisibility(View.GONE);
-        } else {
-            if (TextUtils.isEmpty(mMovie.directorName)) {
-                String actor = escapeText(StringEx.join(mMovie.actors));
-                String actorName = mMovie.actorName;
-                actor = actorName + " : " + actor;
-                // mDirectorLabel.setText(styleText(actor));
-                mDirector.setText(actor);
-            } else {
-                String director = escapeText(StringEx.join(mMovie.directors));
-                String directorName = mMovie.directorName;
-                director = directorName + " : " + director;
-                // mDirectorLabel.setText(styleText(director));
-                mDirector.setText(director);
-            }
-        }
-    }
-
-    private void updateActors() {
-        if (mMovieType == MovieType.VARIETY_SHOW
-                || mMovieType == MovieType.DOCUMENTARY
-                || mMovieType == MovieType.OPEN_COURSES) {
-            mActors.setVisibility(View.GONE);
-        } else {
-            String artist = escapeText(StringEx.join(mMovie.actors));
-            artist = mMovie.actorName + " : " + artist;
-            // mArtistLabel.setText(styleText(artist));
-            mActors.setText(artist);
-        }
+        mDirector.setText(escapeText(mMovie.info));
     }
 
     /**
@@ -281,80 +217,35 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
         }
     }
 
-    private void playMovie() {
-        // 付费频道，有权限播放
+    private void playMovie(int position) {
         if (true) {
-            EpisodeList episodeList = mEpisodeList;
-            if (episodeList != null) {
-                Episode episodeInfo = null;
-                if (false /*mPlayRecord != null*/) {
-//                    episodeInfo = episodeList
-//                            .getEpisodeByIndex(mPlayRecord.index);
-                } else {
-                    if (mEpisodeList.episodes != null && mEpisodeList.episodes.length > 0) {
-                        episodeInfo = mEpisodeList.episodes[0];
-                    }
-                }
-
-                VideoInfoManager.prepareVideoInfo(episodeList,
-                        episodeInfo.index, 0, false, true);
+            if (mMovie != null) {
+                VideoInfoManager.prepareVideoInfo(mMovie, position);
                 if (mMovie != null) {
-                    PlayerAdapter.getInstance().play(getActivity(), mMovie.getPosterUrl(), mMovie.bitrate);
+                    PlayerAdapter.getInstance().play(getActivity(), mMovie.getPosterUrl(), "");
                 }
             } else {
                 showDialog("提示", "无法播放该视频");
             }
-        } else {
-            if (mEpisodeList != null) {
-                Episode episodeInfo = null;
-                int partIndex = 0;
-
-                if (false/*mPlayRecord != null*/) {
-//                    episodeInfo = mEpisodeList
-//                            .getEpisodeByIndex(mPlayRecord.index);
-//                    partIndex = mPlayRecord.partindex;
-                } else {
-                    if (mEpisodeList.episodes != null && mEpisodeList.episodes.length > 0) {
-                        episodeInfo = mEpisodeList.episodes[0];
-                    }
-                }
-
-                VideoInfoManager
-                        .prepareVideoInfo(
-                                mEpisodeList,
-                                episodeInfo.index,
-                                partIndex,
-                                false);
-
-                if (mMovie != null) {
-                    PlayerAdapter.getInstance().play(getActivity(), mMovie.getPosterUrl(), mMovie.bitrate);
-                }
-            }
-        }
+        } else {}
     }
 
     private class EpisodeSelectorAdapter extends BaseImageAdapter {
 
-        private Episode[] episodes;
+        private int episodeCount;
 
-        public void setData(Episode[] episodes) {
-            this.episodes = episodes;
+        public void setData(int episodesCount) {
+            this.episodeCount = episodesCount;
         }
 
         @Override
         public int getCount() {
-            if (episodes == null) {
-                return 0;
-            }
-            return episodes.length;
+            return episodeCount;
         }
 
         @Override
-        public Episode getItem(int position) {
-            if (episodes == null || position < 0 || position >= episodes.length) {
-                return null;
-            }
-            return episodes[position];
+        public Object getItem(int position) {
+            return position;
         }
 
         @Override
@@ -368,6 +259,7 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
                 convertView = LayoutInflater.from(getActivity()).inflate(R.layout.jy_episode_item, null);
             }
             ((TextView)convertView).setText("" + (position + 1));
+            android.util.Log.e("wangpan", "getView:" + convertView);
             return convertView;
         }
         

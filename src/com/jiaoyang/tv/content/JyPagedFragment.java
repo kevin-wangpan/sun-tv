@@ -25,7 +25,7 @@ import com.jiaoyang.tv.DetailActivity;
 import com.jiaoyang.tv.MainActivity;
 import com.jiaoyang.tv.content.JyMetroAdapter.ViewHolder;
 import com.jiaoyang.tv.data.HttpDataFetcher;
-import com.jiaoyang.tv.data.HomePage;
+import com.jiaoyang.tv.data.HomePageData;
 import com.jiaoyang.tv.data.Movie;
 import com.jiaoyang.tv.util.Logger;
 import com.jiaoyang.tv.util.Util;
@@ -155,7 +155,7 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
 
     private boolean loadHomePage() {
         try {
-            HomePage homePage = HttpDataFetcher.getInstance().getHomePage();
+            HomePageData homePage = HttpDataFetcher.getInstance().getHomePage();
             if (homePage == null) {
                 HttpDataFetcher.getInstance().loadHomePage();
                 homePage = HttpDataFetcher.getInstance().getHomePage();
@@ -213,33 +213,8 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
             if (movie == null) {
                 return;
             }
-            if (movie.price > 0 && !Util.isSupportedDevice()) {
-                showNotSurportDialog();
-                return;
-            }
-            if (MovieType.isShortVideo(movie.type)) {
-                // playShortVideo(movie);
-            } else {
-                Bundle arguments = new Bundle();
-                arguments.putInt("id", movie.id);
-                arguments.putInt("type", movie.type);
-                arguments.putString("title", movie.title);
-                arguments.putInt("productId", movie.productId);
-                startActivity(DetailActivity.class, arguments);
-            }
+            DetailActivity.startDetailActivity(getActivity(), movie.mid, movie.title);
         }
-    }
-
-    private void startActivity(Class<DetailActivity> activityClass, Bundle arguments) {
-        Intent intent = new Intent(getActivity(), activityClass);
-        if (arguments != null) {
-            intent.putExtras(arguments);
-        }
-        startActivity(intent);
-    }
-
-    private void showNotSurportDialog() {
-        showSipleDialog(R.string.tip, R.string.tips_unsurport_for_play);
     }
 
     @Override

@@ -1,5 +1,8 @@
 package com.jiaoyang.tv;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -40,5 +43,19 @@ public class DetailActivity extends JyBaseActivity {
         }
         
         return super.dispatchKeyEvent(event);
+    }
+
+    public static boolean startDetailActivity(Context ctx, String mid, String title) {
+        Bundle arguments = new Bundle();
+        arguments.putString("id", mid);
+        arguments.putString("title", title);
+        Intent intent = new Intent(ctx, DetailActivity.class);
+        intent.putExtras(arguments);
+        try {
+            ctx.startActivity(intent);
+            return true;
+        } catch (ActivityNotFoundException e) {
+            return false;
+        }
     }
 }

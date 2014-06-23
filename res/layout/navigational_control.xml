@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:nextFocusLeft="@+id/home_page"
         android:nextFocusRight="@+id/video_topic"
-        android:text="频道" />
+        android:text="热播榜" />
 
     <TextView
         android:id="@+id/video_topic"
@@ -29,7 +29,7 @@
         android:layout_height="match_parent"
         android:nextFocusLeft="@+id/video_channel"
         android:nextFocusRight="@+id/user_center"
-        android:text="专题" />
+        android:text="最新上线" />
     
     <TextView
         android:id="@+id/user_center"
@@ -38,7 +38,7 @@
         android:layout_height="match_parent"
         android:nextFocusLeft="@+id/video_topic"
         android:nextFocusRight="@+id/navi_settings"
-        android:text="个人中心" />
+        android:text="大陆剧" />
 
     <TextView
         android:id="@+id/navi_settings"

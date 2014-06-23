@@ -1,148 +1,55 @@
 package com.jiaoyang.tv.player;
 
-import java.util.List;
 import java.util.Set;
 
-import android.text.TextUtils;
-
 import com.jiaoyang.base.misc.JiaoyangConstants.PlayMode;
-import com.jiaoyang.base.misc.JiaoyangConstants.PlayProfile;
-import com.jiaoyang.tv.data.Episode;
-import com.jiaoyang.tv.data.Episode.Part;
-import com.jiaoyang.tv.data.Episode.Part.URL;
-import com.jiaoyang.tv.data.EpisodeList;
+import com.jiaoyang.tv.data.Movie;
 
 public class WebVideoPlayItem implements IVideoItem {
-    private String mVideoName;
-    private int mMovieType;
-    private int mMovieId;
-    private Episode mEpisode;
-    private Part mCurrentPart;
-    private int mCurrentPartIndex;
-    private int mProfile; // 视频当前所采用的那一种清晰度
-    private Set<Integer> mProfiles;
-    private boolean mDownloadAble;
-    private int mProductId;
-    private int mDisplayType;
-    private int mEpisodesSize;
+    private Movie mMovie;
+    private int mCurIndex;
 
-    public WebVideoPlayItem(EpisodeList episodeList, int index, int partIndex) {
-        mMovieId = episodeList.id;
-        mMovieType = episodeList.type;
-        mDownloadAble = episodeList.isSupportDownload();
-        mVideoName = episodeList.title;
-        mProductId = episodeList.productId;
-        mDisplayType = episodeList.displayType2;
-        mEpisodesSize = episodeList.episodes.length;
-
-        mEpisode = episodeList.getEpisodeByIndex(index);
-        mCurrentPartIndex = partIndex;
-        mCurrentPart = mEpisode.getPartByIndex(mCurrentPartIndex);
-        mProfiles = mCurrentPart.getProfiles();
-//        mProfile = getProfileLowToHigh();
-        mProfile = getProfileHighToLow();
-    }
-
-    public int getCurrentPartIndex() {
-        return mCurrentPartIndex;
-    }
-
-    public void setCurrentPartIndex(int partIndex) {
-        mCurrentPartIndex = partIndex;
-    }
-
-    public Episode getEpisode() {
-        return mEpisode;
-    }
-
-    public Part getCurrentPart() {
-        return mCurrentPart;
+    public WebVideoPlayItem(Movie movie, int index) {
+        mMovie = movie;
+        mCurIndex = index;
     }
 
     @Override
     public boolean hasNextPart() {
-        return mCurrentPartIndex < mEpisode.parts.length - 1;
+        return false;
 
     }
 
     @Override
     public boolean hasPrePart() {
-        return mCurrentPartIndex > 0;
+        return false;
     }
 
     @Override
     public void moveToNextPart() {
-        if (hasNextPart()) {
-            mCurrentPartIndex++;
-            mCurrentPart = mEpisode.getPartByIndex(mCurrentPartIndex);
-            mProfiles = mCurrentPart.getProfiles();
-        }
+        if (hasNextPart()) {}
 
     }
 
     @Override
     public void moveToPrePart() {
-        if (hasPrePart()) {
-            mCurrentPartIndex--;
-            mCurrentPart = mEpisode.getPartByIndex(mCurrentPartIndex);
-            mProfiles = mCurrentPart.getProfiles();
-        }
-    }
-
-    public int getMovieType() {
-        return mMovieType;
-    }
-
-    public int getMovieId() {
-        return mMovieId;
-    }
-
-    public int getProductId() {
-        return mProductId;
-    }
-
-    public int getIndex() {
-        return mEpisode.index;
+        if (hasPrePart()) {}
     }
 
     @Override
     public int getProfile() {
-        return mProfile;
+        return 0;
     }
 
     @Override
-    public void setProfile(int profile) {
-        if (profile != mProfile) {
-            mProfile = -1;
-
-            if (isSupportProfile(profile)) {
-                mProfile = profile;
-            } else {
-                for (int i = profile - 1; i >= PlayProfile.SMOOTH_PROFILE; i--) {
-                    if (isSupportProfile(i)) {
-                        mProfile = i;
-                        break;
-                    }
-                }
-                if (mProfile == -1) {
-//                    for (int i = profile + 1; i <= PlayProfile.HIGH_PROFILE; i++) {
-                        for (int i = profile + 1; i <= PlayProfile.SUPER_PROFILE; i++) {
-                        if (isSupportProfile(i)) {
-                            mProfile = i;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
+    public void setProfile(int profile) {}
 
     /*
      * (non-Javadoc)
      */
     @Override
     public boolean isSupportMultiProfile() {
-        return mProfiles.size() > 1 ? true : false;
+        return false;
     }
 
     /*
@@ -151,9 +58,7 @@ public class WebVideoPlayItem implements IVideoItem {
      */
     @Override
     public String getShortIntro() {
-        String shortIntro = null;
-        shortIntro = mEpisode.title;
-        return shortIntro;
+        return mMovie.title;
     }
 
     /*
@@ -162,7 +67,7 @@ public class WebVideoPlayItem implements IVideoItem {
      */
     @Override
     public String getVideoName() {
-        return mVideoName;
+        return mMovie.title;
     }
 
     /*
@@ -171,47 +76,9 @@ public class WebVideoPlayItem implements IVideoItem {
      */
     @Override
     public String getDisplayTitle() {
-        StringBuilder sb = new StringBuilder();
-        if (!TextUtils.isEmpty(getVideoName())) {
-            sb.append(getVideoName());
-        }
-
-        if (!TextUtils.isEmpty(getShortIntro())) {
-            sb.append(" ").append(getShortIntro());
-        }
-
-        if (!TextUtils.isEmpty(getPartTitle())) {
-            sb.append(" ").append(getPartTitle());
-        }
-
-        return sb.toString();
+        return mMovie.title;
     }
 
-    private String getPartTitle() {
-        String partTitle = "";
-        final int partSize = mEpisode.parts.length;
-        final int currentPartIndex = mCurrentPart.index;
-        if (partSize == 1) {
-
-        } else if (partSize == 2) {
-            if (currentPartIndex == 0) {
-                partTitle = "上";
-            } else {
-                partTitle = "下";
-            }
-        } else if (partSize == 3) {
-            if (currentPartIndex == 0) {
-                partTitle = "上";
-            } else if (currentPartIndex == 1) {
-                partTitle = "中";
-            } else {
-                partTitle = "下";
-            }
-        } else {
-            partTitle = String.valueOf(currentPartIndex + 1);
-        }
-        return partTitle;
-    }
 
     /*
      * (non-Javadoc)
@@ -219,12 +86,11 @@ public class WebVideoPlayItem implements IVideoItem {
      */
     @Override
     public boolean isSupportProfile(int profile) {
-        return mProfiles.contains(profile);
+        return false;
     }
 
     private String getDownloadUrlByProfile(int profile) {
-        URL url = mCurrentPart.getURLByProfile(profile);
-        return url == null ? null : url.url;
+        return "";
     }
 
     /*
@@ -233,13 +99,7 @@ public class WebVideoPlayItem implements IVideoItem {
      */
     @Override
     public String getDownloadAbleUrl() {
-        String url = null;
-        int profile = mProfile;
-        url = getDownloadUrlByProfile(profile);
-        if (url == null) {
-            url = getDefaultPlayUrl();
-        }
-        return url;
+        return "";
     }
 
     /*
@@ -248,7 +108,7 @@ public class WebVideoPlayItem implements IVideoItem {
      */
     @Override
     public boolean isSupportDownload() {
-        return mDownloadAble;
+        return false;
     }
 
     /*
@@ -257,8 +117,7 @@ public class WebVideoPlayItem implements IVideoItem {
      */
     @Override
     public String getPlayUrlByProfile(int profile) {
-        URL url = mCurrentPart.getURLByProfile(profile);
-        return url == null ? null : url.url;
+        return "http://bcs.duapp.com/video243/e5/b0/600/208003.m3u8";
     }
 
     /*
@@ -267,44 +126,8 @@ public class WebVideoPlayItem implements IVideoItem {
      */
     @Override
     public String getDefaultPlayUrl() {
-        String url = getPlayUrlByProfile(mProfile);
+        String url = getPlayUrlByProfile(0);
         return url;
-    }
-
-    /**
-     * 清晰度从低到高
-     * 
-     * @return
-     */
-    private int getProfileLowToHigh() {
-        int profile = 0;
-        if (mProfiles.contains(PlayProfile.SMOOTH_PROFILE)) {
-            profile = PlayProfile.SMOOTH_PROFILE;
-        } else if (mProfiles.contains(PlayProfile.BASE_PROFILE)) {
-            profile = PlayProfile.BASE_PROFILE;
-        } else if (mProfiles.contains(PlayProfile.HIGH_PROFILE)) {
-            profile = PlayProfile.HIGH_PROFILE;
-        } else if (mProfiles.contains(PlayProfile.SUPER_PROFILE)) {
-            profile = PlayProfile.SUPER_PROFILE;
-        }
-        return profile;
-    }
-    
-    private int getProfileHighToLow() {
-        int profile = PlayProfile.SMOOTH_PROFILE;
-        if (mProfiles.contains(PlayProfile.SUPER_PROFILE)) {
-            profile = PlayProfile.SUPER_PROFILE;
-        }
-        else if (mProfiles.contains(PlayProfile.HIGH_PROFILE)) {
-            profile = PlayProfile.HIGH_PROFILE;
-        }
-        else if (mProfiles.contains(PlayProfile.BASE_PROFILE)) {
-            profile = PlayProfile.BASE_PROFILE;
-        }
-        else if (mProfiles.contains(PlayProfile.SMOOTH_PROFILE)) {
-            profile = PlayProfile.SMOOTH_PROFILE;
-        }
-        return profile;
     }
 
     @Override
@@ -312,17 +135,13 @@ public class WebVideoPlayItem implements IVideoItem {
         return PlayMode.PLAY_MODE_WEB;
     }
 
-    public List<URL> getPartUrl() {
-        return mCurrentPart.getURLS();
-    }
-
     @Override
     public Set<Integer> getProfiles() {
-        return mProfiles;
+        return null;
     }
 
     @Override
     public int getVideoItemIndex() {
-        return getIndex();
+        return 0;
     }
 }

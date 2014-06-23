@@ -3,28 +3,27 @@ package com.jiaoyang.tv.content;
 import java.util.ArrayList;
 
 import com.jiaoyang.tv.data.Channel;
-import com.jiaoyang.tv.data.HomePage;
+import com.jiaoyang.tv.data.HomePageData;
 import com.jiaoyang.tv.data.Movie;
 
 public class JyUtils {
 
-    public static ArrayList<Movie> transferToArrayList(HomePage page) {
+    public static ArrayList<Movie> transferToArrayList(HomePageData page) {
         if (page == null) {
             return null;
         }
         ArrayList<Movie> list = new ArrayList<Movie>(20);
-        for (Movie m : page.movies) {
-            if (m.tv_display == 1) {
-                list.add(m);
+        for (int i = 0; i < 200; i ++) {
+//            Movie movie = page.data[i];
+            Movie movie = new Movie();
+            movie.mid = "245";
+            movie.imgurl = "http://newadmin.sun-tv.com.cn/ckfinder/userfiles/images/222.jpg";
+            if (i == 0) {
+                movie.layoutType = 1;
+            } else {
+                movie.layoutType = 0;
             }
-        }
-        for (int i = 0; i < page.channels.length; i++) {
-            Channel channel = page.channels[i];
-            for (Movie m : channel.movies) {
-                if (m.tv_display == 1) {
-                    list.add(m);
-                }
-            }
+            list.add(movie);
         }
         return list;
     }

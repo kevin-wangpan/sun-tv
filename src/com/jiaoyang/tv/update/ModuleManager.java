@@ -13,7 +13,7 @@ import org.apache.commons.codec2.digest.DigestUtils;
 import android.content.Context;
 
 import com.jiaoyang.base.util.FileUtility;
-import com.jiaoyang.tv.data.Properties;
+import com.jiaoyang.tv.data.DownloadEngineProperties;
 import com.jiaoyang.tv.util.Util;
 import com.jiaoyang.tv.util.Logger;
 
@@ -25,7 +25,7 @@ public class ModuleManager {
 
     private static String mLoadingLibDir;
     private static String mUpdateLibDir;
-    private static Properties mCurrentProperties;
+    private static DownloadEngineProperties mCurrentProperties;
 
     public static void init(Context context) {
         mLoadingLibDir = context.getFilesDir().getPath() + "/libs_loading/";
@@ -54,7 +54,7 @@ public class ModuleManager {
         if (updateLibFile.exists() && updatePropertiesFile.exists()) {
             LOG.debug("update lib and properties exists.");
 
-            Properties updateProperties = getProperties(updatePropertiesFile);
+            DownloadEngineProperties updateProperties = getProperties(updatePropertiesFile);
             if (!loadingLibFile.exists() || !loadingPropertiesFile.exists()) {
                 LOG.debug("loading lib or properties not exists.");
 
@@ -109,7 +109,7 @@ public class ModuleManager {
         return mUpdateLibDir + LIB_PROPERTIES_NAME;
     }
 
-    public static Properties getProperties() {
+    public static DownloadEngineProperties getProperties() {
         return mCurrentProperties;
     }
 
@@ -133,7 +133,7 @@ public class ModuleManager {
     }
 
     private static boolean copyUpdatedLibs(File loadingLib, File loadingProperties,
-            File updateLib, File updateProperties, Properties properties) {
+            File updateLib, File updateProperties, DownloadEngineProperties properties) {
         boolean success = false;
 
         if (verifyLibMd5(updateLib, properties)) {
@@ -154,7 +154,7 @@ public class ModuleManager {
         return success;
     }
 
-    private static boolean compareMd5(Properties loadingProperties, Properties updateProperties) {
+    private static boolean compareMd5(DownloadEngineProperties loadingProperties, DownloadEngineProperties updateProperties) {
         boolean result = false;
 
         if (loadingProperties != null && updateProperties != null
@@ -166,7 +166,7 @@ public class ModuleManager {
         return result;
     }
 
-    private static boolean verifyLibMd5(File lib, Properties properties) {
+    private static boolean verifyLibMd5(File lib, DownloadEngineProperties properties) {
         boolean result = false;
         if (properties != null) {
             FileInputStream fis = null;
@@ -199,8 +199,8 @@ public class ModuleManager {
         return result;
     }
 
-    private static Properties getProperties(File file) {
-        Properties properties = null;
+    private static DownloadEngineProperties getProperties(File file) {
+        DownloadEngineProperties properties = null;
         FileReader fr = null;
         BufferedReader br = null;
 
@@ -214,7 +214,7 @@ public class ModuleManager {
 
             if (verItems != null && verItems.length == 2
                     && md5Items != null && md5Items.length == 2) {
-                properties = new Properties();
+                properties = new DownloadEngineProperties();
                 properties.version = verItems[1].trim();
                 properties.md5 = md5Items[1].trim();
             }

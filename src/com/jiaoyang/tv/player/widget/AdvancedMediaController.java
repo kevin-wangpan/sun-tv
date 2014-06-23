@@ -5,10 +5,7 @@ import java.util.Set;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
@@ -41,12 +38,9 @@ import com.jiaoyang.base.misc.JiaoyangConstants.PlayMode;
 import com.jiaoyang.base.misc.JiaoyangConstants.PlayProfile;
 import com.jiaoyang.base.widget.MediaController;
 import com.jiaoyang.base.widget.VideoView.SurfaceListener;
-import com.jiaoyang.tv.data.Episode.Part.URL;
 import com.jiaoyang.tv.player.IVideoItem;
 import com.jiaoyang.tv.player.IVideoPlayList;
 import com.jiaoyang.tv.player.PlayerActivity;
-import com.jiaoyang.tv.player.ProfileAdapter;
-import com.jiaoyang.tv.player.WebVideoPlayItem;
 import com.jiaoyang.tv.player.WebVideoPlayList;
 import com.jiaoyang.tv.player.widget.GestureDetector.SimpleOnGestureListener;
 import com.jiaoyang.tv.player.widget.SeekManager.OnSeekListener;
@@ -55,8 +49,8 @@ import com.jiaoyang.tv.player.widget.SeekManager.SEEK_RATE;
 import com.jiaoyang.tv.util.Logger;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.ScreenUtil;
-import com.kankan.mediaserver.MediaServerProxy;
 import com.jiaoyang.video.tv.R;
+import com.kankan.mediaserver.MediaServerProxy;
 
 @SuppressLint("ViewConstructor")
 public class AdvancedMediaController extends MediaController implements
@@ -375,81 +369,8 @@ public class AdvancedMediaController extends MediaController implements
      * 创建选择清晰度的对话框
      */
     private void createChangePlayQualityDialog() {
-        mIsPlaying = mPlayerController.isPlaying();
-        mPlayerController.pause();
-
-        if (mChangePlayQualityDialog == null) {
-            Builder builder = new Builder(mContext);
-            if (mCurrentVideoPlayItem instanceof WebVideoPlayItem) {
-                WebVideoPlayItem videoPlayItem = (WebVideoPlayItem) mCurrentVideoPlayItem;
-                final ProfileAdapter profileAdapter = new ProfileAdapter(getContext(),
-                        videoPlayItem.getPartUrl());
-                mChangePlayQualityDialog = builder
-                        .setTitle(R.string.please_select_quality)
-                        .setMessage("字幕")
-                        // .setSingleChoiceItems(
-                        // profileAdapter.getProfileIntro(),
-                        // profileAdapter.getPlayedProfileIndex(videoPlayItem),
-                        // new DialogInterface.OnClickListener() {
-                        // @Override
-                        // public void onClick(DialogInterface dialog,
-                        // int which) {
-                        // dialog.dismiss();
-                        // changePlayQuality(profileAdapter, which);
-                        // }
-                        //
-                        // })
-                        .create();
-                mChangePlayQualityDialog.setCanceledOnTouchOutside(true);
-                mChangePlayQualityDialog
-                        .setOnDismissListener(new OnDismissListener() {
-
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                if (mIsPlaying) {
-                                    mPlayerController.start();
-                                }
-
-                            }
-                        });
-                mChangePlayQualityDialog.show();
-            }
-        } else {
-            if (!mChangePlayQualityDialog.isShowing())
-                mChangePlayQualityDialog.show();
-        }
-
     }
 
-    private void changePlayQuality(ProfileAdapter profileAdapter, int witch) {
-        URL episodePartUrl = profileAdapter.getItem(witch);
-        final int profile = episodePartUrl.profile;
-        if (profile == mCurrentVideoPlayItem.getProfile()) {// 清晰度没有改变的情况
-            return;
-        } else {
-            mPreferrenceManager.savePlayProfile(profile);
-            mCurrentVideoPlayItem.setProfile(profile);
-            mBufferingContainer.setVisibility(View.GONE);
-            showChangePlayQualityText();
-            mPlayerController.pause();
-            final int currentPosition = mPlayerController.getCurrentPosition();
-            mPlayerController.stop();
-            onVideoEnd();
-            String playableUrl = mCurrentVideoPlayItem
-                    .getPlayUrlByProfile(profile);
-            if (playableUrl.contains(PlayerActivity.VOD_FILTER)) {
-                playableUrl = MediaServerProxy.instance().getPlayURI(
-                        playableUrl).toString();
-            }
-            mContext.setCompletedState(false);
-            mPlayerController.setVideoPath(playableUrl);
-            mPlayerController.start();
-            mPlayerController.seekTo(currentPosition);
-            onVideoStart();
-            this.hide();
-            mContext.onChangeVideoQuality();
-        }
-    }
 
     private void restoreState() {
         bufferingNeedSleep = true;

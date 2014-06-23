@@ -105,6 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/arrow_up"
+                android:visibility="invisible"
                 android:layout_centerHorizontal="true" />
 
             <GridView
@@ -124,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/episode_selector_gridview"
                 android:src="@drawable/arrow_down"
+                android:visibility="invisible"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </LinearLayout>

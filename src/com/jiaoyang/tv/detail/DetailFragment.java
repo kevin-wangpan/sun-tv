@@ -17,11 +17,10 @@ import com.jiaoyang.base.caching.ImageFetcher;
 import com.jiaoyang.tv.JyBaseFragment;
 import com.jiaoyang.tv.app.JiaoyangTvApplication;
 import com.jiaoyang.tv.data.HttpDataFetcher;
-import com.jiaoyang.tv.data.EpisodeList;
 import com.jiaoyang.tv.data.Movie;
+import com.jiaoyang.tv.util.Logger;
 import com.jiaoyang.tv.util.Util;
 import com.jiaoyang.video.tv.R;
-import com.jiaoyang.tv.util.Logger;
 
 /**
  * 电影详细页,又称中间页
@@ -43,10 +42,8 @@ public class DetailFragment extends JyBaseFragment {
     private LoadMovieDetailTask mLoadMovieDetailTask;
     private boolean mFirstCreated = true;
 
-    private EpisodeList mEpisodes;
     private Movie mMovieDetailInfo;
-    private int mMovieType;
-    private int mMovieId;
+    private String mMovieId;
 
     private boolean mIsLoading = true;
     
@@ -80,7 +77,6 @@ public class DetailFragment extends JyBaseFragment {
         } else {
             fillViews();
             fillDataToViews();
-            updateEpisodeList();
         }
 
     }
@@ -166,8 +162,7 @@ public class DetailFragment extends JyBaseFragment {
     private void retrieveDataFromIntent() {
         Bundle arguments = getArguments();
         if (arguments != null) {
-            mMovieId = arguments.getInt("id");
-            mMovieType = arguments.getInt("type");
+            mMovieId = arguments.getString("id");
         }
     }
 
@@ -210,10 +205,6 @@ public class DetailFragment extends JyBaseFragment {
         }
     };
 
-    private void updateEpisodeList() {
-        mDetailBasicView.updateEpisodesInfo(mEpisodes);
-    }
-
     private class LoadMovieDetailTask extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -223,39 +214,8 @@ public class DetailFragment extends JyBaseFragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            mMovieDetailInfo = HttpDataFetcher.getInstance().getMovieDetail(mMovieType, mMovieId);
-
-                if (!isCancelled()) {
-                    publishProgress();
-
-                    if (mMovieDetailInfo != null) {
-                        mEpisodes = HttpDataFetcher.getInstance().getMovieEpisodes(mMovieType,
-                                mMovieId);
-                    }
-                }
-
-
+            mMovieDetailInfo = HttpDataFetcher.getInstance().getMovieDetail(mMovieId);
             return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            if (!isCancelled()) {
-                if (mMovieDetailInfo != null) {
-                    LOG.debug("load movie detail info success.");
-
-                    populateViews();
-
-                    mContentView.setVisibility(View.VISIBLE);
-                } else {
-                    mReloadContainer.setVisibility(View.VISIBLE);
-                    mReloadButton.setFocusable(true);
-                    mReloadButton.requestFocus();
-                    mEpisodeProgress.setVisibility(View.GONE);
-                    mContentView.setVisibility(View.GONE);
-                }
-
-            }
         }
 
         @Override
@@ -263,11 +223,10 @@ public class DetailFragment extends JyBaseFragment {
             if (!isCancelled()) {
                 mEpisodeProgress.setVisibility(View.GONE);
                 mIsLoading = false;
-                
-                if (mEpisodes != null && mMovieDetailInfo != null) {
+                if (mMovieDetailInfo != null) {
                     LOG.debug("load movie multi episode detail info success.");
 
-                    updateEpisodeList();
+                    populateViews();
                 } else {
                     mReloadContainer.setVisibility(View.VISIBLE);
                     mReloadButton.setFocusable(true);

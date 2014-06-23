@@ -74,6 +74,16 @@ public class SliderBarFragment extends JyBaseFragment {
                 numberItem.setSelected(i == page % PER_PAGE_COUNT + 1);
             }
         }
+        if (page <= PER_PAGE_COUNT) {
+            leftIndicator.setVisibility(View.INVISIBLE);
+        } else {
+            leftIndicator.setVisibility(View.VISIBLE);
+        }
+        if (page > (viewPager.getAdapter().getCount() - 1) * PER_PAGE_COUNT) {
+            rightIndicator.setVisibility(View.INVISIBLE);
+        } else {
+            rightIndicator.setVisibility(View.VISIBLE);
+        }
     }
     private class MyPagerAdapter extends PagerAdapter {
 
@@ -100,7 +110,6 @@ public class SliderBarFragment extends JyBaseFragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            Log.e("wangpan", "instantiateItem: " + position);
             LayoutInflater inflater = LayoutInflater.from(context);
             LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.sliderbar_per_page, null);
             for (int i = 1; i <= PER_PAGE_COUNT && position * PER_PAGE_COUNT + i <= totalPages; i++) {

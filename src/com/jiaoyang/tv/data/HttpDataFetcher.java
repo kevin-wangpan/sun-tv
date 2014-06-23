@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken;
 public class HttpDataFetcher {
 
     // 首页接口
-    private static final String HOME_PAGE = "http://pad.kankan.com/kktv/index.json";
+    private static final String HOME_PAGE = "http://ci2.sun-tv.com.cn/topic/movies/1/xl";
 
     private static final String APK_UPDATE_URL = "null";
 
@@ -16,7 +16,7 @@ public class HttpDataFetcher {
 
     private static HttpDataFetcher sInstance = null;
 
-    private HomePage mHomePage;
+    private HomePageData mHomePage;
 
     synchronized public static HttpDataFetcher getInstance() {
         if (sInstance == null) {
@@ -26,24 +26,15 @@ public class HttpDataFetcher {
         return sInstance;
     }
 
-    synchronized public HomePage getHomePage() {
-        return mHomePage;
+    synchronized public HomePageData getHomePage() {
+        return new HomePageData();
+        //return mHomePage;
     }
 
-    synchronized public void setHomePage(HomePage homePage) {
-        mHomePage = homePage;
-    }
-
-    public Movie getMovieDetail(int type, int id) {
+    public Movie getMovieDetail(String id) {
         URLLoader loader = new URLLoader();
-        String url = Movie.getDetailUrlFromId(type, id);
+        String url = Movie.getDetailUrlFromId(id);
         return loader.loadObject(url, Movie.class);
-    }
-
-    public EpisodeList getMovieEpisodes(int type, int id) {
-        URLLoader loader = new URLLoader();
-        String url = Movie.getEpisodesUrlFromId(type, id);
-        return loader.loadObject(url, EpisodeList.class);
     }
 
     public ApkUpdateInfo getApkUpdateInfo(String version, String osVersion) {
@@ -52,22 +43,20 @@ public class HttpDataFetcher {
         request.appendQueryParameter("os", osVersion);
 
         URLLoader loader = new URLLoader();
-        Type type = new TypeToken<Response<ApkUpdateInfo>>() {
+        Type type = new TypeToken<ApkUpdateInfo>() {
         }.getType();
 
         return (ApkUpdateInfo) loader.loadObject(request, type);
     }
 
-    public synchronized void loadHomePage() throws InvalidApiVersionException {
+    public synchronized void loadHomePage() {
         if (mHomePage != null) {
             return;
         }
 
         URLLoader loader = new URLLoader();
-        Type type = new TypeToken<Response<HomePage>>() {
-        }.getType();
 
-        mHomePage = (HomePage) loader.loadObject(HOME_PAGE, type);
+        mHomePage = (HomePageData) loader.loadObject(HOME_PAGE, HomePageData.class);
 
     }
 

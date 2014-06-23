@@ -1,6 +1,6 @@
 package com.jiaoyang.tv.data;
 
-public class ApkUpdateInfo {
+public class ApkUpdateInfo extends BaseRspData{
 
     public int type;
     public String latestVersion;

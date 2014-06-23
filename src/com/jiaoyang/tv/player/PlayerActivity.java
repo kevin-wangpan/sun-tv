@@ -86,12 +86,7 @@ public class PlayerActivity extends Activity {
     private int wiState;
     private AlertDialog mExitAlertDialog;
 
-    private String mPoster;
-    private String mBitrate;
-
     private boolean mCompleted = false;
-
-    private boolean mQuit = false;
 
     public ViewGroup getContentView() {
         return mRootView;
@@ -104,9 +99,6 @@ public class PlayerActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         mHandler = new Handler();
-
-        mPoster = getIntent().getStringExtra("poster");
-        mBitrate = getIntent().getStringExtra("bitrate");
 
         mVideoPlayList = VideoPlayListFactory.createPlayList(getIntent());
         if (mVideoPlayList != null) {
@@ -389,15 +381,6 @@ public class PlayerActivity extends Activity {
 
     }
 
-    // private void setVideoTitle(IVideoItem playItem) {
-    // String title = playItem.getDisplayTitle();
-    // if (mVideoPlayList.isTry()) {
-    // title = title + " 试看";
-    // }
-    // if (!TextUtils.isEmpty(title)) {
-    // mTvVideoName.setText(Html.fromHtml(title));
-    // }
-    // }
 
     /**
      * 执行视频播放的操作
@@ -411,11 +394,7 @@ public class PlayerActivity extends Activity {
                     String filePath = prepareVideoPath(playItem);
                     if (filePath != null) {
                         onStartFirstBuffering();
-                        // 测试1080P地址
-                        // filePath =
-                        // "http://127.0.0.1:8080/http://pubnet.sandai.net:8080/6/6beacd65d681356d36f7336d089d1c7d2ae6eb62/403627cfe0d5a525e644f3adc64e1263b90d7d28/2d04688c/200000/0/24ba73/0/0/2d04688c/0/index=0-13856/indexmd5=52db2060d36ef0b675d0343a65a87e7b/b55e15d9a639d04a02d63f1bec05cc14/8b73edae34eb03f4c3e10406a5dac8e4/403627cfe0d5a525e644f3adc64e1263b90d7d28.flv";
                         int decoderSetting = PreferenceManager.instance(PlayerActivity.this).retriveDecoderPreference();
-                        LOG.i(Logger.TAG_LUKE, "PreferenceManager decoderSetting = " + decoderSetting);
                         // 1代表软解
                         if (decoderSetting == 1) {
                             mVideoView.setMediaPlayerImpl(JiaoyangMediaPlayerWrapper.class);
@@ -615,13 +594,6 @@ public class PlayerActivity extends Activity {
 
     private final OnErrorListener mErrorListener = new OnErrorListener() {
         public boolean onError(IMediaPlayer mp, int framework_err, int impl_err) {
-            // int messageId;
-
-            // if (framework_err == IMediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK) {
-            // messageId = R.string.VideoView_error_text_invalid_progressive_playback;
-            // } else {
-            // messageId = R.string.VideoView_error_text_unknown;
-            // }
 
             // 当前是系统播放器架构
             if (mVideoView.isSystemMediaPlayer()) {
@@ -642,47 +614,6 @@ public class PlayerActivity extends Activity {
                 quit();
             }
 
-            // mPlayerErrorTipsReloadBtn.setKeyListener(new KeyListener() {
-            //
-            // @Override
-            // public boolean onKeyUp(View view, Editable text, int keyCode, KeyEvent event) {
-            // return false;
-            // }
-            //
-            // @Override
-            // public boolean onKeyOther(View view, Editable text, KeyEvent event) {
-            // return false;
-            // }
-            //
-            // @Override
-            // public boolean onKeyDown(View view, Editable text, int keyCode, KeyEvent event) {
-            // doReplayVideo();
-            // return false;
-            // }
-            //
-            // @Override
-            // public int getInputType() {
-            // return 0;
-            // }
-            //
-            // @Override
-            // public void clearMetaKeyState(View view, Editable content, int states) {
-            //
-            // }
-            // });
-
-            // new AlertDialog.Builder(PlayerActivity.this)
-            // .setMessage(messageId)
-            // .setPositiveButton(R.string.VideoView_error_button,
-            // new DialogInterface.OnClickListener() {
-            //
-            // @Override
-            // public void onClick(DialogInterface dialog, int whichButton) {
-            // quit();
-            // }
-            // })
-            // .setCancelable(false)
-            // .show();
             return true;
         }
     };
@@ -712,7 +643,6 @@ public class PlayerActivity extends Activity {
         if (isDLNAMediaPlayer()) {
             mVideoView.destroy();
         }
-        mQuit = true;
         // 解决部分设备退出后,系统底层对Videoview释放过慢导致会黑闪屏一下
         mVideoView.destroy();
         finish();

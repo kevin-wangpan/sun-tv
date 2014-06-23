@@ -48,16 +48,14 @@ public class URLLoader {
         return loadObject(request.toString(), klass);
     }
 
-    public Object loadObject(URLRequest request, Type type) throws InvalidApiVersionException {
+    public Object loadObject(URLRequest request, Type type) {
         return loadObject(request.toString(), type);
-    }
-    
-    public Object newloadObject(URLRequest request, Type type) throws InvalidApiVersionException {
-        return newloadObject(request.toString(), type);
     }
 
     public <T> T loadObject(String url, Class<T> klass) {
         String json = getJsonString(load(url));
+        LOG.e("url=" + url);
+        LOG.e("json=" + json);
         T resp = null;
         try {
             resp = mGson.fromJson(json, klass);
@@ -67,66 +65,22 @@ public class URLLoader {
         return resp;
     }
 
-    public Object loadObject(String url, Type type) throws InvalidApiVersionException {
+    public Object loadObject(String url, Type type) {
         String json = getJsonString(load(url));
         LOG.d("url=" + url);
         LOG.d("json=" + json);
-        Response<?> resp = null;
+        BaseRspData resp;
         try {
             resp = mGson.fromJson(json, type);
         } catch (JsonSyntaxException e) {
             LOG.warn("invalid json. err={}", e.toString());
-        }
-        if (resp != null && !(isCompatibleApiVersion(resp.apiVersion))) {
-            //throw new InvalidApiVersionException();
+            resp = null;
         }
 
-        if (resp != null && resp.error != null) {
-            if (resp.error.code != 0) {
-                LOG.warn("load object failed. code={} message={}", resp.error.code, resp.error.message);
-
-                resp = null;
-            }
+        if (resp == null || resp.failed) {
+            LOG.warn("load object failed");
         }
-        return resp != null ? resp.data : null;
-    }
-    
-    public Object newloadObject(String url, Type type) throws InvalidApiVersionException {
-        String json = getJsonString(load(url)); 
-        NewResponse<?> resp = null;
-        try {
-            resp = mGson.fromJson(json, type);
-        } catch (JsonSyntaxException e) {
-            LOG.warn("invalid json. err={}", e.toString());
-        }
-        if (resp != null && !(isCompatibleApiVersion(resp.apiVersion))) {
-            //throw new InvalidApiVersionException();
-        }
-
-        if (resp != null && resp.error != null) {
-            if (resp.error.code != 0) {
-                LOG.warn("load object failed. code={} message={}", resp.error.code, resp.error.message);
-
-                resp = null;
-            }
-        }
-        return resp != null ? resp.data : null;
-    }
-
-    public Object loadJsonpResponse(URLRequest request, Type type) {
-        return loadJsonpResponse(request.toString(), type);
-    }
-
-    public Object loadJsonpResponse(String url, Type type) {
-        String json = getJsonString(load(url));
-        JsonpResponse<?> resp = null;
-        try {
-            resp = mGson.fromJson(json, type);
-        } catch (JsonSyntaxException e) {
-            LOG.warn("invalid json. err={}", e.toString());
-        }
-
-        return (resp != null && resp.returnCode == 0) ? resp.data : null;
+        return resp;
     }
 
     public String load(String url) {
@@ -162,11 +116,6 @@ public class URLLoader {
 
     public void setCookie(String cookie) {
         mCookie = cookie;
-    }
-
-    // TODO: 实现小版本兼容
-    private boolean isCompatibleApiVersion(String apiVersion) {
-        return API_VERSION.equals(apiVersion);
     }
 
     private InputStream getStreamFromUrl(String url) {
@@ -230,7 +179,7 @@ public class URLLoader {
     private static final String JSON_FILTER_SIGN = "<script>_guanggao_pub";
     private static final String JSON_FILTER_REGEX = "<script>_guanggao_pub.*?<\\/script>";
 
-    public JSONObject loadJsonObject(URLRequest request) throws InvalidApiVersionException, JSONException {
+    public JSONObject loadJsonObject(URLRequest request) throws JSONException {
         String json = getJsonString(load(request.toString()));
         JSONObject object = null;
         if(null != json) {

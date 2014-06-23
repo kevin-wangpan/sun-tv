@@ -1,8 +1,6 @@
 package com.jiaoyang.tv.player;
 
-import java.util.List;
-
-import com.jiaoyang.tv.data.EpisodeList;
+import com.jiaoyang.tv.data.Movie;
 
 /**
  * 处理在线视频的播放列表
@@ -12,21 +10,17 @@ import com.jiaoyang.tv.data.EpisodeList;
  */
 public class WebVideoPlayList implements IVideoPlayList {
     private int mCurrentIndex;
-    private EpisodeList mEpisodeList;
+    private Movie mMovie;
     private WebVideoPlayItem mCurrentVideoPlayItem;
-    private boolean isTry;
-    private boolean isAuthorityMovie;
 
     public WebVideoPlayList(VideoInfoManager videoInfoManager) {
         mCurrentIndex = videoInfoManager.getIndex();
-        mEpisodeList = videoInfoManager.getEpisodelist();
-        isTry = videoInfoManager.isTry;
-        isAuthorityMovie = videoInfoManager.isAuthorityMovie;
-        mCurrentVideoPlayItem = getVideoPlayItem(mCurrentIndex, videoInfoManager.getPartIndex());
+        mMovie = videoInfoManager.getMovie();
+        mCurrentVideoPlayItem = getVideoPlayItem(mCurrentIndex);
     }
 
     public String getVideoName() {
-        return mEpisodeList != null ? mEpisodeList.title : "";
+        return mMovie.title;
     }
 
     @Override
@@ -39,7 +33,7 @@ public class WebVideoPlayList implements IVideoPlayList {
         if (hasPrevVideo()) {
             final int profile = mCurrentVideoPlayItem.getProfile();
             mCurrentIndex--;
-            mCurrentVideoPlayItem = getVideoPlayItem(mCurrentIndex, 0);
+            mCurrentVideoPlayItem = getVideoPlayItem(mCurrentIndex);
             mCurrentVideoPlayItem.setProfile(profile);
         }
 
@@ -51,7 +45,7 @@ public class WebVideoPlayList implements IVideoPlayList {
         if (hasNextVideo()) {
             final int profile = mCurrentVideoPlayItem.getProfile();
             mCurrentIndex++;
-            mCurrentVideoPlayItem = getVideoPlayItem(mCurrentIndex, 0);
+            mCurrentVideoPlayItem = getVideoPlayItem(mCurrentIndex);
             mCurrentVideoPlayItem.setProfile(profile);
         }
 
@@ -65,17 +59,17 @@ public class WebVideoPlayList implements IVideoPlayList {
 
     @Override
     public boolean hasPrevVideo() {
-        return mEpisodeList != null && mCurrentIndex > 0;
+        return mCurrentIndex > 0;
     }
 
     @Override
     public boolean hasNextVideo() {
-        return mEpisodeList != null && (mCurrentIndex + 1) < mEpisodeList.episodes.length;
+        return mCurrentIndex < mMovie.videos.length - 1;
     }
 
-    private WebVideoPlayItem getVideoPlayItem(int index, int partIndex) {
-        if (index > -1 && index < mEpisodeList.episodes.length) {
-            return new WebVideoPlayItem(mEpisodeList, index, partIndex);
+    private WebVideoPlayItem getVideoPlayItem(int index) {
+        if (mMovie != null) {
+            return new WebVideoPlayItem(mMovie, index);
         } else {
             return null;
         }
@@ -83,10 +77,10 @@ public class WebVideoPlayList implements IVideoPlayList {
     
     @Override
     public WebVideoPlayItem moveToPlayItemByIndex(int index) {
-        if (index > -1 && index < mEpisodeList.episodes.length) {
+        if (index > -1 && index < mMovie.videos.length) {
             final int profile = mCurrentVideoPlayItem.getProfile();
             mCurrentIndex = index;
-            mCurrentVideoPlayItem = getVideoPlayItem(mCurrentIndex, 0);
+            mCurrentVideoPlayItem = getVideoPlayItem(mCurrentIndex);
             mCurrentVideoPlayItem.setProfile(profile);
             return mCurrentVideoPlayItem;
         }
@@ -95,21 +89,16 @@ public class WebVideoPlayList implements IVideoPlayList {
     
     @Override
     public int getPlayItemSizes() {
-        return mEpisodeList != null ? mEpisodeList.episodes.length : 0;
+        return mMovie.videos.length;
     }
 
     @Override
     public boolean isTry() {
-        return isTry;
+        return false;
     }
 
     @Override
     public boolean isAuthorityMovie() {
-        return isAuthorityMovie;
+        return false;
     }
-    
-    public EpisodeList getEpisodeList(){
-        return mEpisodeList;
-    }
-    
 }

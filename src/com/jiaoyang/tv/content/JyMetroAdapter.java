@@ -30,9 +30,6 @@ public class JyMetroAdapter extends MetroContainerAdapter {
     private OnClickListener mClickListener;
     private ImageFetcher mImageFetcher;
 
-    private static final int MOVIE_ID_EXTRA = 0;
-    private static final int MOVIE_ID_MORE = 1;
-
     public static final int FIRST_VIEW_ID = 1;
 
     private ArrayList<Movie> mMovies = new ArrayList<Movie>();
@@ -92,19 +89,7 @@ public class JyMetroAdapter extends MetroContainerAdapter {
             mImageFetcher.loadImage(movie.getPosterUrl(), holder.poster);
         }
         if (holder.bitrate != null) {
-            if (movie.bitrate == null || movie.bitrate.equals("")) {
-                holder.bitrate.setVisibility(View.GONE);
-            } else {
-                if (movie.bitrate.equalsIgnoreCase("720P")) {
-                    holder.bitrate.setVisibility(View.VISIBLE);
-                    holder.bitrate.setImageResource(R.drawable.detail_profile_720p);
-                } else if (movie.bitrate.equalsIgnoreCase("1080P")) {
-                    holder.bitrate.setVisibility(View.VISIBLE);
-                    holder.bitrate.setImageResource(R.drawable.detail_profile_1080p);
-                } else {
-                    holder.bitrate.setVisibility(View.GONE);
-                }
-            }
+            holder.bitrate.setVisibility(View.GONE);
         }
     }
 
