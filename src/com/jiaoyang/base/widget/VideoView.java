@@ -217,32 +217,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
         if(mDebugLog) Log.i("luke", "VideoView updateDisplayRatio width*height= " + width + "*" + height);
         setMeasuredDimension(width, height);
         
-//        int width = getDefaultSize(mVideoWidth, widthMeasureSpec);
-//        int height = getDefaultSize(mVideoHeight, heightMeasureSpec);
-//        if (mVideoWidth > 0 && mVideoHeight > 0) {
-//            if (mVideoWidth * height > width * mVideoHeight) {
-//                // Log.i("@@@", "image too tall, correcting");
-//                height = width * mVideoHeight / mVideoWidth;
-//            } else if (mVideoWidth * height < width * mVideoHeight) {
-//                // Log.i("@@@", "image too wide, correcting");
-//                width = height * mVideoWidth / mVideoHeight;
-//            } else {
-//                // Log.i("@@@", "aspect ratio is correct: " +
-//                // width+"/"+height+"="+
-//                // mVideoWidth+"/"+mVideoHeight);
-//            }
-//        }
-//        Log.i("VideoView", "onMeasure VideoW,VideoH,MeasW,MeasH" +mVideoWidth+"-"+mVideoHeight +">>"+width+"-"+height);
-        // Log.i("@@@@@@@@@@", "setting size: " + width + 'x' + height);
-        // 全屏
-//        if(mDisplayRatio == 3){
-//            if(mVideoExactWidth > 0 && mVideoExactHeight > 0){
-//                width = mVideoExactWidth;
-//                height = mVideoExactHeight;
-//            }
-//        }
-//        Log.i("luke", "VideoView onMeasure w*h = " + width + "*" + height);
-//        setMeasuredDimension(width, height);
     }
 
     public int resolveAdjustedSize(int desiredSize, int measureSpec) {
@@ -670,7 +644,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (isInPlaybackState() && mMediaController != null) {
-            // toggleMediaControlsVisiblity();
             mMediaController.onTouchEvent(ev);
         }
         return true;

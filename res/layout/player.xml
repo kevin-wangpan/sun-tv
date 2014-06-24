@@ -12,98 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-    <RelativeLayout
-        android:id="@+id/dlna_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:visibility="gone" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:id="@+id/dlna_status_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:textColor="#9fabb3"
-                    android:textIsSelectable="false"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/dlna_device"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/player_dlna_device_margin_top"
-                    android:singleLine="true"
-                    android:textColor="#9fabb3"
-                    android:textIsSelectable="false"
-                    android:textSize="@dimen/player_dlna_device_textsize" />
-
-                <TextView
-                    android:id="@+id/dlna_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/player_dlna_status_margin_top"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:textColor="#9fabb3"
-                    android:textIsSelectable="false"
-                    android:textSize="@dimen/player_dlna_status_textsize" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/player_dlna_container_margin_left"
-                android:layout_marginRight="@dimen/player_dlna_container_margin_right" >
-
-                <ImageView
-                    android:id="@+id/background_dlna_left_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:contentDescription="@string/descreption"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/background_dlna_connecting_icon" />
-
-                <ImageView
-                    android:id="@+id/background_dlna_right_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:contentDescription="@string/descreption"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/background_dlna_connecting_icon_right" />
-
-                <ImageView
-                    android:id="@+id/dlna_connect_dot_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/player_dlna_connect_dot_margin_left"
-                    android:layout_marginRight="@dimen/player_dlna_connect_dot_margin_right"
-                    android:layout_toLeftOf="@id/background_dlna_right_iv"
-                    android:layout_toRightOf="@id/background_dlna_left_iv"
-                    android:background="@drawable/media_player_dlna_connect_bg"
-                    android:contentDescription="@string/descreption" />
-            </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
-
     <ImageView
         android:id="@+id/player_watermark"
         android:layout_width="wrap_content"
@@ -113,7 +21,7 @@
         android:contentDescription="@string/descreption"
         android:paddingLeft="@dimen/player_watermark_padding_left"
         android:paddingTop="@dimen/player_watermark_padding_right"
-        android:src="@drawable/watermark_img"
+        android:src="@drawable/jy_actionbar_logo"
         android:visibility="gone" />
 
     <!-- 首次加载缓冲 -->
@@ -164,30 +72,6 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/video_loading_tip_menu" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/video_loading_tip_ok" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/video_loading_tip_back" />
-        </LinearLayout>
     </LinearLayout>
 
     <!-- 首次缓冲失败 -->
@@ -198,34 +82,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/activity_background"
         android:visibility="gone" >
-
-        <LinearLayout
-            android:id="@+id/player_error_tips_goback_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/player_error_tips_margin_left"
-            android:layout_marginTop="@dimen/player_error_tips_margin_top"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/descreption"
-                android:src="@drawable/back"
-                android:visibility="visible" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/player_backtxt_margin_left"
-                android:gravity="left"
-                android:text="@string/back"
-                android:textColor="#33b5e5"
-                android:textSize="@dimen/player_backtxt_text_size" />
-        </LinearLayout>
 
         <TextView
             android:id="@+id/player_error_tips_tv"

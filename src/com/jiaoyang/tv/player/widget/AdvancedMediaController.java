@@ -50,7 +50,6 @@ import com.jiaoyang.tv.util.Logger;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.ScreenUtil;
 import com.jiaoyang.video.tv.R;
-import com.kankan.mediaserver.MediaServerProxy;
 
 @SuppressLint("ViewConstructor")
 public class AdvancedMediaController extends MediaController implements
@@ -420,7 +419,8 @@ public class AdvancedMediaController extends MediaController implements
             onVideoEnd();
             mPlayerController.stop();
             if (playUrl.contains(PlayerActivity.VOD_FILTER)) {
-                playUrl = MediaServerProxy.instance().getPlayURI(playUrl).toString();
+                //防盗链
+                //playUrl = MediaServerProxy.instance().getPlayURI(playUrl).toString();
             }
             hideSeekWidget();
             mContext.setCompletedState(false);
@@ -1363,7 +1363,8 @@ public class AdvancedMediaController extends MediaController implements
             String playableUrl = newVideoItem.getPlayUrlByProfile(newVideoItemProfile);
             LOG.i(Logger.TAG_LUKE, "不同清晰度  playUrl,proile = " + playableUrl + " - " + newVideoItemProfile);
             if (playableUrl.contains(PlayerActivity.VOD_FILTER))
-                playableUrl = MediaServerProxy.instance().getPlayURI(playableUrl).toString();
+                //防盗链
+                //playableUrl = MediaServerProxy.instance().getPlayURI(playableUrl).toString();
             hideSeekWidget();
             mContext.setCompletedState(false);
             mPlayerController.setVideoPath(playableUrl);

@@ -5,7 +5,6 @@ import android.app.Application;
 import com.jiaoyang.base.data.local.JiaoyangDatabaseHelper;
 import com.jiaoyang.base.sys.AppConfigs;
 import com.jiaoyang.base.sys.SystemConfigs;
-import com.kankan.mediaserver.MediaServerProxy;
 
 public abstract class JiaoyangApplication extends Application {
 
@@ -34,7 +33,6 @@ public abstract class JiaoyangApplication extends Application {
 
         // Database
         JiaoyangDatabaseHelper.init(getApplicationContext());
-        MediaServerProxy.init(getApplicationContext());
 
         onInit();
     }
@@ -42,7 +40,6 @@ public abstract class JiaoyangApplication extends Application {
     public void fini() {
         onFini();
 
-        MediaServerProxy.fini();
         JiaoyangDatabaseHelper.fini();
     }
 

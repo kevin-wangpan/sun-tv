@@ -5,7 +5,6 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -13,17 +12,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -38,8 +32,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jiaoyang.base.caching.ImageFetcher;
-import com.jiaoyang.base.caching.OnLoadImageListener;
 import com.jiaoyang.base.media.IMediaPlayer;
 import com.jiaoyang.base.media.IMediaPlayer.OnErrorListener;
 import com.jiaoyang.base.media.IMediaPlayer.OnPlaybackBufferingUpdateListener;
@@ -48,17 +40,14 @@ import com.jiaoyang.base.media.JiaoyangMediaPlayerWrapper;
 import com.jiaoyang.base.media.SystemMediaPlayerWrapper;
 import com.jiaoyang.base.misc.JiaoyangConstants.IntentDataKey;
 import com.jiaoyang.base.misc.JiaoyangConstants.PlayMode;
-import com.jiaoyang.base.util.StringEx;
 import com.jiaoyang.base.util.WakeLocker;
 import com.jiaoyang.base.widget.VideoView;
-import com.jiaoyang.tv.app.JiaoyangTvApplication;
 import com.jiaoyang.tv.player.widget.AdvancedMediaController;
 import com.jiaoyang.tv.util.Logger;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.ScreenUtil;
 import com.jiaoyang.tv.util.Util;
 import com.jiaoyang.video.tv.R;
-import com.kankan.mediaserver.MediaServerProxy;
 
 public class PlayerActivity extends Activity {
     private static final Logger LOG = Logger.getLogger(PlayerActivity.class);
@@ -74,7 +63,6 @@ public class PlayerActivity extends Activity {
     private ImageView mWaterMark;
 
     private RelativeLayout mPlayerErrorTipsLayout;
-    private LinearLayout mPlayerErrorTipsGobackLayout;
     private Button mPlayerErrorTipsReloadBtn;
     private TextView mPlayerErrorTipsContentTx;
     private IVideoPlayList mVideoPlayList;
@@ -92,13 +80,9 @@ public class PlayerActivity extends Activity {
         return mRootView;
     }
 
-    private Handler mHandler;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mHandler = new Handler();
 
         mVideoPlayList = VideoPlayListFactory.createPlayList(getIntent());
         if (mVideoPlayList != null) {
@@ -112,7 +96,6 @@ public class PlayerActivity extends Activity {
             mPlayingBeforePaused = false;
 
             registerReceiver(mHeadsetPlugReceiver, new IntentFilter(Intent.ACTION_HEADSET_PLUG));
-            mediaController.registerReceiver();
         } else {
             mPlayListUsable = false;
             quit();
@@ -129,7 +112,6 @@ public class PlayerActivity extends Activity {
             registerReceiver(mConnectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
         }
 
-        if (!isDLNAMediaPlayer()) {
             // 解决home键后切换黑屏的问题，显示首缓冲更加的友好
             if (mVideoView.getCurrentState() == VideoView.STATE_IDLE
                     && mVideoView.getTargetState() == VideoView.STATE_IDLE) {
@@ -140,8 +122,6 @@ public class PlayerActivity extends Activity {
                 mPlayingBeforePaused = false;
             }
             mVideoView.start();
-        }
-
     }
 
     @Override
@@ -150,9 +130,7 @@ public class PlayerActivity extends Activity {
 
         mPlayingBeforePaused = (mVideoView.getDuration() == -1) || mVideoView.isPlaying();
 
-        if (!isDLNAMediaPlayer()) {
-            mVideoView.pause();
-        }
+        mVideoView.pause();
 
         if (isOnlinePlayback()) {
             unregisterReceiver(mConnectivityReceiver);
@@ -172,7 +150,6 @@ public class PlayerActivity extends Activity {
         super.onDestroy();
 
         if (mPlayListUsable) {
-            mediaController.unRegisterReceiver();
             unregisterReceiver(mHeadsetPlugReceiver);
 
             mPlayingBeforePaused = false;
@@ -195,17 +172,20 @@ public class PlayerActivity extends Activity {
 
             if (filePath != null) {
                 if (filePath.contains(VOD_FILTER)) {
-                    filePath = MediaServerProxy.instance().getPlayURI(filePath).toString();
+                    //防盗链
+                    //filePath = MediaServerProxy.instance().getPlayURI(filePath).toString();
                 } else if (filePath.startsWith("/")) {
                     File file = new File(filePath);
                     if (file.exists()) {
                         if (filePath.toLowerCase(Locale.US).endsWith(".xv")) {
-                            filePath = MediaServerProxy.instance().getPlayURI(file).toString();
+                            //防盗链
+                            //filePath = MediaServerProxy.instance().getPlayURI(file).toString();
                         } else {
                             filePath = Uri.encode(filePath, "/");
                         }
                     } else if (filePath.startsWith("/.movies/")) {
-                        filePath = MediaServerProxy.instance().getPlayURI(file).toString();
+                        //防盗链
+                        //filePath = MediaServerProxy.instance().getPlayURI(file).toString();
                     } else {
                         filePath = null;
                     }
@@ -223,7 +203,6 @@ public class PlayerActivity extends Activity {
     private void initViews() {
 
         mPlayerErrorTipsLayout = (RelativeLayout) findViewById(R.id.player_error_tips_layout);
-        mPlayerErrorTipsGobackLayout = (LinearLayout) findViewById(R.id.player_error_tips_goback_layout);
         mPlayerErrorTipsReloadBtn = (Button) findViewById(R.id.player_error_tips_reload_btn);
         mPlayerErrorTipsContentTx = (TextView) findViewById(R.id.player_error_tips_tv);
         SpannableString errorContent = new SpannableString(mPlayerErrorTipsContentTx.getText());
@@ -231,7 +210,6 @@ public class PlayerActivity extends Activity {
         mPlayerErrorTipsContentTx.setText(errorContent);
 
         mBufferingTips = (TextView) findViewById(R.id.player_tips);
-        // mTvVideoName = (TextView) findViewById(R.id.player_video_tv_title);
         mTvFirstBufferingProgress = (TextView) findViewById(R.id.player_tv_progress);
         mRlFirstBuffering = (LinearLayout) findViewById(R.id.player_video_rl_first_bufferring);
         loadBufferingBackground(mRlFirstBuffering);
@@ -240,33 +218,12 @@ public class PlayerActivity extends Activity {
         mediaController.setOnBufferingListener(mOnPlaybackBufferingUpdateListener);
         mVideoView.setMediaController(mediaController);
         mVideoView.setOnErrorListener(mErrorListener);
-        if (Build.VERSION.SDK_INT >= 14) {
-            fullVideoView();
-        }
 
         mWaterMark = (ImageView) findViewById(R.id.player_watermark);
     }
 
     private void loadBufferingBackground(final View bufferingLayout) {
-        Drawable d = ((JiaoyangTvApplication) getApplication()).getActivityBG();
-        if (d != null) {
-            bufferingLayout.setBackgroundDrawable(d);
-        } else {
-            String url = PreferenceManager.instance(this).retriveDefaultBgUrl();
-            if (StringEx.isNullOrEmpty(url)) {
-                return;
-            }
-            ImageFetcher fetcher = ImageFetcher.getInstance(this);
-            fetcher.setImageCache(((JiaoyangTvApplication) getApplication()).getImageCache());
-            fetcher.setImageLoadListener(new OnLoadImageListener() {
-
-                @Override
-                public void onLoadCompleted(Bitmap bmp) {
-                    bufferingLayout.setBackgroundDrawable(new BitmapDrawable(getResources(), bmp));
-                }
-            });
-            fetcher.loadImage(url, true);
-        }
+        bufferingLayout.setBackgroundResource(R.drawable.main_start);
     }
 
     /**
@@ -276,13 +233,6 @@ public class PlayerActivity extends Activity {
      */
     public boolean isFirstPlayBuffering() {
         return isFirstBuffering;
-    }
-
-    private boolean isDLNAMediaPlayer() {
-        boolean isDLNAPlayer = false;
-
-        return isDLNAPlayer;
-
     }
 
     public void onStartFirstBuffering() {
@@ -327,12 +277,6 @@ public class PlayerActivity extends Activity {
                         mPlayerErrorTipsLayout.setVisibility(View.GONE);
                         doReplayVideo();
                         break;
-                    // case KeyEvent.KEYCODE_DPAD_UP:
-                    // case KeyEvent.KEYCODE_DPAD_DOWN:
-                    // case KeyEvent.KEYCODE_DPAD_LEFT:
-                    // case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    // mPlayerErrorTipsGobackLayout.requestFocus();
-                    // break;
                     default:
                         break;
                     }
@@ -341,42 +285,12 @@ public class PlayerActivity extends Activity {
                 return false;
             }
         });
-        // mPlayerErrorTipsGobackLayout.setOnKeyListener(new View.OnKeyListener() {
-        //
-        // @Override
-        // public boolean onKey(View v, int keyCode, KeyEvent event) {
-        // if(event.getAction() == KeyEvent.ACTION_DOWN){
-        // switch (keyCode) {
-        // case KeyEvent.KEYCODE_DPAD_CENTER:
-        // finish();
-        // break;
-        // case KeyEvent.KEYCODE_DPAD_UP:
-        // case KeyEvent.KEYCODE_DPAD_DOWN:
-        // case KeyEvent.KEYCODE_DPAD_LEFT:
-        // case KeyEvent.KEYCODE_DPAD_RIGHT:
-        // mPlayerErrorTipsReloadBtn.requestFocus();
-        // break;
-        // default:
-        // break;
-        // }
-        // return true;
-        // }
-        // return false;
-        // }
-        // });
         mPlayerErrorTipsReloadBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
             }
         });
-        mPlayerErrorTipsGobackLayout.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-            }
-        });
-        // mPlayerErrorTipsReloadBtn.requestFocus();
 
     }
 
@@ -388,7 +302,6 @@ public class PlayerActivity extends Activity {
         if (mVideoPlayList != null) {
             IVideoItem playItem = mVideoPlayList.getCurrentPlayItem();
             if (playItem != null) {
-                // setVideoTitle(playItem);
                 if (mVideoView.getCurrentState() == VideoView.STATE_IDLE) {
                     String filePath = prepareVideoPath(playItem);
                     if (filePath != null) {
@@ -617,31 +530,11 @@ public class PlayerActivity extends Activity {
         }
     };
 
-    /**
-     * 隐藏虚拟导航栏
-     */
-    @SuppressLint("NewApi")
-    private void fullVideoView() {
-        if (!AdvancedMediaController.hasVirtualNavigation(this)) {// 如果有物理键，则无需隐藏系统导航键
-            return;
-        }
-
-        if (Build.VERSION.SDK_INT >= 16) {
-            mVideoView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-        } else if (Build.VERSION.SDK_INT >= 14) {
-            mVideoView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
-        }
-    }
-
     public VideoView getVideoView() {
         return mVideoView;
     }
 
     public void quit() {
-        if (isDLNAMediaPlayer()) {
-            mVideoView.destroy();
-        }
         // 解决部分设备退出后,系统底层对Videoview释放过慢导致会黑闪屏一下
         mVideoView.destroy();
         finish();

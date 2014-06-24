@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <ImageView
-        android:id="@+id/iv_start_up_bg"
+        android:id="@+id/start_up_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:contentDescription="@string/descreption"
-       />
+        android:src="@drawable/main_start"
+        android:contentDescription="@string/descreption"/>
 
     <ImageView
-        android:id="@+id/copyright"
+        android:id="@+id/start_up_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="@dimen/startup_copyright_marginbottom"
+        android:layout_centerInParent="true"
+        android:src="@drawable/main_start_logo"
         android:contentDescription="@string/descreption" />
 
-</FrameLayout>
+</RelativeLayout>

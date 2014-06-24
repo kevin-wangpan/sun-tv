@@ -1,9 +1,9 @@
 package com.jiaoyang.base.media;
 
+import io.vov.vitamio.MediaPlayer;
+
 import java.io.IOException;
 import java.util.Map;
-
-import com.kankan.media.MediaPlayer;
 
 import android.content.Context;
 import android.net.Uri;
@@ -28,7 +28,7 @@ public class JiaoyangMediaPlayerWrapper implements IMediaPlayer {
 
     @Override
     public void setAudioStreamType(int streamType) {
-        mMediaPlayer.setAudioStreamType(streamType);
+//        mMediaPlayer.setAudioStreamType(streamType);
     }
 
     @Override
@@ -84,12 +84,12 @@ public class JiaoyangMediaPlayerWrapper implements IMediaPlayer {
 
     @Override
     public int getCurrentPosition() {
-        return mMediaPlayer.getCurrentPosition();
+        return (int) mMediaPlayer.getCurrentPosition();
     }
 
     @Override
     public int getDuration() {
-        return mMediaPlayer.getDuration();
+        return (int) mMediaPlayer.getDuration();
     }
 
     @Override
@@ -142,13 +142,13 @@ public class JiaoyangMediaPlayerWrapper implements IMediaPlayer {
 
     @Override
     public void setOnPlaybackBufferingUpdateListener(final OnPlaybackBufferingUpdateListener listener) {
-        mMediaPlayer.setOnPlaybackBufferingUpdateListener(new MediaPlayer.OnPlaybackBufferingUpdateListener() {
-
-            @Override
-            public void onPlaybackBufferingUpdate(MediaPlayer mp, int percent) {
-                listener.onPlaybackBufferingUpdate(JiaoyangMediaPlayerWrapper.this, percent);
-            }
-        });
+//        mMediaPlayer.setOnPlaybackBufferingUpdateListener(new MediaPlayer.OnPlaybackBufferingUpdateListener() {
+//
+//            @Override
+//            public void onPlaybackBufferingUpdate(MediaPlayer mp, int percent) {
+//                listener.onPlaybackBufferingUpdate(JiaoyangMediaPlayerWrapper.this, percent);
+//            }
+//        });
     }
 
     @Override

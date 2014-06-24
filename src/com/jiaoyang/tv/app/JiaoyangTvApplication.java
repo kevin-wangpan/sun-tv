@@ -13,7 +13,6 @@ import com.jiaoyang.base.misc.JiaoyangConstants;
 import com.jiaoyang.tv.update.ModuleManager;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.Logger;
-import com.kankan.mediaserver.downloadengine.DownloadEngine;
 
 public class JiaoyangTvApplication extends JiaoyangApplication {
     private static final Logger LOG = Logger.getLogger(JiaoyangTvApplication.class);
@@ -45,7 +44,6 @@ public class JiaoyangTvApplication extends JiaoyangApplication {
 
     @Override
     public void onLowMemory() {
-        LOG.warn("The overall memory is low, will clear the cache...");
 
         if (getImageCache() != null) {
             getImageCache().clearMemeoryCache();
@@ -57,7 +55,6 @@ public class JiaoyangTvApplication extends JiaoyangApplication {
     @Override
     protected void onInit() {
         ModuleManager.init(this);
-        DownloadEngine.start(this, ModuleManager.getLoadingLibPath(), false);
 
         try {
             PackageInfo pi = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
@@ -84,7 +81,6 @@ public class JiaoyangTvApplication extends JiaoyangApplication {
 
     @Override
     protected void onFini() {
-        DownloadEngine.stop();
     }
 
     private BUILD_VERSION getBuildVersion(Context context) {

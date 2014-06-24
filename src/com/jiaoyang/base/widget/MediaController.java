@@ -249,14 +249,7 @@ public class MediaController extends FrameLayout {
      *            The view to which to anchor the controller when it is visible.
      */
     public void setAnchorView(View view) {
-        // 系统的处理，待需求稳定之后修改删除
-        // if (mAnchor != null) {
-        // mAnchor.removeOnLayoutChangeListener(mLayoutChangeListener);
-        // }
         mAnchor = view;
-        // if (mAnchor != null) {
-        // mAnchor.addOnLayoutChangeListener(mLayoutChangeListener);
-        // }
         FrameLayout.LayoutParams frameParams = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
@@ -275,13 +268,6 @@ public class MediaController extends FrameLayout {
      * @hide This doesn't work as advertised
      */
     protected View makeControllerView() {
-        // LayoutInflater inflate = (LayoutInflater) mContext
-        // .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        // mRoot = inflate.inflate(mLayoutRes, null);
-        //
-        // initControllerView(mRoot);
-        //
-        // return mRoot;
         return mRoot;
     }
 

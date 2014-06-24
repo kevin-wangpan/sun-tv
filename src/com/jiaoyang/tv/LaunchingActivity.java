@@ -1,23 +1,17 @@
 package com.jiaoyang.tv;
 
-import java.io.File;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.NinePatchDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
@@ -28,14 +22,14 @@ import com.jiaoyang.base.sys.DeviceHelper;
 import com.jiaoyang.tv.app.JiaoyangTvApplication;
 import com.jiaoyang.tv.data.HttpDataFetcher;
 import com.jiaoyang.tv.data.StartUpPoster;
+import com.jiaoyang.tv.util.Logger;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.Util;
-import com.jiaoyang.tv.util.Logger;
 import com.jiaoyang.video.tv.R;
 
 public class LaunchingActivity extends Activity {
     private static final int MIN_SHOW_TIME = 4000;
-    private static final int MAX_SHOW_TIME = 10000;
+    private static final int MAX_SHOW_TIME = 6000;
 
     private ImageView mPoster;
     private TransitionDrawable mTd;
@@ -46,11 +40,11 @@ public class LaunchingActivity extends Activity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
             case DISPLAY_DEFAULT_BG_LATER:
-                NinePatchDrawable npd = (NinePatchDrawable) getResources().getDrawable(R.drawable.main_start);
-                mTd = new TransitionDrawable(new Drawable[] { npd, npd });
-                mTd.setId(0, 0);
-                mTd.setId(1, 1);
-                mPoster.setImageDrawable(mTd);
+//                NinePatchDrawable npd = (NinePatchDrawable) getResources().getDrawable(R.drawable.main_start);
+//                mTd = new TransitionDrawable(new Drawable[] { npd, npd });
+//                mTd.setId(0, 0);
+//                mTd.setId(1, 1);
+//                mPoster.setImageDrawable(mTd);
                 break;
             }
         }
@@ -64,7 +58,6 @@ public class LaunchingActivity extends Activity {
     }
 
     @Override
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -73,7 +66,7 @@ public class LaunchingActivity extends Activity {
 
             super.setContentView(R.layout.startup);
 
-            mPoster = (ImageView)(LaunchingActivity.this.findViewById(R.id.iv_start_up_bg));
+            mPoster = (ImageView)(LaunchingActivity.this.findViewById(R.id.start_up_bg));
             mHandler.sendEmptyMessageDelayed(DISPLAY_DEFAULT_BG_LATER, 0);
             mStartupTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             mTimeoutTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
