@@ -1,114 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/player_ly_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff000000"
-    android:padding="@dimen/player_padding" >
+    android:orientation="vertical" >
 
-    <com.jiaoyang.base.widget.VideoView
-        android:id="@+id/player_video_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
-
-    <ImageView
-        android:id="@+id/player_watermark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/player_video_view"
-        android:layout_alignTop="@id/player_video_view"
-        android:contentDescription="@string/descreption"
-        android:paddingLeft="@dimen/player_watermark_padding_left"
-        android:paddingTop="@dimen/player_watermark_padding_right"
-        android:src="@drawable/jy_actionbar_logo"
-        android:visibility="gone" />
-
-    <!-- 首次加载缓冲 -->
-
-    <LinearLayout
-        android:id="@+id/player_video_rl_first_bufferring"
+    <io.vov.vitamio.widget.CenterLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone" >
+        android:orientation="vertical" >
 
-        <RelativeLayout
-            android:id="@+id/player_video_fl_first_buffering"
+        <io.vov.vitamio.widget.VideoView
+            android:id="@+id/buffer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:gravity="center"
-            android:visibility="visible" >
-
-            <RelativeLayout
-                android:id="@+id/player_rl_progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true" >
-
-                <include layout="@layout/video_loading_view" />
-
-                <TextView
-                    android:id="@+id/player_tv_progress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:textSize="@dimen/player_progress_textsize" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/player_tips"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/player_rl_progress"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/player_tips_margin_top"
-                android:text="@string/player_onloading"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/player_tips_textsize"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <!-- 首次缓冲失败 -->
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+    </io.vov.vitamio.widget.CenterLayout>
 
     <RelativeLayout
-        android:id="@+id/player_error_tips_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/activity_background"
-        android:visibility="gone" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+
+        <ProgressBar
+            android:id="@+id/probar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/video_buffering" />
 
         <TextView
-            android:id="@+id/player_error_tips_tv"
+            android:id="@+id/load_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/player_error_tips_title"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/player_error_tips_text_size" />
+            android:layout_below="@id/probar"
+            android:text="" />
 
-        <Button
-            android:id="@+id/player_error_tips_reload_btn"
+        <TextView
+            android:id="@+id/download_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/player_error_tips_tv"
+            android:layout_gravity="center"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/player_reload_margin_top"
-            android:background="@drawable/player_reload_selector"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:paddingLeft="@dimen/player_reload_padding_left"
-            android:paddingRight="@dimen/player_reload_padding_right"
-            android:text="@string/player_error_tips_reload"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/player_reload_textsize" />
+            android:layout_below="@id/load_rate"
+            android:text="" />
     </RelativeLayout>
 
 </RelativeLayout>

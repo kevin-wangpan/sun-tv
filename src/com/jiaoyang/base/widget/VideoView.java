@@ -300,7 +300,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
             return;
         }
         // Tell the music playback service to pause
-        // TODO: these constants need to be published somewhere in the framework.
         Intent i = new Intent("com.android.music.musicservicecommand");
         i.putExtra("command", "pause");
         getContext().sendBroadcast(i);
@@ -321,7 +320,6 @@ public class VideoView extends SurfaceView implements MediaPlayerControl {
             mMediaPlayer.setOnPlaybackBufferingUpdateListener(mPlaybackBufferingUpdateListener);
             mCurrentBufferPercentage = 0;
             mCurrentPlaybackBufferPercentage = 0;
-            if(mDebugLog) Log.i("luke", "VideoView mediaplayer setDataSource = " + mUri);
             mMediaPlayer.setDataSource(getContext(), mUri, mHeaders);
             mMediaController.onMediaPlayerChange(mMediaPlayer);
             mMediaPlayer.setDisplay(mSurfaceHolder);

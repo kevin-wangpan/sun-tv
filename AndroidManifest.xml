@@ -28,7 +28,6 @@
 
     <!-- 来电状态权限 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -46,8 +45,8 @@
         android:name="com.jiaoyang.tv.app.JiaoyangTvApplication"
         android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
-        android:largeHeap="true"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:theme="@style/FullScreenAppTheme" >
         <activity
             android:name="com.jiaoyang.tv.LaunchingActivity"
@@ -99,6 +98,12 @@
 
         <activity android:name="com.jiaoyang.tv.JyBaseActivity" >
         </activity>
+        <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+    </application>
 
-        </application>
 </manifest>
