@@ -42,6 +42,7 @@ public class SliderBarFragment extends JyBaseFragment {
     }
 
     public void setTotalPages(int totalPages) {
+        getView().setVisibility(totalPages > 0 ? View.VISIBLE : View.INVISIBLE);
         leftIndicator.setVisibility(View.INVISIBLE);
         rightIndicator.setVisibility(totalPages > PER_PAGE_COUNT ? View.VISIBLE : View.INVISIBLE);
         pagerAdapter.setTotalPages(totalPages);

@@ -36,6 +36,7 @@ public class PlayerActivity extends Activity implements OnInfoListener, OnBuffer
         loadRateView = (TextView) findViewById(R.id.load_rate);
         uri = Uri.parse(path);
         mVideoView.setVideoURI(uri);
+        mVideoView.setVideoName("骄阳视频");
         mVideoView.setMediaController(new MediaController(this));
         mVideoView.requestFocus();
         mVideoView.setOnInfoListener(this);

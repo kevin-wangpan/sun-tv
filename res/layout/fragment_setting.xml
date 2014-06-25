@@ -3,63 +3,61 @@
     android:id="@+id/frame_setting"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:layout_centerInParent="true"
     android:gravity="center" >
 
     <RelativeLayout
         android:id="@+id/auto_play_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" >
+        android:layout_marginTop="130dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:focusable="true"
+        android:descendantFocusability="blocksDescendants" >
 
         <TextView
             android:id="@+id/auto_play_next_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_setting_title_margin"
-            android:padding="@dimen/fragment_setting_title_padding"
             android:text="@string/auto_play_next"
             android:layout_centerVertical="true"
             android:textColor="#fff"
             android:textSize="@dimen/fragment_setting_title_textsize" />
 
-        <Switch
+        <ImageView
             android:id="@+id/auto_play_next_switcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:thumb="@drawable/jy_switcher_thumb"
-            android:track="@drawable/jy_switcher_track"
-            android:textOn=""
-            android:textOff=""
-            android:layout_toRightOf="@id/auto_play_next_text"
-            android:layout_centerVertical="true" />
+            android:layout_marginLeft="150dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/auto_play_next_text" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/auto_skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:layout_below="@id/auto_play_next"
-        android:layout_centerHorizontal="true" >
+        android:layout_centerHorizontal="true"
+        android:focusable="true"
+        android:descendantFocusability="blocksDescendants" >
 
         <TextView
             android:id="@+id/auto_skip_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_margin="@dimen/fragment_setting_title_margin"
-            android:padding="@dimen/fragment_setting_title_padding"
             android:text="@string/auto_skip"
             android:textColor="#fff"
             android:textSize="@dimen/fragment_setting_title_textsize" />
 
-        <Switch
+        <ImageView
             android:id="@+id/auto_skip_text_switcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:thumb="@drawable/jy_switcher_thumb_selector"
-            android:track="@drawable/jy_switcher_track_selector"
-            android:textOn="open"
-            android:textOff="close"
+            android:layout_marginLeft="150dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/auto_skip_text" />
     </RelativeLayout>

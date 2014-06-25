@@ -259,9 +259,7 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
                 convertView = LayoutInflater.from(getActivity()).inflate(R.layout.jy_episode_item, null);
             }
             ((TextView)convertView).setText("" + (position + 1));
-            android.util.Log.e("wangpan", "getView:" + convertView);
             return convertView;
         }
-        
     }
 }
