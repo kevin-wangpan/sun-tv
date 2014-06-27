@@ -91,10 +91,10 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="xxxx" />
+            android:value="53ab7e6b56240bdd8705a5ef" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="xxxxx" />
+            android:value="36" />
 
         <activity android:name="com.jiaoyang.tv.JyBaseActivity" >
         </activity>

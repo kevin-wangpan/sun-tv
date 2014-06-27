@@ -17,6 +17,7 @@ import com.jiaoyang.tv.content.SliderBarFragment;
 import com.jiaoyang.tv.util.NetworkHelper;
 import com.jiaoyang.tv.util.Util;
 import com.jiaoyang.video.tv.R;
+import com.umeng.analytics.MobclickAgent;
 
 public class MainActivity extends JyBaseActivity {
 
@@ -60,6 +61,18 @@ public class MainActivity extends JyBaseActivity {
 
         QuitDialogManager.getInstance().dismissShownDialog();
         mHandler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
