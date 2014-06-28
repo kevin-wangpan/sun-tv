@@ -3,12 +3,9 @@ package com.jiaoyang.tv.content;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
-import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -115,9 +112,9 @@ public class SliderBarFragment extends JyBaseFragment {
             LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.sliderbar_per_page, null);
             for (int i = 1; i <= PER_PAGE_COUNT && position * PER_PAGE_COUNT + i <= totalPages; i++) {
                 final int pageIndex = position * PER_PAGE_COUNT + i;
-                LinearLayout numContainer = (LinearLayout) inflater.inflate(R.layout.sliderbar_per_number, null);
-                TextView textView = (TextView) numContainer.getChildAt(0);
+                TextView textView = (TextView) linearLayout.getChildAt(i - 1);
                 textView.setText("" + pageIndex);
+                textView.setVisibility(View.VISIBLE);
                 textView.setFocusable(true);
                 textView.setId(i);
                 textView.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -139,34 +136,6 @@ public class SliderBarFragment extends JyBaseFragment {
                         }
                     }
                 });
-                if (i == 1) {
-                    textView.setOnKeyListener(new OnKeyListener() {
-                        @Override
-                        public boolean onKey(View v, int keyCode, KeyEvent event) {
-                            if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT &&
-                                    event.getAction() == KeyEvent.ACTION_DOWN &&
-                                    event.getRepeatCount() == 1 &&
-                                    viewPager.getCurrentItem() >= 1) {
-                                viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
-                            }
-                            return false;
-                        }
-                    });
-                } else if (i == PER_PAGE_COUNT) {
-                    textView.setOnKeyListener(new OnKeyListener() {
-                        @Override
-                        public boolean onKey(View v, int keyCode, KeyEvent event) {
-                            if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT &&
-                                    event.getAction() == KeyEvent.ACTION_DOWN &&
-                                    event.getRepeatCount() == 1 &&
-                                    viewPager.getCurrentItem() < viewPager.getAdapter().getCount()) {
-                                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                            }
-                            return false;
-                        }
-                    });
-                }
-                linearLayout.addView(numContainer);
             }
             container.addView(linearLayout);
             return linearLayout;
