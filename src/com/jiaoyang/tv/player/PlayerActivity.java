@@ -77,6 +77,7 @@ public class PlayerActivity extends Activity implements OnInfoListener, OnBuffer
 
     private void beginPlay() {
         mVideoView.setVideoChroma(MediaPlayer.VIDEOCHROMA_RGB565);
+        mVideoView.setVideoLayout(VideoView.VIDEO_LAYOUT_ZOOM, 0f);
         Uri uri = Uri.parse(playUrl);
         mVideoView.setVideoURI(uri);
         mVideoView.setVideoName(title);
