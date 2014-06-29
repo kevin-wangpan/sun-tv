@@ -29,7 +29,7 @@ import com.jiaoyang.video.tv.R;
 
 public class LaunchingActivity extends Activity {
     private static final int MIN_SHOW_TIME = 4000;
-    private static final int MAX_SHOW_TIME = 6000;
+    private static final int MAX_SHOW_TIME = 9000;
 
     private ImageView mPoster;
     private TransitionDrawable mTd;

@@ -1,5 +1,6 @@
 package com.jiaoyang.tv.content;
 
+import android.R.integer;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -77,7 +78,9 @@ public class SliderBarFragment extends JyBaseFragment {
         } else {
             leftIndicator.setVisibility(View.VISIBLE);
         }
-        if (page > (viewPager.getAdapter().getCount() - 1) * PER_PAGE_COUNT) {
+        MyPagerAdapter adapter = (MyPagerAdapter) viewPager.getAdapter();
+        if (page > (adapter.getCount() - 1) * PER_PAGE_COUNT
+                || adapter.getTotalPages() <= PER_PAGE_COUNT) {
             rightIndicator.setVisibility(View.INVISIBLE);
         } else {
             rightIndicator.setVisibility(View.VISIBLE);
@@ -94,6 +97,9 @@ public class SliderBarFragment extends JyBaseFragment {
 
         public void setTotalPages(int total) {
             this.totalPages = total;
+        }
+        public int getTotalPages() {
+            return totalPages;
         }
 
         @Override

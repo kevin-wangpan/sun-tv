@@ -55,7 +55,6 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
         if (args != null) {
             mHomePageIndex = args.getInt(NaviControlFragment.HOME_PAGE_TAB_INDEX_KEY, 0);
         }
-        android.util.Log.e("wangpan", "mHomePageIndex=" + mHomePageIndex);
     }
 
     @Override

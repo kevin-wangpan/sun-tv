@@ -90,7 +90,7 @@ public class HttpDataFetcher {
         URLLoader loader = new URLLoader();
         mHomePages = new HomePageData[HOME_PAGE_TAB_COUNT];
         for (int i = 1; i <= HOME_PAGE_TAB_COUNT; i++) {
-            android.util.Log.e("wangpan", "url=" + addBaseParams(String.format(HOME_PAGE, i)));
+            android.util.Log.e("jiaoyang", "url=" + addBaseParams(String.format(HOME_PAGE, i)));
             mHomePages[i-1] = (HomePageData) loader.loadObject(addBaseParams(String.format(HOME_PAGE, i)), HomePageData.class);
         }
 
@@ -106,6 +106,9 @@ public class HttpDataFetcher {
     }
 
     private String addBaseParams(String url) {
+        if (true) {
+            return url;
+        }
         if (TextUtils.isEmpty(url)) {
             return "";
         }

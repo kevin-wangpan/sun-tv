@@ -46,5 +46,6 @@
         android:layout_width="@dimen/navi_control_width"
         android:layout_height="match_parent"
         android:nextFocusLeft="@+id/user_center"
+        android:nextFocusRight="@id/home_page"
         android:text="设置" />
 </LinearLayout>
