@@ -2,6 +2,7 @@ package com.jiaoyang.tv.data;
 
 import java.lang.reflect.Type;
 import java.util.Date;
+import java.util.Locale;
 
 import android.text.TextUtils;
 
@@ -15,7 +16,8 @@ public class HttpDataFetcher {
 
     private static final String KEY = "6uBzlsqFVMozM";
     private static final String HOME_PAGE = "http://ci2.sun-tv.com.cn/topic/movies/%d/xl";// 首页接口
-    private static final String USER_ID = "http://ci2.sun-tv.com.cn/uid/get";
+    private static final String USER_ID = "http://ci2.sun-tv.com.cn/uid/get"; // 获取userid
+    private static final String EPISODE_PLAY_URL = "http://ci2.sun-tv.com.cn/video/url/%s/%d";
 
     private static final String APK_UPDATE_URL = "null";
 
@@ -100,11 +102,26 @@ public class HttpDataFetcher {
     public StartUpPoster getStartUpPoster() {
         if (mStartUpPoster == null) {
             URLLoader loader = new URLLoader();
-            mStartUpPoster = (StartUpPoster) loader.loadObject(START_UP_POSTER_URL, StartUpPoster.class);
+            mStartUpPoster = loader.loadObject(START_UP_POSTER_URL, StartUpPoster.class);
         }
         return mStartUpPoster;
     }
 
+    /**
+     * @param videoId 视频编号;
+     * @param type 类型。1-自适应；2-高清；3-标清；4-超清；5-高清下载；6-标清下载；7-超清下载；8-1080p;"
+     * @return
+     */
+    public String loadPlayUrl(String videoId, int type) {
+        String url = String.format(Locale.US, EPISODE_PLAY_URL, videoId, type);
+        URLLoader loader = new URLLoader();
+        Episode episode = loader.loadObject(addBaseParams(url), Episode.class);
+        if (episode == null) {
+            return null;
+        } else {
+            return episode.url;
+        }
+    }
     private String addBaseParams(String url) {
         if (true) {
             return url;

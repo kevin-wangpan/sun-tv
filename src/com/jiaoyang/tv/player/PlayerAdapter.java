@@ -7,9 +7,9 @@ import com.jiaoyang.base.misc.JiaoyangConstants;
 import com.jiaoyang.tv.util.Logger;
 
 public class PlayerAdapter {
-    private static final Logger LOG = Logger.getLogger(PlayerAdapter.class);
 
-
+    public static final String VIDEO_ID_KEY = "video_id_key";
+    public static final String VIDEO_TITLE_KEY = "video_title_key";
     private static PlayerAdapter sInstance = null;
 
     synchronized public static PlayerAdapter getInstance() {
@@ -20,10 +20,10 @@ public class PlayerAdapter {
         return sInstance;
     }
 
-    public void play(final Context context, String poster, String bitrate) {
+    public void play(final Context context, String videoId, String title) {
         Intent intent = new Intent();
-        intent.putExtra("poster", poster);
-        intent.putExtra("bitrate", bitrate);
+        intent.putExtra(VIDEO_ID_KEY, videoId);
+        intent.putExtra(VIDEO_TITLE_KEY, title);
         intent.putExtra(JiaoyangConstants.IntentDataKey.PLAY_MODE, JiaoyangConstants.PlayMode.PLAY_MODE_WEB);
         intent.setClass(context, PlayerActivity.class);
         context.startActivity(intent);
@@ -36,14 +36,5 @@ public class PlayerAdapter {
 
     public void configPlayerIntent(Context context, Intent intent) {
         intent.setClass(context, PlayerActivity.class);
-    }
-
-    private PlayerAdapter() {
-        LOG.debug("construction.");
-        LOG.debug("MODEL: {}", android.os.Build.MODEL);
-        LOG.debug("PRODUCT: {}", android.os.Build.PRODUCT);
-        LOG.debug("MANUFACTURER: {}", android.os.Build.MANUFACTURER);
-        LOG.debug("SDK: {}", android.os.Build.VERSION.SDK_INT);
-        LOG.debug("RELEASE: {}", android.os.Build.VERSION.RELEASE);
     }
 }

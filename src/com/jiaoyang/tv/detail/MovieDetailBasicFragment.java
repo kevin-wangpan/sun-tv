@@ -228,16 +228,11 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
     }
 
     private void playMovie(int position) {
-        if (true) {
-            if (mMovie != null) {
-                VideoInfoManager.prepareVideoInfo(mMovie, position);
-                if (mMovie != null) {
-                    PlayerAdapter.getInstance().play(getActivity(), mMovie.getPosterUrl(), "");
-                }
-            } else {
-                showDialog("提示", "无法播放该视频");
-            }
-        } else {}
+        if (mMovie != null) {
+                PlayerAdapter.getInstance().play(getActivity(), mMovie.videos[position], mMovie.title);
+        } else {
+            showDialog("提示", "无法播放该视频");
+        }
     }
 
     private class EpisodeSelectorAdapter extends BaseImageAdapter {
