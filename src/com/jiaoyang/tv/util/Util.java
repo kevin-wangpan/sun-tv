@@ -40,7 +40,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.conn.util.InetAddressUtils;
 
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -65,7 +64,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.StatFs;
 import android.telephony.TelephonyManager;
-import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -75,7 +73,6 @@ import com.jiaoyang.base.util.StringEx;
 import com.jiaoyang.tv.app.JiaoyangTvApplication;
 import com.jiaoyang.tv.update.Config;
 import com.jiaoyang.tv.update.State;
-import com.jiaoyang.tv.util.Logger;
 
 public class Util {
     private static final Logger LOG = Logger.getLogger(Util.class);
@@ -753,13 +750,7 @@ public class Util {
     // 获取系统版本信息
     public static String getOSVersion() {
         if (null == mOSVersion) {
-            mOSVersion = "SDKV = " + android.os.Build.VERSION.RELEASE;
-            mOSVersion += "_MANUFACTURER = " + android.os.Build.MANUFACTURER;
-            mOSVersion += "_MODEL = " + android.os.Build.MODEL;
-            mOSVersion += "_PRODUCT = " + android.os.Build.PRODUCT;
-            mOSVersion += "_FINGERPRINT = " + android.os.Build.FINGERPRINT;
-            mOSVersion += "_CPU_ABI = " + android.os.Build.CPU_ABI;
-            mOSVersion += "_ID = " + android.os.Build.ID;
+            mOSVersion = android.os.Build.VERSION.RELEASE;
         }
         return mOSVersion;
     }

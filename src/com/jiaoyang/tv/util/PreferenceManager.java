@@ -22,9 +22,6 @@ public class PreferenceManager {
     private static final String MOBILE_PLAY = "mobile_play";
     private static final String MOBILE_DOWNLOAD = "mobile_download";
 
-    private static final String ONLINE_RECORD_REQUEST_URL="play_record_request_url";//上报播放记录的地址
-    private static final String ONLINE_RECORD_REQUEST_INTERVAL="play_record_request_interval";//上报播放记录时间间隔
-
     private PreferenceManager(Context context) {
         mSharedPreferences = context.getSharedPreferences("jiaoyang_tv_preferences", Context.MODE_PRIVATE);
     }
@@ -197,5 +194,13 @@ public class PreferenceManager {
     }
     public void saveAutoPlayNext(boolean autoNext) {
         save(AUTO_PLAY_NEXT_KEY, autoNext);
+    }
+
+    private static final String USER_ID_KEY = "user_id_key";
+    public String getUserId() {
+        return mSharedPreferences.getString(USER_ID_KEY, "53af91c1a188820b7642b5d506cd18f9383b26e2");
+    }
+    public void saveUserId(String id) {
+        save(USER_ID_KEY, id);
     }
 }

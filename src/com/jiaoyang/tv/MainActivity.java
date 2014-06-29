@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.jiaoyang.base.sys.DeviceHelper;
 import com.jiaoyang.tv.content.ActionBarFragment;
 import com.jiaoyang.tv.content.HomePageFragment;
-import com.jiaoyang.tv.content.NavigationalControlFragment;
+import com.jiaoyang.tv.content.NaviControlFragment;
 import com.jiaoyang.tv.content.RootRelativeLayout;
 import com.jiaoyang.tv.content.SliderBarFragment;
 import com.jiaoyang.tv.util.NetworkHelper;
@@ -22,7 +22,7 @@ import com.umeng.analytics.MobclickAgent;
 public class MainActivity extends JyBaseActivity {
 
     private Handler mHandler;
-    private NavigationalControlFragment mNaviFragment;
+    private NaviControlFragment mNaviFragment;
     private SliderBarFragment mSliderBarFragment;
     RootRelativeLayout mRoot;
 
@@ -37,7 +37,7 @@ public class MainActivity extends JyBaseActivity {
         mRoot.setActivity(this);
 
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-        mNaviFragment = new NavigationalControlFragment();
+        mNaviFragment = new NaviControlFragment();
         t.replace(R.id.navi_control, mNaviFragment);
         ActionBarFragment actionbar = new ActionBarFragment();
         t.replace(R.id.action_bar, actionbar);
@@ -159,7 +159,7 @@ public class MainActivity extends JyBaseActivity {
         mRoot.invalidate();
     }
 
-    public NavigationalControlFragment getNaviControlFragment() {
+    public NaviControlFragment getNaviControlFragment() {
         return mNaviFragment;
     }
 

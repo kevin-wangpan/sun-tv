@@ -118,6 +118,7 @@ public class LaunchingActivity extends Activity {
             Util.getPeerid(LaunchingActivity.this);
             Util.getSelfAppVersion(LaunchingActivity.this);
             Util.getIMEI(LaunchingActivity.this);
+            HttpDataFetcher.getInstance().loadUid();
             HttpDataFetcher.getInstance().loadHomePage();
             return null;
         }

@@ -2,7 +2,6 @@ package com.jiaoyang.tv.content;
 
 import java.util.ArrayList;
 
-import com.jiaoyang.tv.data.Channel;
 import com.jiaoyang.tv.data.HomePageData;
 import com.jiaoyang.tv.data.Movie;
 

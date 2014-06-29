@@ -1,5 +1,6 @@
 package com.jiaoyang.tv.content;
 
+import android.R.integer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,8 +15,9 @@ import com.jiaoyang.tv.MainActivity;
 import com.jiaoyang.tv.setting.JySettingFragment;
 import com.jiaoyang.video.tv.R;
 
-public class NavigationalControlFragment extends JyBaseFragment implements OnFocusChangeListener, OnClickListener {
+public class NaviControlFragment extends JyBaseFragment implements OnFocusChangeListener, OnClickListener {
 
+    public static final String HOME_PAGE_TAB_INDEX_KEY = "home_page_tab_index";
     public static final int NAVI_CONTROLS_COUNT = 5;
 
     private TextView[] mNaviControls = new TextView[NAVI_CONTROLS_COUNT];
@@ -53,7 +55,7 @@ public class NavigationalControlFragment extends JyBaseFragment implements OnFoc
                 = (TextView) v.findViewById(R.id.navi_settings);
         mNaviControls[HomePageFragment.FRAGMENT_TYPE_SETTINGS].setTag(JySettingFragment.class);
 
-                setFocusListener();
+        setFocusListener();
         setClickListener();
         mNaviControls[HomePageFragment.FRAGMENT_TYPE_RECOMMENDATION].requestFocus();
     }
@@ -75,7 +77,6 @@ public class NavigationalControlFragment extends JyBaseFragment implements OnFoc
         if (view == null || !(view instanceof TextView)) {
             return;
         }
-//        float scaleFactor = hasFocus ? 1.2f : 1.0f;
         TextView involvedView = (TextView) view;
         if (hasFocus) {
             if (mLastFocusedView != null) {
@@ -83,13 +84,34 @@ public class NavigationalControlFragment extends JyBaseFragment implements OnFoc
             }
             //切换fragment
             if (involvedView.getTag() != null) {
-                replaceFragment((Class<?>) involvedView.getTag(), null, INVALID_DIRECTION);
+                int index = getNaviControlsIndex(involvedView);
+                Bundle args = new Bundle();
+                args.putInt(HOME_PAGE_TAB_INDEX_KEY, index);
+                replaceFragment((Class<?>) involvedView.getTag(), args,
+                        getTransitDirection(getNaviControlsIndex(mLastFocusedView), getNaviControlsIndex(involvedView)));
             }
             mLastFocusedView = involvedView;
         } else {
             involvedView.setSelected(true);
         }
-//        involvedView.animate().scaleX(scaleFactor).scaleY(scaleFactor).setDuration(200).start();
+    }
+
+    private int getTransitDirection(int curType, int nextType) {
+        if (nextType > curType) {
+            return View.FOCUS_RIGHT;
+        } else if (nextType < curType) {
+            return View.FOCUS_LEFT;
+        }
+        return INVALID_DIRECTION;
+    }
+
+    private int getNaviControlsIndex(View naviControl) {
+        for (int i = 0; i < mNaviControls.length; i++) {
+            if (mNaviControls[i] == naviControl) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     public View getLastFocusedView() {
@@ -129,4 +151,5 @@ public class NavigationalControlFragment extends JyBaseFragment implements OnFoc
     public View getCurrentNaviControl() {
         return mNaviControls[getCurrentFragmentType()];
     }
+
 }

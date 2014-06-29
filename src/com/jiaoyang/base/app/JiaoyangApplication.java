@@ -8,13 +8,14 @@ import com.jiaoyang.base.sys.SystemConfigs;
 
 public abstract class JiaoyangApplication extends Application {
 
+    public static JiaoyangApplication sInstance;
     public static boolean sFirstTimeLaunche = false;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
         init();
+        sInstance = this;
     }
 
     @Override

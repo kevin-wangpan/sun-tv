@@ -22,7 +22,7 @@ public abstract class HomePageFragment extends JyBaseFragment {
     public static final int FRAGMENT_TYPE_SETTINGS = 4; // 离线空间
 
     public static final String KEY_DIRECTION = "key_direction";
-    private int mDirection = NavigationalControlFragment.INVALID_DIRECTION;
+    private int mDirection = NaviControlFragment.INVALID_DIRECTION;
 
     /**
      * 获得该HomePageFragment实例的type
@@ -63,7 +63,7 @@ public abstract class HomePageFragment extends JyBaseFragment {
         super.onCreate(savedInstanceState);
         Bundle b = getArguments();
         if (b != null) {
-            mDirection = b.getInt(KEY_DIRECTION, NavigationalControlFragment.INVALID_DIRECTION);
+            mDirection = b.getInt(KEY_DIRECTION, NaviControlFragment.INVALID_DIRECTION);
         }
     }
     @Override
@@ -77,7 +77,7 @@ public abstract class HomePageFragment extends JyBaseFragment {
      * @return
      */
     protected boolean focusView() {
-        if (mDirection == NavigationalControlFragment.INVALID_DIRECTION) {
+        if (mDirection == NaviControlFragment.INVALID_DIRECTION) {
             return false;
         }
         View root = getView();
@@ -104,7 +104,7 @@ public abstract class HomePageFragment extends JyBaseFragment {
                         e.printStackTrace();
                     }
                 }
-                mDirection = NavigationalControlFragment.INVALID_DIRECTION;
+                mDirection = NaviControlFragment.INVALID_DIRECTION;
             }
             return b;
         } else {
@@ -132,7 +132,7 @@ public abstract class HomePageFragment extends JyBaseFragment {
         }
     }
     private static boolean validFragmentType(int fragmentType) {
-        return fragmentType >= 0 && fragmentType < NavigationalControlFragment.NAVI_CONTROLS_COUNT;
+        return fragmentType >= 0 && fragmentType < NaviControlFragment.NAVI_CONTROLS_COUNT;
     }
 
     //SliderBar切换页码时，回调此方法翻页

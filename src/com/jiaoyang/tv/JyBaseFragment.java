@@ -16,7 +16,7 @@ import com.jiaoyang.base.caching.ImageCache;
 import com.jiaoyang.base.caching.ImageFetcher;
 import com.jiaoyang.tv.JyBaseActivity.TvMenu;
 import com.jiaoyang.tv.app.JiaoyangTvApplication;
-import com.jiaoyang.tv.content.NavigationalControlFragment;
+import com.jiaoyang.tv.content.NaviControlFragment;
 import com.jiaoyang.tv.util.Logger;
 import com.jiaoyang.tv.util.Util;
 import com.jiaoyang.video.tv.R;
@@ -65,7 +65,7 @@ public abstract class JyBaseFragment extends Fragment {
     }
 
     protected void replaceFragment(Class<?> fregmentClass, Bundle arguments) {
-        replaceFragment(fregmentClass, arguments, NavigationalControlFragment.INVALID_DIRECTION);
+        replaceFragment(fregmentClass, arguments, NaviControlFragment.INVALID_DIRECTION);
     }
 
     /**

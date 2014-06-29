@@ -43,9 +43,20 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
     private View mReloadLayout;
     private ViewPager mPager;
 
+    private int mHomePageIndex; //首页的第几个tab页
     private LoadDataTask mLoadDataTask;
 
     public static final float FOCUS_SCALE_FACTOR = 1.05f;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle args = getArguments();
+        if (args != null) {
+            mHomePageIndex = args.getInt(NaviControlFragment.HOME_PAGE_TAB_INDEX_KEY, 0);
+        }
+        android.util.Log.e("wangpan", "mHomePageIndex=" + mHomePageIndex);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +69,7 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (HttpDataFetcher.getInstance().getHomePage() == null) {
+        if (HttpDataFetcher.getInstance().getHomePage(mHomePageIndex) == null) {
             startLoadData();
         } else {
             fillData();
@@ -155,10 +166,10 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
 
     private boolean loadHomePage() {
         try {
-            HomePageData homePage = HttpDataFetcher.getInstance().getHomePage();
+            HomePageData homePage = HttpDataFetcher.getInstance().getHomePage(mHomePageIndex);
             if (homePage == null) {
                 HttpDataFetcher.getInstance().loadHomePage();
-                homePage = HttpDataFetcher.getInstance().getHomePage();
+                homePage = HttpDataFetcher.getInstance().getHomePage(mHomePageIndex);
             }
             return homePage != null;
         } catch (Exception e) {
@@ -171,7 +182,7 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
 
     private void fillData() {
         JyPagerAdapter adapter = new JyPagerAdapter((MainActivity) getActivity(), this, this, getImageFetcher());
-        adapter.setData(JyUtils.transferToArrayList(HttpDataFetcher.getInstance().getHomePage()));
+        adapter.setData(JyUtils.transferToArrayList(HttpDataFetcher.getInstance().getHomePage(mHomePageIndex)));
         mPager.setAdapter(adapter);
         ((MainActivity)getActivity()).getSliderBarFragment().setTotalPages(adapter.getCount());
         focusView();
@@ -219,7 +230,7 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
 
     @Override
     public int getFragmentType() {
-        return FRAGMENT_TYPE_RECOMMENDATION;
+        return mHomePageIndex;
     }
 
     @Override
