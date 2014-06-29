@@ -7,12 +7,12 @@ import android.text.TextUtils;
 
 import com.google.gson.reflect.TypeToken;
 import com.jiaoyang.base.app.JiaoyangApplication;
+import com.jiaoyang.tv.content.NaviControlFragment;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.Util;
 
 public class HttpDataFetcher {
 
-    private static final int HOME_PAGE_TAB_COUNT = 4;//首页一共几个内容tab
     private static final String KEY = "6uBzlsqFVMozM";
     private static final String HOME_PAGE = "http://ci2.sun-tv.com.cn/topic/movies/%d/xl";// 首页接口
     private static final String USER_ID = "http://ci2.sun-tv.com.cn/uid/get";
@@ -88,8 +88,8 @@ public class HttpDataFetcher {
             loadUid();
         }
         URLLoader loader = new URLLoader();
-        mHomePages = new HomePageData[HOME_PAGE_TAB_COUNT];
-        for (int i = 1; i <= HOME_PAGE_TAB_COUNT; i++) {
+        mHomePages = new HomePageData[NaviControlFragment.HOME_PAGE_TAB_COUNT];
+        for (int i = 1; i <= NaviControlFragment.HOME_PAGE_TAB_COUNT; i++) {
             android.util.Log.e("jiaoyang", "url=" + addBaseParams(String.format(HOME_PAGE, i)));
             mHomePages[i-1] = (HomePageData) loader.loadObject(addBaseParams(String.format(HOME_PAGE, i)), HomePageData.class);
         }

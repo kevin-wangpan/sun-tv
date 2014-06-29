@@ -8,6 +8,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -180,10 +182,26 @@ public class JyPagedFragment extends HomePageFragment implements OnFocusChangeLi
     }
 
     private void fillData() {
-        JyPagerAdapter adapter = new JyPagerAdapter((MainActivity) getActivity(), this, this, getImageFetcher());
-        adapter.setData(JyUtils.transferToArrayList(HttpDataFetcher.getInstance().getHomePage(mHomePageIndex)));
+        MainActivity activity = (MainActivity) getActivity();
+        HomePageData data = HttpDataFetcher.getInstance().getHomePage(mHomePageIndex);
+        if (data == null) {
+            Log.e("jiaoyang", "page data is null!");
+            startLoadData();
+            return;
+        }
+        if (mHomePageIndex == 0) {
+            //第一个tab时，更新导航上各个tab的名字
+            for (int i = 0; i < NaviControlFragment.HOME_PAGE_TAB_COUNT; i++) {
+                HomePageData pageData = HttpDataFetcher.getInstance().getHomePage(i);
+                if (pageData != null && !TextUtils.isEmpty(pageData.title)) {
+                    activity.getNaviControlFragment().updateTabTitle(i, pageData.title);
+                }
+            }
+        }
+        JyPagerAdapter adapter = new JyPagerAdapter(activity, this, this, getImageFetcher());
+        adapter.setData(JyUtils.transferToArrayList(data));
         mPager.setAdapter(adapter);
-        ((MainActivity)getActivity()).getSliderBarFragment().setTotalPages(adapter.getCount());
+        activity.getSliderBarFragment().setTotalPages(adapter.getCount());
         focusView();
     }
 

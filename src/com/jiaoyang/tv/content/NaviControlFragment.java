@@ -1,6 +1,5 @@
 package com.jiaoyang.tv.content;
 
-import android.R.integer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import com.jiaoyang.video.tv.R;
 
 public class NaviControlFragment extends JyBaseFragment implements OnFocusChangeListener, OnClickListener {
 
+    public static final int HOME_PAGE_TAB_COUNT = 4;//首页一共几个内容tab
     public static final String HOME_PAGE_TAB_INDEX_KEY = "home_page_tab_index";
     public static final int NAVI_CONTROLS_COUNT = 5;
 
@@ -152,4 +152,7 @@ public class NaviControlFragment extends JyBaseFragment implements OnFocusChange
         return mNaviControls[getCurrentFragmentType()];
     }
 
+    public void updateTabTitle(int tabIndex, String title) {
+        mNaviControls[tabIndex].setText(title);
+    }
 }
