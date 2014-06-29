@@ -75,7 +75,7 @@ public class NavigationalControlFragment extends JyBaseFragment implements OnFoc
         if (view == null || !(view instanceof TextView)) {
             return;
         }
-        float scaleFactor = hasFocus ? 1.2f : 1.0f;
+//        float scaleFactor = hasFocus ? 1.2f : 1.0f;
         TextView involvedView = (TextView) view;
         if (hasFocus) {
             if (mLastFocusedView != null) {
@@ -89,7 +89,7 @@ public class NavigationalControlFragment extends JyBaseFragment implements OnFoc
         } else {
             involvedView.setSelected(true);
         }
-        involvedView.animate().scaleX(scaleFactor).scaleY(scaleFactor).setDuration(200).start();
+//        involvedView.animate().scaleX(scaleFactor).scaleY(scaleFactor).setDuration(200).start();
     }
 
     public View getLastFocusedView() {

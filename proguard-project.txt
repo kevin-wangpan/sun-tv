@@ -46,5 +46,10 @@
     public static final int *;
 }
 
+#vitamio
+-keep class io.vov.utils.** { *; }
+-keep class io.vov.vitamio.** { *; }
+
+#log line number
 -renamesourcefileattribute Jiaoyang
 -keepattributes SourceFile,LineNumberTable

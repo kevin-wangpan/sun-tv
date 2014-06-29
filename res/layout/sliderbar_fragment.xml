@@ -11,19 +11,24 @@
         android:layout_centerVertical="true"
         android:src="@drawable/jy_left_indicator" />
 
-    <com.jiaoyang.tv.widget.WidthWrappingViewPager
-        android:id="@+id/sliderbar_viewpager"
+    <FrameLayout
+        android:id="@+id/pager_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/left_indicator"
         android:layout_centerVertical="true"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true" >
+        <com.jiaoyang.tv.widget.WidthWrappingViewPager
+        android:id="@+id/sliderbar_viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/right_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/sliderbar_viewpager"
+        android:layout_toRightOf="@id/pager_container"
         android:focusable="false"
         android:scaleType="centerInside"
         android:layout_centerVertical="true"

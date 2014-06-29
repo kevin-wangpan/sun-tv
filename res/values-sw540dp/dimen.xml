@@ -52,7 +52,7 @@
     <dimen name="detail_basic_recommend_margin">30dp</dimen>
     <!-- 详情页基本信息右边距 -->
     <dimen name="detail_basic_r_margin">15dp</dimen>
-    <dimen name="detail_poster_basic_margin">12dp</dimen>
+    <dimen name="detail_poster_basic_margin">36dp</dimen>
     <dimen name="detail_title_director_margin">22.50dp</dimen>
     <dimen name="detail_director_body_margin">22.50dp</dimen>
     <dimen name="detail_btn_column_margin">24dp</dimen>

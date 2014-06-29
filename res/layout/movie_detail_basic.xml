@@ -5,8 +5,8 @@
 
     <RelativeLayout
         android:id="@+id/lt_intermediatepage_movie_cover_frame"
-        android:layout_width="523px"
-        android:layout_height="816px"
+        android:layout_width="348px"
+        android:layout_height="544px"
         android:layout_centerVertical="true" >
 
         <ImageView

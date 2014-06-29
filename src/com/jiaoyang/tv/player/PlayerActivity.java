@@ -34,6 +34,7 @@ public class PlayerActivity extends Activity implements OnInfoListener, OnBuffer
 
         downloadRateView = (TextView) findViewById(R.id.download_rate);
         loadRateView = (TextView) findViewById(R.id.load_rate);
+        mVideoView.setVideoChroma(MediaPlayer.VIDEOCHROMA_RGB565);
         uri = Uri.parse(path);
         mVideoView.setVideoURI(uri);
         mVideoView.setVideoName("骄阳视频");
