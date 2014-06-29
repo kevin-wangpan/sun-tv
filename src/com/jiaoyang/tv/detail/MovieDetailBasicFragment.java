@@ -26,7 +26,6 @@ import com.jiaoyang.tv.BaseImageAdapter;
 import com.jiaoyang.tv.JyBaseFragment;
 import com.jiaoyang.tv.data.Movie;
 import com.jiaoyang.tv.player.PlayerAdapter;
-import com.jiaoyang.tv.player.VideoInfoManager;
 import com.jiaoyang.video.tv.R;
 
 public class MovieDetailBasicFragment extends JyBaseFragment {
