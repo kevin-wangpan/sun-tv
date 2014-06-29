@@ -10,9 +10,8 @@ import android.graphics.drawable.Drawable;
 import com.jiaoyang.base.app.JiaoyangApplication;
 import com.jiaoyang.base.caching.ImageCache;
 import com.jiaoyang.base.misc.JiaoyangConstants;
-import com.jiaoyang.tv.update.ModuleManager;
-import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.tv.util.Logger;
+import com.jiaoyang.tv.util.PreferenceManager;
 
 public class JiaoyangTvApplication extends JiaoyangApplication {
     private static final Logger LOG = Logger.getLogger(JiaoyangTvApplication.class);
@@ -54,8 +53,6 @@ public class JiaoyangTvApplication extends JiaoyangApplication {
 
     @Override
     protected void onInit() {
-        ModuleManager.init(this);
-
         try {
             PackageInfo pi = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
             if (pi != null) {

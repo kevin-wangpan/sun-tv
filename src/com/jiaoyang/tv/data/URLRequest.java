@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import android.net.Uri;
-import android.util.Pair;
 
 import com.jiaoyang.tv.util.Logger;
 
@@ -42,12 +41,6 @@ public class URLRequest {
 
     public void appendQueryParameter(String key, int value) {
         appendQueryParameter(key, Integer.toString(value));
-    }
-
-    public void appendQueryParameters(ParameterList parameters) {
-        for (Pair<String, String> param : parameters) {
-            appendQueryParameter(param.first, param.second);
-        }
     }
 
     @Override

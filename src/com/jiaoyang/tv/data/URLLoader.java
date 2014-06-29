@@ -31,8 +31,6 @@ import com.jiaoyang.tv.util.Logger;
 public class URLLoader {
     private static final Logger LOG = Logger.getLogger(URLLoader.class);
 
-    private static final String API_VERSION = "1.0";
-
     private static final int CONNECTION_TIMEOUT = 4000;
     private static final int SO_TIMEOUT = 6000;
 
@@ -187,16 +185,4 @@ public class URLLoader {
         }
         return object;
     }
-
-    public Topic<Movie> loadTopic(URLRequest request, Type type) {
-        String json = getJsonString(load(request.toString()));
-        Topic<Movie> resp = null;
-        try {
-            resp = mGson.fromJson(json, type);
-        } catch (JsonSyntaxException e) {
-            LOG.warn("invalid json. err={}", e.toString());
-        }
-        return resp != null ? resp : null;
-    }
-
 }

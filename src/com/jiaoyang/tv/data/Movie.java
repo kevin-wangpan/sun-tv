@@ -1,7 +1,7 @@
 package com.jiaoyang.tv.data;
 
 
-public class Movie {
+public class Movie extends BaseRspData {
 
     private static final String DETAIL_URL = "http://ci2.sun-tv.com.cn/movie/get/";
 
