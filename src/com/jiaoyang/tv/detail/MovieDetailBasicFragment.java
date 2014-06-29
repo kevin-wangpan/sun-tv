@@ -94,6 +94,7 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
                 if (hasFocus) {
                     mMoviePlay.setBackgroundResource(R.drawable.jy_play_focused);
                     mMoviePlay.setImageResource(R.drawable.jy_detail_play);
+                    mEpisodeSelector.setSelection(-1);
                 } else {
                     mMoviePlay.setBackgroundColor(0xff);
                     mMoviePlay.setImageResource(android.R.color.transparent);

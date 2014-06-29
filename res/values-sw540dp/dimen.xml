@@ -11,8 +11,8 @@
     <dimen name="episode_item_vertical_space">6dp</dimen>
 
     <!-- 详情页海报的宽高 -->
-    <dimen name="interpage_detail_image_poster_width">202.50dp</dimen>
-    <dimen name="interpage_detail_image_poster_height">277.50dp</dimen>
+    <dimen name="detail_poster_width">261dp</dimen>
+    <dimen name="detail_poster_height">408dp</dimen>
 
     <!-- 详情页推荐海报尺寸 -->
     <dimen name="detail_recommend_image_width">90dp</dimen>

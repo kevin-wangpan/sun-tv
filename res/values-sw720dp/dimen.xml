@@ -11,17 +11,9 @@
     <dimen name="episode_item_vertical_space">8dp</dimen>
 
     <!-- 详情页海报的宽高 -->
-    <dimen name="interpage_detail_image_poster_width">270dp</dimen>
-    <dimen name="interpage_detail_image_poster_height">370dp</dimen>
+    <dimen name="detail_poster_width">348dp</dimen>
+    <dimen name="detail_poster_height">544dp</dimen>
 
-    <!-- 详情页推荐海报尺寸 -->
-    <dimen name="detail_recommend_image_width">120dp</dimen>
-    <dimen name="detail_recommend_image_height">160dp</dimen>
-    <dimen name="detail_recommend_item_padding_vertical">20dp</dimen>
-
-    <!-- 详情页按钮 -->
-    <dimen name="detail_btn_width">170dp</dimen>
-    <dimen name="detail_btn_height">76dp</dimen>
 
     <!-- 剧集列表中电视剧的单个item的长宽 -->
     <dimen name="interpage_detail_episode_item_height">34dp</dimen>
