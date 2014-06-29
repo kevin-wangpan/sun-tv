@@ -11,6 +11,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -76,13 +77,14 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
         mMovie = movie;
         updateBasicInfo();
         updateEpisodeInfo();
+        mMoviePlay.requestFocus();
     }
 
     private void initializeView(View root) {
         mMovieCover = (ImageView) root
                 .findViewById(R.id.iv_intermediatepage_movie_cover);
         mMoviePlay = (ImageView) root.findViewById(R.id.iv_play);
-        mMovieCover.setOnFocusChangeListener(new OnFocusChangeListener() {
+        mMoviePlay.setOnFocusChangeListener(new OnFocusChangeListener() {
 
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -90,12 +92,19 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
                     return;
                 }
                 if (hasFocus) {
-                    mMoviePlay.setVisibility(View.VISIBLE);
                     mMoviePlay.setBackgroundResource(R.drawable.jy_play_focused);
                     mMoviePlay.setImageResource(R.drawable.jy_detail_play);
                 } else {
-                    mMoviePlay.setVisibility(View.INVISIBLE);
+                    mMoviePlay.setBackgroundColor(0xff);
+                    mMoviePlay.setImageResource(android.R.color.transparent);
                 }
+            }
+        });
+        mMoviePlay.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: 播放记录
+                playMovie(0);
             }
         });
         mMovieProfile = (ImageView) root.findViewById(R.id.iv_intermediatepage_movie_profile);
@@ -118,6 +127,7 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
 
         updateBasicInfo();
         updateEpisodeInfo();
+        mMoviePlay.requestFocus();
     }
 
     private void updateBasicInfo() {

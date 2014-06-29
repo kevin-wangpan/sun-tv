@@ -13,6 +13,7 @@
             android:id="@+id/iv_intermediatepage_movie_cover"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:focusable="false"
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY"
             android:src="@drawable/poster_default" />
@@ -30,7 +31,8 @@
             android:id="@+id/iv_play"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:focusable="false"
+            android:focusable="true"
+            android:scaleType="fitCenter"
             android:contentDescription="@string/app_name" />
         </RelativeLayout>
 
@@ -111,11 +113,13 @@
             <GridView
                 android:id="@+id/episode_selector_gridview"
                 android:layout_width="fill_parent"
-                android:layout_height="170px"
+                android:layout_height="160px"
                 android:layout_below="@id/arrow_up"
                 android:layout_centerHorizontal="true"
                 android:scrollbars="none"
-                android:numColumns="15"
+                android:numColumns="10"
+                android:horizontalSpacing="14px"
+                android:verticalSpacing="22px"
                 android:choiceMode="singleChoice"
                 android:listSelector="@android:color/transparent" >
             </GridView>
