@@ -16,10 +16,10 @@ public abstract class HomePageFragment extends JyBaseFragment {
 
     public static final int FRAGMENT_TYPE_UNKNOWN = -1;
     public static final int FRAGMENT_TYPE_RECOMMENDATION = 0; // 首页推荐
-    public static final int FRAGMENT_TYPE_CHANNEL = 1; // 频道
-    public static final int FRAGMENT_TYPE_TOPIC = 2; // 专题
+    public static final int FRAGMENT_TYPE_CHANNEL = 1;
+    public static final int FRAGMENT_TYPE_TOPIC = 2;
     public static final int FRAGMENT_TYPE_USER = 3; // 个人中心
-    public static final int FRAGMENT_TYPE_SETTINGS = 4; // 离线空间
+    public static final int FRAGMENT_TYPE_SETTINGS = 4;
 
     public static final String KEY_DIRECTION = "key_direction";
     private int mDirection = NaviControlFragment.INVALID_DIRECTION;

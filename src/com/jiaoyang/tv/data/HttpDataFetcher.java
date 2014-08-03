@@ -47,7 +47,7 @@ public class HttpDataFetcher {
     public Movie getMovieDetail(String id) {
         URLLoader loader = new URLLoader();
         String url = Movie.getDetailUrlFromId(id);
-        return loader.loadObject(url, Movie.class);
+        return loader.loadObject(addBaseParams(url), Movie.class);
     }
 
     public ApkUpdateInfo getApkUpdateInfo(String version, String osVersion) {
@@ -123,15 +123,12 @@ public class HttpDataFetcher {
         }
     }
     private String addBaseParams(String url) {
-        if (true) {
-            return url;
-        }
         if (TextUtils.isEmpty(url)) {
             return "";
         }
         String curTime = Long.toString(new Date().getTime());
         return url + "?uid=" + mUid.uid + "&v=" + Util.getSelfAppVersion(JiaoyangApplication.sInstance)
                 +"&os=android&os_v=" + Util.getOSVersion() + "&mac=" + Util.getIMEI(JiaoyangApplication.sInstance)
-                +"&sourceid=36&t=" + curTime + "&cs=" + Util.md5(KEY + curTime + mUid.uid);
+                +"&sourceid=39&t=" + curTime + "&cs=" + Util.md5(KEY + curTime + mUid.uid);
     }
 }
