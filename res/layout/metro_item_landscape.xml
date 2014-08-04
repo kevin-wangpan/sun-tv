@@ -11,7 +11,7 @@
         android:layout_height="@dimen/metro_landscape_height"
         android:scaleType="fitXY"
         android:focusable="false"
-        android:src="@drawable/poster_main" />
+        android:src="@drawable/poster_default" />
 
     <ImageView
         android:id="@+id/bitrate"
