@@ -25,6 +25,7 @@ public class Movie extends BaseRspData {
     public String[] videos;
     public String intro;
     public String info;
+    public String baidu_sid;
     public static String getDetailUrlFromId(String id) {
         return DETAIL_URL + id;
     }

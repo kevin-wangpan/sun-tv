@@ -229,7 +229,7 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
 
     private void playMovie(int position) {
         if (mMovie != null) {
-                PlayerAdapter.getInstance().play(getActivity(), mMovie.videos[position], mMovie.title);
+                PlayerAdapter.getInstance().play(getActivity(), mMovie, position);
         } else {
             showDialog("提示", "无法播放该视频");
         }

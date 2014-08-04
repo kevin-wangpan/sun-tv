@@ -56,14 +56,17 @@ public class PlayerActivity extends Activity implements OnInfoListener, OnBuffer
                     title = "骄阳视频";
                 }
                 String videoId = extras.getString(PlayerAdapter.VIDEO_ID_KEY);
-                if (TextUtils.isEmpty(videoId)) {
+                String baiduSid = extras.getString(PlayerAdapter.VIDEO_SID_KEY);
+                int episodeIndex = extras.getInt(PlayerAdapter.VIDEO_INDEX_KEY);
+                if (TextUtils.isEmpty(videoId + baiduSid)) {
                     return null;
                 }
-                return HttpDataFetcher.getInstance().loadPlayUrl(videoId, 1);
+                return HttpDataFetcher.getInstance().loadPlayUrl(PlayerActivity.this, videoId, 1, baiduSid, episodeIndex, PlayerAdapter.RST_NORMAL, PlayerAdapter.F_HLS);
             }
 
             @Override
             protected void onPostExecute(String result) {
+                android.util.Log.d("jiaoyang", "播放地址：" + result);
                 if (TextUtils.isEmpty(result)) {
                     Toast.makeText(PlayerActivity.this, "加载播放地址失败", Toast.LENGTH_LONG).show();
                     finish();

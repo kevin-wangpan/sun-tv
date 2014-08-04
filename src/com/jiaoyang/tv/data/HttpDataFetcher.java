@@ -1,11 +1,24 @@
 package com.jiaoyang.tv.data;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+
+import android.content.Context;
 import android.text.TextUtils;
 
+import com.baidu.cloudtv.signurl.SignURL;
 import com.google.gson.reflect.TypeToken;
 import com.jiaoyang.base.app.JiaoyangApplication;
 import com.jiaoyang.tv.content.NaviControlFragment;
@@ -23,6 +36,12 @@ public class HttpDataFetcher {
 
 
     private static final String START_UP_POSTER_URL = "null";// 启动时的品宣图和背景图
+
+    //从baidutv sdk请求播放地址
+    private static final String CONTENT_TEMPLATE = "sid=%s&ep=%d&rst=%s&f=%s";
+    private static final String contentId_test = "sid=2_ce4ce_4a0b030d65bc02e&ep=1&rst=900&f=hls";
+    private static final String CHANNEL_ID = "st04";
+    private static final String BAIDUTV_VIDEO_URL = "http://tv.baidu.com/rest/2.0/video/plink";
 
     private static HttpDataFetcher sInstance = null;
 
@@ -112,16 +131,49 @@ public class HttpDataFetcher {
      * @param type 类型。1-自适应；2-高清；3-标清；4-超清；5-高清下载；6-标清下载；7-超清下载；8-1080p;"
      * @return
      */
-    public String loadPlayUrl(String videoId, int type) {
-        String url = String.format(Locale.US, EPISODE_PLAY_URL, videoId, type);
-        URLLoader loader = new URLLoader();
-        Episode episode = loader.loadObject(addBaseParams(url), Episode.class);
-        if (episode == null) {
+    public String loadPlayUrl(Context context, String videoId, int type, String sid, int episodeIndex, String resolution, String f) {
+        if (true) { // 老的接口
+            String url = String.format(Locale.US, EPISODE_PLAY_URL, videoId, type);
+            URLLoader loader = new URLLoader();
+            Episode episode = loader.loadObject(addBaseParams(url), Episode.class);
+            if (episode == null) {
+                return null;
+            } else {
+                return episode.url;
+            }
+        }
+        String content = SignURL.signURL(context, String.format(CONTENT_TEMPLATE, sid, episodeIndex, resolution, f), CHANNEL_ID);
+        try {
+            return sendRequestPost(BAIDUTV_VIDEO_URL, content);
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
-        } else {
-            return episode.url;
         }
     }
+
+    private String sendRequestPost(String url, String content) throws Exception {
+        DefaultHttpClient client = new DefaultHttpClient();
+        HttpPost hp = new HttpPost(url);
+        List params = new ArrayList();
+        params.add(new BasicNameValuePair("content", content));
+        hp.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+
+        HttpResponse response = client.execute(hp);
+        int code = response.getStatusLine().getStatusCode();
+        InputStream inStream = response.getEntity().getContent();// ���ص����
+
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while ((len = inStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, len);
+        }
+        byte[] data = outStream.toByteArray();
+        outStream.close();
+        inStream.close();
+        return new String(data);
+    }
+
     private String addBaseParams(String url) {
         if (TextUtils.isEmpty(url)) {
             return "";
