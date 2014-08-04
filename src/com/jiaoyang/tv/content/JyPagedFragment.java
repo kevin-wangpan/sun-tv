@@ -3,7 +3,6 @@ package com.jiaoyang.tv.content;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -22,15 +21,13 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.jiaoyang.base.data.MovieType;
 import com.jiaoyang.tv.DetailActivity;
 import com.jiaoyang.tv.MainActivity;
 import com.jiaoyang.tv.content.JyMetroAdapter.ViewHolder;
-import com.jiaoyang.tv.data.HttpDataFetcher;
 import com.jiaoyang.tv.data.HomePageData;
+import com.jiaoyang.tv.data.HttpDataFetcher;
 import com.jiaoyang.tv.data.Movie;
 import com.jiaoyang.tv.util.Logger;
-import com.jiaoyang.tv.util.Util;
 import com.jiaoyang.video.tv.R;
 
 /**

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/empty_view_img_margin_top"
-        android:src="@drawable/logo_grey"
+        android:src="@drawable/logo_load_failed"
         android:contentDescription="@string/app_name" />
 
     <ImageButton
