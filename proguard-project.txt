@@ -53,3 +53,7 @@
 #log line number
 -renamesourcefileattribute Jiaoyang
 -keepattributes SourceFile,LineNumberTable
+
+#艾瑞统计
+-keep class cn.com.iresearch.mapptracker.** { *; }
+-dontwarncn.com.iresearch.mapptracker.**

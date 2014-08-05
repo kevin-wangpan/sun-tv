@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import butterknife.ButterKnife;
+import cn.com.iresearch.mapptracker.IRMonitor;
 
 import com.jiaoyang.tv.content.RootRelativeLayout;
 import com.jiaoyang.tv.util.Logger;
@@ -364,4 +365,15 @@ private OnKeyListener mKeyListener = new OnKeyListener() {
     protected RootRelativeLayout getRootView() {
         return mRootView;
     }
+
+    @Override
+    protected void onResume() {
+        IRMonitor.getInstance(this).onResume();
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        IRMonitor.getInstance(this).onPause();;
+        super.onPause();
+    };
 }

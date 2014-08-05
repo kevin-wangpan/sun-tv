@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.ViewGroup;
+import cn.com.iresearch.mapptracker.IRMonitor;
 
 import com.jiaoyang.base.sys.DeviceHelper;
 import com.jiaoyang.tv.content.ActionBarFragment;
@@ -53,6 +54,7 @@ public class MainActivity extends JyBaseActivity {
             }
         }
 
+        IRMonitor.getInstance(this).Init("艾瑞分配的app key", null,true);
     }
 
     @Override

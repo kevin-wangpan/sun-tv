@@ -95,6 +95,9 @@
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="36" />
+        <meta-data
+            android:name="ire_channel"
+            android:value="36" />
 
         <activity android:name="com.jiaoyang.tv.JyBaseActivity" >
         </activity>
