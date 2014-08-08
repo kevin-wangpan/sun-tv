@@ -54,7 +54,7 @@ public class MainActivity extends JyBaseActivity {
             }
         }
 
-        IRMonitor.getInstance(this).Init("艾瑞分配的app key", null,true);
+        IRMonitor.getInstance(this).Init("85521b6b9d778ff9", null,true);
     }
 
     @Override

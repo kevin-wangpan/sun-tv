@@ -96,8 +96,11 @@ public class HttpDataFetcher {
             PreferenceManager.instance(JiaoyangApplication.sInstance).saveUserId(mUid.uid);
         }
     }
-    public synchronized UserId getUserId() {
-        return mUid;
+    public synchronized String getUserId() {
+        if (mUid != null && !TextUtils.isEmpty(mUid.uid)) {
+            return mUid.uid;
+        }
+        return "53e43f6f95001b8e899f066be9f0fe4f69c41a79";
     }
 
     public synchronized void loadHomePage() {
@@ -179,8 +182,8 @@ public class HttpDataFetcher {
             return "";
         }
         String curTime = Long.toString(new Date().getTime());
-        return url + "?uid=" + mUid.uid + "&v=" + Util.getSelfAppVersion(JiaoyangApplication.sInstance)
+        return url + "?uid=" + getUserId() + "&v=" + Util.getSelfAppVersion(JiaoyangApplication.sInstance)
                 +"&os=android&os_v=" + Util.getOSVersion() + "&mac=" + Util.getIMEI(JiaoyangApplication.sInstance)
-                +"&sourceid=39&t=" + curTime + "&cs=" + Util.md5(KEY + curTime + mUid.uid);
+                +"&sourceid=39&t=" + curTime + "&cs=" + Util.md5(KEY + curTime + getUserId());
     }
 }
