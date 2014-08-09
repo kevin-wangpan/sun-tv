@@ -22,7 +22,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jiaoyang.tv.data.Episode;
 import com.jiaoyang.tv.data.HttpDataFetcher;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.video.tv.R;
@@ -32,9 +31,10 @@ public class PlayerActivity extends Activity implements OnInfoListener,
 
     private String playUrl;// = "http://pl.youku.com/playlist/m3u8?ts=1394676342&keyframe=0&vid=XNjU4MTc0Mjky&type=mp4";
     private String title;
+    private int currentPlayedIndex;
     private VideoView mVideoView;
     private ProgressBar loadingProgressBar;
-    private TextView downloadRateView, loadRateView;
+    private TextView downloadRateView, loadRateView; //下载速度，缓冲百分比
 
     //每隔固定时间查询下播放状态，可用于播放记录的保存和跳过片尾
     private static final int TIMER_INTERVAL = 1000; //1s
@@ -53,6 +53,11 @@ public class PlayerActivity extends Activity implements OnInfoListener,
             return;
         }
         setContentView(R.layout.player);
+        try {
+            currentPlayedIndex = getIntent().getExtras().getInt(PlayerAdapter.VIDEO_INDEX_KEY, 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mVideoView = (VideoView) findViewById(R.id.buffer);
         loadingProgressBar = (ProgressBar) findViewById(R.id.probar);
 
@@ -69,21 +74,21 @@ public class PlayerActivity extends Activity implements OnInfoListener,
 
             @Override
             protected String doInBackground(Void... params) {
-                Bundle extras = getIntent().getExtras();
-                if (extras == null) {
+                if (PlayerAdapter.sPlayedMovie == null) {
                     return null;
                 }
-                title = extras.getString(PlayerAdapter.VIDEO_TITLE_KEY);
+                title = PlayerAdapter.sPlayedMovie.title;
                 if (TextUtils.isEmpty(title)) {
                     title = "骄阳视频";
+                } else if (PlayerAdapter.sPlayedMovie.videos.length > 1) {
+                    title += " - 第" + (currentPlayedIndex + 1) + "集";
                 }
-                String videoId = extras.getString(PlayerAdapter.VIDEO_ID_KEY);
-                String baiduSid = extras.getString(PlayerAdapter.VIDEO_SID_KEY);
-                int episodeIndex = extras.getInt(PlayerAdapter.VIDEO_INDEX_KEY);
+                String videoId = PlayerAdapter.sPlayedMovie.videos[currentPlayedIndex];
+                String baiduSid = PlayerAdapter.sPlayedMovie.baidu_sid;
                 if (TextUtils.isEmpty(videoId + baiduSid)) {
                     return null;
                 }
-                return HttpDataFetcher.getInstance().loadPlayUrl(PlayerActivity.this, videoId, 1, baiduSid, episodeIndex, PlayerAdapter.RST_NORMAL, PlayerAdapter.F_HLS);
+                return HttpDataFetcher.getInstance().loadPlayUrl(PlayerActivity.this, videoId, 1, baiduSid, currentPlayedIndex, PlayerAdapter.RST_NORMAL, PlayerAdapter.F_HLS);
             }
 
             @Override
@@ -149,8 +154,16 @@ public class PlayerActivity extends Activity implements OnInfoListener,
         android.util.Log.w("wangpan", "是否跳过片尾：skipAfter=" + skipAfter + ",cur=" + mVideoView.getCurrentPosition() + ",total=" + mVideoView.getDuration());
         if (mVideoView.getCurrentPosition() + skipAfter * 1000 > mVideoView.getDuration()) {
             android.util.Log.e("wangpan", "seekTo片尾");
-            mVideoView.stopPlayback();
-            playNextIfExist();
+            mVideoView.post(new Runnable() {
+                @Override
+                public void run() {
+                    mVideoView.stopPlayback();
+                    loadingProgressBar.setVisibility(View.VISIBLE);
+                    downloadRateView.setVisibility(View.VISIBLE);
+                    downloadRateView.setText("正在自动加载下一集, 请稍等");
+                    playNextIfExist();
+                }
+            });
         }
     }
 
@@ -200,6 +213,12 @@ public class PlayerActivity extends Activity implements OnInfoListener,
         if (!autoPlayNext) {
             return;
         }
+        if (currentPlayedIndex >= PlayerAdapter.sPlayedMovie.videos.length - 1) {
+            Toast.makeText(PlayerActivity.this, "整个剧集已经播放完成, 多谢观看", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+        currentPlayedIndex++;
         loadPlayUrl();
     }
     @Override
