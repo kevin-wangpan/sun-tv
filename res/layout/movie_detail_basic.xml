@@ -32,7 +32,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:focusable="true"
-            android:scaleType="fitCenter"
+            android:scaleType="centerInside"
             android:contentDescription="@string/app_name" />
         </RelativeLayout>
 
