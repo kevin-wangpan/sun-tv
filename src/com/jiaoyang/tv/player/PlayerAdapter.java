@@ -23,6 +23,7 @@ public class PlayerAdapter {
 
     private static PlayerAdapter sInstance = null;
 
+    public static Movie sPlayedMovie;
     synchronized public static PlayerAdapter getInstance() {
         if (sInstance == null) {
             sInstance = new PlayerAdapter();
@@ -32,6 +33,7 @@ public class PlayerAdapter {
     }
 
     public void play(final Context context, Movie movie, int position) {
+        sPlayedMovie = movie;
         Intent intent = new Intent();
         intent.putExtra(VIDEO_ID_KEY, movie.videos[position]);
         intent.putExtra(VIDEO_TITLE_KEY, movie.title);
