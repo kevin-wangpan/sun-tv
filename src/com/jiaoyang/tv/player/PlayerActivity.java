@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.jiaoyang.tv.data.HttpDataFetcher;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.video.tv.R;
+import com.suntv.tv.coporate.Agent;
 
 public class PlayerActivity extends Activity implements OnInfoListener,
                 OnBufferingUpdateListener, OnCompletionListener, OnPreparedListener {
@@ -88,7 +89,15 @@ public class PlayerActivity extends Activity implements OnInfoListener,
                 if (TextUtils.isEmpty(videoId + baiduSid)) {
                     return null;
                 }
-                return HttpDataFetcher.getInstance().loadPlayUrl(PlayerActivity.this, videoId, 1, baiduSid, currentPlayedIndex, PlayerAdapter.RST_NORMAL, PlayerAdapter.F_HLS);
+                String url;
+                try {
+                    url = Agent.getVideoURL(PlayerActivity.this, HttpDataFetcher.getInstance().getUserId(), baiduSid, currentPlayedIndex + 1, PlayerAdapter.RST_NORMAL, PlayerAdapter.F_HLS);
+                } catch (Exception e) {
+                    url = null;
+                    e.printStackTrace();
+                }
+                android.util.Log.e("wangpan", "播放地址=" + url);
+                return url;//HttpDataFetcher.getInstance().loadPlayUrl(PlayerActivity.this, videoId, 1, baiduSid, currentPlayedIndex, PlayerAdapter.RST_NORMAL, PlayerAdapter.F_HLS);
             }
 
             @Override
