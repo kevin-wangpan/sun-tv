@@ -176,7 +176,7 @@ public class MovieDetailBasicFragment extends JyBaseFragment {
     private void updateVideoIntroduce() {
         if (mMovie != null) {
             String str = mMovie.intro;
-            mMovieIntro.setText("剧情简介：" + Html.fromHtml(str));
+            mMovieIntro.setText("剧情简介：" + (TextUtils.isEmpty(str) ? "暂无" : Html.fromHtml(str)));
         }
     }
 

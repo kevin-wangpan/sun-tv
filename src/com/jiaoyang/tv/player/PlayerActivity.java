@@ -93,7 +93,7 @@ public class PlayerActivity extends Activity implements OnInfoListener,
 
             @Override
             protected void onPostExecute(String result) {
-                android.util.Log.d("jiaoyang", "播放地址：" + result);
+                android.util.Log.e("jiaoyang", "播放地址：" + result);
                 if (result == null || TextUtils.isEmpty(result)) {
                     Toast.makeText(PlayerActivity.this, "加载播放地址失败", Toast.LENGTH_LONG).show();
                     finish();

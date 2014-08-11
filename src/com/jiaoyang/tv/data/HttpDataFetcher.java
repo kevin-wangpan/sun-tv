@@ -135,7 +135,7 @@ public class HttpDataFetcher {
      * @return
      */
     public String loadPlayUrl(Context context, String videoId, int type, String sid, int episodeIndex, String resolution, String f) {
-        if (true) { // 老的接口
+        if (false) { // 老的接口
             String url = String.format(Locale.US, EPISODE_PLAY_URL, videoId, type);
             URLLoader loader = new URLLoader();
             Episode episode = loader.loadObject(addBaseParams(url), Episode.class);
@@ -145,11 +145,16 @@ public class HttpDataFetcher {
                 return episode.url;
             }
         }
+        android.util.Log.e("wangpan", "开始加载百度播放地址：" + String.format(CONTENT_TEMPLATE, sid, episodeIndex, resolution, f));
         String content = SignURL.signURL(context, String.format(CONTENT_TEMPLATE, sid, episodeIndex, resolution, f), CHANNEL_ID);
+        android.util.Log.e("wangpan", "加载百度播放地址：content=" + content);
         try {
-            return sendRequestPost(BAIDUTV_VIDEO_URL, content);
+            String playUrl = sendRequestPost(BAIDUTV_VIDEO_URL, content);
+            android.util.Log.e("wangpan", "加载百度播放地址：playUrl=" + playUrl);
+            return playUrl;
         } catch (Exception e) {
             e.printStackTrace();
+            android.util.Log.e("wangpan", "加载百度播放地址：playUrl=nullllll");
             return null;
         }
     }
@@ -181,7 +186,7 @@ public class HttpDataFetcher {
         if (TextUtils.isEmpty(url)) {
             return "";
         }
-        String curTime = Long.toString(new Date().getTime());
+        String curTime = Long.toString(new Date().getTime() / 1000);
         return url + "?uid=" + getUserId() + "&v=" + Util.getSelfAppVersion(JiaoyangApplication.sInstance)
                 +"&os=android&os_v=" + Util.getOSVersion() + "&mac=" + Util.getIMEI(JiaoyangApplication.sInstance)
                 +"&sourceid=39&t=" + curTime + "&cs=" + Util.md5(KEY + curTime + getUserId());
