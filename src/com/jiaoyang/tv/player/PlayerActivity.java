@@ -91,12 +91,12 @@ public class PlayerActivity extends Activity implements OnInfoListener,
                 }
                 String url;
                 try {
-                    url = Agent.getVideoURL(PlayerActivity.this, HttpDataFetcher.getInstance().getUserId(), baiduSid, currentPlayedIndex + 1, PlayerAdapter.RST_NORMAL, PlayerAdapter.F_HLS);
+                    url = Agent.getVideoURL(PlayerActivity.this, HttpDataFetcher.getInstance().getUserId(), baiduSid, currentPlayedIndex + 1, PlayerAdapter.RST_SUPER, PlayerAdapter.F_HLS);
                 } catch (Exception e) {
                     url = null;
                     e.printStackTrace();
                 }
-                android.util.Log.e("wangpan", "播放地址=" + url);
+                android.util.Log.e("jiaoyang", "播放地址=" + url);
                 return url;//HttpDataFetcher.getInstance().loadPlayUrl(PlayerActivity.this, videoId, 1, baiduSid, currentPlayedIndex, PlayerAdapter.RST_NORMAL, PlayerAdapter.F_HLS);
             }
 
@@ -160,9 +160,9 @@ public class PlayerActivity extends Activity implements OnInfoListener,
         if (skipAfter <= 0) {
             return;
         }
-        android.util.Log.w("wangpan", "是否跳过片尾：skipAfter=" + skipAfter + ",cur=" + mVideoView.getCurrentPosition() + ",total=" + mVideoView.getDuration());
+        android.util.Log.w("jiaoyang", "是否跳过片尾：skipAfter=" + skipAfter + ",cur=" + mVideoView.getCurrentPosition() + ",total=" + mVideoView.getDuration());
         if (mVideoView.getCurrentPosition() + skipAfter * 1000 > mVideoView.getDuration()) {
-            android.util.Log.e("wangpan", "seekTo片尾");
+            android.util.Log.e("jiaoyang", "seekTo片尾");
             mVideoView.post(new Runnable() {
                 @Override
                 public void run() {
@@ -180,7 +180,7 @@ public class PlayerActivity extends Activity implements OnInfoListener,
     public boolean onInfo(MediaPlayer mp, int what, int extra) {
         switch (what) {
         case MediaPlayer.MEDIA_INFO_BUFFERING_START:
-            android.util.Log.d("wangpan", "onInfo, BUFFERING_START");
+            android.util.Log.d("jiaoyang", "onInfo, BUFFERING_START");
             if (mVideoView.isPlaying()) {
                 mVideoView.pause();
                 loadingProgressBar.setVisibility(View.VISIBLE);
@@ -192,14 +192,14 @@ public class PlayerActivity extends Activity implements OnInfoListener,
             }
             break;
         case MediaPlayer.MEDIA_INFO_BUFFERING_END:
-            android.util.Log.d("wangpan", "onInfo, BUFFERING_END");
+            android.util.Log.d("jiaoyang", "onInfo, BUFFERING_END");
             mVideoView.start();
             loadingProgressBar.setVisibility(View.GONE);
             downloadRateView.setVisibility(View.GONE);
             loadRateView.setVisibility(View.GONE);
             break;
         case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
-            android.util.Log.d("wangpan", "onInfo, DOWNLOAD_RATE_CHANGED");
+            android.util.Log.d("jiaoyang", "onInfo, DOWNLOAD_RATE_CHANGED");
             downloadRateView.setText("" + extra + "kb/s");
             break;
         }
@@ -208,13 +208,13 @@ public class PlayerActivity extends Activity implements OnInfoListener,
 
     @Override
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
-        android.util.Log.d("wangpan", "onBufferingUpdate: percent=" + percent + "%");
+        android.util.Log.d("jiaoyang", "onBufferingUpdate: percent=" + percent + "%");
         loadRateView.setText(percent + "%");
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        android.util.Log.e("wangpan", "onCompletion");
+        android.util.Log.e("jiaoyang", "onCompletion");
         playNextIfExist();
     }
 
@@ -232,7 +232,7 @@ public class PlayerActivity extends Activity implements OnInfoListener,
     }
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
-        android.util.Log.e("wangpan", "onPrepared");
+        android.util.Log.e("jiaoyang", "onPrepared");
         // optional need Vitamio 4.0
         mediaPlayer.setPlaybackSpeed(1.0f);
         skipVideoHead();

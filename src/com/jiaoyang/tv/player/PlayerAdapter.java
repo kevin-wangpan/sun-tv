@@ -5,7 +5,6 @@ import android.content.Intent;
 
 import com.jiaoyang.base.misc.JiaoyangConstants;
 import com.jiaoyang.tv.data.Movie;
-import com.jiaoyang.tv.util.Logger;
 
 public class PlayerAdapter {
 

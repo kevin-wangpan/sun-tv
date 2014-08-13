@@ -145,16 +145,12 @@ public class HttpDataFetcher {
                 return episode.url;
             }
         }
-        android.util.Log.e("wangpan", "开始加载百度播放地址：" + String.format(CONTENT_TEMPLATE, sid, episodeIndex, resolution, f));
         String content = SignURL.signURL(context, String.format(CONTENT_TEMPLATE, sid, episodeIndex, resolution, f), CHANNEL_ID);
-        android.util.Log.e("wangpan", "加载百度播放地址：content=" + content);
         try {
             String playUrl = sendRequestPost(BAIDUTV_VIDEO_URL, content);
-            android.util.Log.e("wangpan", "加载百度播放地址：playUrl=" + playUrl);
             return playUrl;
         } catch (Exception e) {
             e.printStackTrace();
-            android.util.Log.e("wangpan", "加载百度播放地址：playUrl=nullllll");
             return null;
         }
     }
