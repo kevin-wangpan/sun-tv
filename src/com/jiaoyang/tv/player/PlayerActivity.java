@@ -7,6 +7,7 @@ import io.vov.vitamio.MediaPlayer.OnCompletionListener;
 import io.vov.vitamio.MediaPlayer.OnInfoListener;
 import io.vov.vitamio.MediaPlayer.OnPreparedListener;
 import io.vov.vitamio.widget.MediaController;
+import io.vov.vitamio.widget.MediaController.OnEpisodeSwitchListener;
 import io.vov.vitamio.widget.VideoView;
 
 import java.util.Timer;
@@ -34,6 +35,7 @@ public class PlayerActivity extends Activity implements OnInfoListener,
     private String title;
     private int currentPlayedIndex;
     private VideoView mVideoView;
+    private MediaController mMediaController;
     private ProgressBar loadingProgressBar;
     private TextView downloadRateView, loadRateView; //下载速度，缓冲百分比
 
@@ -70,6 +72,47 @@ public class PlayerActivity extends Activity implements OnInfoListener,
         loadPlayUrl();
     }
 
+    private OnEpisodeSwitchListener episodeSwitchListener = new OnEpisodeSwitchListener() {
+        @Override
+        public void switchToPre() {
+            switchToSpecifiedEpisode(-1);
+        }
+        @Override
+        public void switchToNext() {
+            switchToSpecifiedEpisode(1);
+        }
+    };
+
+    private void switchToSpecifiedEpisode(int offset) {
+        if (offset == 0) {
+            //不做任何剧集跳转
+            return;
+        } else if(offset > 0) {
+            if (currentPlayedIndex >= PlayerAdapter.sPlayedMovie.videos.length - offset) {
+                //没有这么多的剧集，无法跳转到指定剧集
+                Toast.makeText(PlayerActivity.this,
+                        (offset == 1 ? "当前播放的已经是最后一集啦" : "不存在指定剧集，无法跳转"), Toast.LENGTH_LONG).show();
+                return;
+            } else {
+                currentPlayedIndex += offset;
+            }
+        } else if (offset < 0) {
+            if (currentPlayedIndex + offset < 0) {
+                //无法跳转到指定剧集
+                Toast.makeText(PlayerActivity.this,
+                        (currentPlayedIndex == 0 ? "当前播放的已经是第一集啦" : "不存在指定剧集，无法跳转"), Toast.LENGTH_LONG).show();
+                return;
+            } else {
+                currentPlayedIndex += offset;
+            }
+        }
+        mVideoView.stopPlayback();
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        downloadRateView.setVisibility(View.VISIBLE);
+        downloadRateView.setText("正在自动加载下一集, 请稍等");
+        currentPlayedIndex++;
+        loadPlayUrl();
+    }
     private void loadPlayUrl() {
         new AsyncTask<Void, Void, String>() {
 
@@ -120,7 +163,9 @@ public class PlayerActivity extends Activity implements OnInfoListener,
         Uri uri = Uri.parse(playUrl);
         mVideoView.setVideoURI(uri);
         mVideoView.setVideoName(title);
-        mVideoView.setMediaController(new MediaController(this));
+        mMediaController = new MediaController(this);
+        mMediaController.setOnEpisodeSwitchListener(episodeSwitchListener);
+        mVideoView.setMediaController(mMediaController);
         mVideoView.requestFocus();
         mVideoView.setOnInfoListener(this);
         mVideoView.setOnBufferingUpdateListener(this);
