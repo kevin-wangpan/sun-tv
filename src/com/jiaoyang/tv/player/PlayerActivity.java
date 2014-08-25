@@ -14,11 +14,21 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
+import android.view.WindowManager.LayoutParams;
+import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -110,7 +120,6 @@ public class PlayerActivity extends Activity implements OnInfoListener,
         loadingProgressBar.setVisibility(View.VISIBLE);
         downloadRateView.setVisibility(View.VISIBLE);
         downloadRateView.setText("正在自动加载下一集, 请稍等");
-        currentPlayedIndex++;
         loadPlayUrl();
     }
     private void loadPlayUrl() {
@@ -303,4 +312,94 @@ public class PlayerActivity extends Activity implements OnInfoListener,
         super.onDestroy();
         stopTimer();
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+            if (event.getRepeatCount() == 0) {
+                showSwitchEpisodePop();
+            }
+            return true;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+    PopupWindow mSwitchPop;
+    ImageButton mPreEpisode;
+    ImageButton mNextEpisode;
+    ImageButton mPause;
+    private void showSwitchEpisodePop() {
+        if (mSwitchPop == null) {
+            initSwitchPop();
+        }
+        mSwitchPop.showAtLocation(mVideoView, Gravity.CENTER, 0, 0);
+        mPreEpisode.postDelayed(new Runnable() {
+            
+            @Override
+            public void run() {
+                mPreEpisode.requestFocus();
+            }
+        }, 500);
+    }
+    private void dismissSwitchEpisodePop() {
+        if (mSwitchPop != null && mSwitchPop.isShowing()) {
+            mSwitchPop.dismiss();
+        }
+    }
+    private void initSwitchPop() {
+        if (mSwitchPop != null) {
+            return;
+        }
+        final View view = getLayoutInflater().inflate(R.layout.popup_switch, null);
+        mPreEpisode = (ImageButton) view.findViewById(R.id.mediacontroller_play_pre_episode);
+        mPreEpisode.setOnClickListener(clickListener);
+        mNextEpisode = (ImageButton) view.findViewById(R.id.mediacontroller_play_next_episode);
+        mNextEpisode.setOnClickListener(clickListener);
+        mPause = (ImageButton) view.findViewById(R.id.mediacontroller_play_pause);
+        mSwitchPop = new PopupWindow(view, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
+        mSwitchPop.setTouchable(true);
+        mSwitchPop.setOutsideTouchable(true);
+        mSwitchPop.setBackgroundDrawable(new BitmapDrawable(getResources(), (Bitmap) null));
+
+        mSwitchPop.getContentView().setFocusableInTouchMode(true);
+        mSwitchPop.getContentView().setFocusable(true);
+        mSwitchPop.getContentView().setOnKeyListener(new OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_MENU && event.getRepeatCount() == 0
+                        && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (mSwitchPop != null && mSwitchPop.isShowing()) {
+                        mSwitchPop.dismiss();
+                    }
+                    return true;
+                } else if (event.getRepeatCount() == 0
+                        && !mPreEpisode.isFocused()
+                        && !mNextEpisode.isFocused()) {
+                    mPreEpisode.requestFocus();
+                }
+                return false;
+            }
+        });
+    }
+    private OnClickListener clickListener = new OnClickListener() {
+        
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+            case R.id.mediacontroller_play_next_episode:
+                Log.e("jiaoyang", "mediacontroller_play_next_episode");
+                switchToSpecifiedEpisode(1);
+                dismissSwitchEpisodePop();
+                break;
+            case R.id.mediacontroller_play_pre_episode:
+                Log.e("jiaoyang", "mediacontroller_play_pre_episode");
+                switchToSpecifiedEpisode(-1);
+                dismissSwitchEpisodePop();
+                break;
+
+            default:
+                break;
+            }
+        }
+    };
 }
