@@ -10,6 +10,7 @@ import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.MediaController.OnEpisodeSwitchListener;
 import io.vov.vitamio.widget.VideoView;
 
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,6 +34,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jamdeo.tv.vod.player.thirdparty.VodSourcePlayerHelper;
+import com.jamdeo.tv.vod.player.thirdparty.VodSourcePlayerHelper.EVENT;
+import com.jamdeo.tv.vod.player.thirdparty.VodSourcePlayerHelper.SOURCE;
 import com.jiaoyang.tv.data.HttpDataFetcher;
 import com.jiaoyang.tv.util.PreferenceManager;
 import com.jiaoyang.video.tv.R;
@@ -235,6 +239,7 @@ public class PlayerActivity extends Activity implements OnInfoListener,
         switch (what) {
         case MediaPlayer.MEDIA_INFO_BUFFERING_START:
             android.util.Log.d("jiaoyang", "onInfo, BUFFERING_START");
+            VodSourcePlayerHelper.journalReport(this, SOURCE.VOOLE, EVENT.VIDEO_BUFFERING, new HashMap<VodSourcePlayerHelper.MapKey, String>());
             if (mVideoView.isPlaying()) {
                 mVideoView.pause();
                 loadingProgressBar.setVisibility(View.VISIBLE);
@@ -263,12 +268,14 @@ public class PlayerActivity extends Activity implements OnInfoListener,
     @Override
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
         android.util.Log.d("jiaoyang", "onBufferingUpdate: percent=" + percent + "%");
+        VodSourcePlayerHelper.journalReport(this, SOURCE.VOOLE, EVENT.VIDEO_BUFFERING, new HashMap<VodSourcePlayerHelper.MapKey, String>());
         loadRateView.setText(percent + "%");
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
         android.util.Log.e("jiaoyang", "onCompletion");
+        VodSourcePlayerHelper.journalReport(this, SOURCE.VOOLE, EVENT.VIDEO_END, new HashMap<VodSourcePlayerHelper.MapKey, String>());
         playNextIfExist();
     }
 
@@ -289,6 +296,7 @@ public class PlayerActivity extends Activity implements OnInfoListener,
         android.util.Log.e("jiaoyang", "onPrepared");
         // optional need Vitamio 4.0
         mediaPlayer.setPlaybackSpeed(1.0f);
+        VodSourcePlayerHelper.journalReport(this, SOURCE.VOOLE, EVENT.VIDEO_START, new HashMap<VodSourcePlayerHelper.MapKey, String>());
         skipVideoHead();
     }
 
@@ -310,6 +318,7 @@ public class PlayerActivity extends Activity implements OnInfoListener,
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        VodSourcePlayerHelper.journalReport(this, SOURCE.VOOLE, EVENT.VIDEO_EXIT, new HashMap<VodSourcePlayerHelper.MapKey, String>());
         stopTimer();
     }
 

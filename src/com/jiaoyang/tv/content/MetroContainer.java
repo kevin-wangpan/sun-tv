@@ -129,7 +129,9 @@ public class MetroContainer extends FrameLayout {
             nextRow = (rowSpan + nextRow) <= rowCount ? nextRow : 0;
 
             int maxLeftMagin = getMax(nextRow, rowSpan);
-            params = new LayoutParams(params);
+            params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            params.rightMargin = surroundingMarginRight;
+            params.bottomMargin = surroundingMarginBottom;
             if (orientation == HORIZONTAL) {
                 params.topMargin = nextRow * (rowHeight + rowSpace) +
                         surroundingMarginTop;
